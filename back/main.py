@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
+from routes import journeys, stations
 
 
 app = FastAPI()
@@ -18,11 +19,12 @@ app.add_middleware(
 
 )
 
+app.include_router(journeys.journey_router)
+app.include_router(stations.station_router)
 
-
-if __name__ == "__main__":
+# if __name__ == "__main__":
     
-    uvicorn.run(app, log_level="info")
+#     uvicorn.run(app, log_level="info")
 
 
 
