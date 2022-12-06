@@ -6,4 +6,5 @@ node_modules
 
 *.csv
 
-__pycache__
+__pycache__/
+*.py[cod]
