@@ -1,11 +1,10 @@
 import pandas as pd
 import os
-from pandas_profiling import ProfileReport
-import matplotlib
+# from pandas_profiling import ProfileReport
+# import matplotlib
 
-import connection
 
-PATH = './CSV/'
+PATH = 'D:/Projektit/Koodausprojekteja/SolitaDevAcademy/back/internal/ETL/CSV/'
 
 
 def process_local_files(validate=True):
@@ -30,7 +29,7 @@ def process_local_files(validate=True):
 
 
 
-def separate_stations(df):
+def separate_tables(df):
     
     
     df2 = df[['Departure station id', 'Departure station name', 'Return station id', 'Return station name']]
@@ -47,8 +46,15 @@ def separate_stations(df):
         .drop_duplicates(keep='first')\
             .sort_values('station_id')\
                 .reset_index(drop=True)
+                
+    df = df.drop(columns=['Departure station name','Return station name'])
+    
+    names = ['departure', 'arrival', 'departure_station_id', 'return_station_id', 'covered_distance_m','duration_s']
+    df = df.set_axis(names, axis=1)
 
-    return df_station
+    return df, df_station
+
+
 
 
 # df = process_local_files()

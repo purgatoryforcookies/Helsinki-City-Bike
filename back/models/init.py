@@ -2,8 +2,12 @@ from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Boolean, F
 from internal import connection
 from pydantic import BaseModel, validator
 from datetime import datetime, date
-from pydantic_collections import BaseCollectionModel
+# from pydantic_collections import BaseCollectionModel
 from sqlalchemy.orm import relationship
+
+from internal import config
+
+
 
 class Station(connection.Base):
     __tablename__ =  'stations'
@@ -34,6 +38,5 @@ class Log(connection.Base):
     distance = Column('covered_distance_m',Integer, nullable=False)
     duration = Column('duration_s', Integer, nullable=False)
   
-  
 
-
+connection.Base.metadata.create_all(connection.soldev_engine)
