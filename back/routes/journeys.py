@@ -1,5 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException, Header
 from models import init
+from functions.journeys import crud
+from internal import connection
+
+from sqlalchemy.orm import Session
+from datetime import datetime
 
 journey_router = APIRouter(
     prefix="/journey",
@@ -10,9 +15,14 @@ journey_router = APIRouter(
 
 
 @journey_router.get("/")
-async def retrieve_journeys():
+async def retrieve_journeys(db: Session = Depends(connection.get_db)):
     
-    return {"status":"ok"}
+    
+    
+    
+    
+    return crud.get_log(db) 
+# {"status":"ok"}
 
 
 

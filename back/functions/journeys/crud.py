@@ -1,11 +1,14 @@
-from models import init
+from models.init import Log
+from sqlalchemy.orm import join, outerjoin, joinedload
+from sqlalchemy.sql import select
 
-
-
-# def retrieve_journeys(db):
+def get_log(db):
     
-#     init.Stations
+    result = db.query(Log).all()
+    
 
+
+    return result
 
 
 
