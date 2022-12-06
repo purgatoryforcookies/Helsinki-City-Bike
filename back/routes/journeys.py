@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from datetime import datetime
 
 journey_router = APIRouter(
-    prefix="/journey",
+    prefix="/api/journey",
     tags=["journeys"],
     responses={404: {"description": "We have nothing here"}},
 )

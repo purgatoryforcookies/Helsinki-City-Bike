@@ -15,6 +15,8 @@ class Station(connection.Base):
     station_id = Column(Integer, primary_key=True)
     name = Column(String(200), nullable=False)
     active = Column(Boolean, nullable=True, default=True)
+    modified = Column(DateTime, nullable=True)
+    date_added = Column(DateTime, nullable=True)
     
 
 class Log(connection.Base):

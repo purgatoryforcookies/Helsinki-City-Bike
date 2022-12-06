@@ -4,7 +4,8 @@ from sqlalchemy.sql import select
 
 def get_log(db):
     
-    result = db.query(Log).all()
+    result = db.query(Log).limit(10).all()
+    
     
 
 

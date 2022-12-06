@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
@@ -6,6 +6,10 @@ from routes import journeys, stations
 
 
 app = FastAPI()
+prefix_ = APIRouter(prefix="/api")
+
+
+
 
 origins = [
     "http://localhost:3000",
