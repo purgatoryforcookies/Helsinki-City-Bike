@@ -7,27 +7,35 @@ from fastapi import Depends
 import os
 
 import dotenv
-dotenv.load_dotenv("../.env")
+dotenv.load_dotenv(".env")
+
+print("\n")
+print("Connection is being made")
+
+try:
+
+    SOLDEV_DB = engine.URL.create(
+        "postgresql",
+        username = os.environ['POSTGRE_USER'],
+        password = os.environ['POSTRGE_PASS'],
+        host = os.environ['POSTGRE_HOST'],
+        database = os.environ['DATABASE']
+            
+    )
 
 
+    soldev_engine = create_engine(
+        SOLDEV_DB,
+        pool_size=40, max_overflow=8   
+    )
 
-SOLDEV_DB = engine.URL.create(
-    "postgresql",
-    username = os.environ['POSTGRE_USER'],
-    password = os.environ['POSTRGE_PASS'],
-    host = os.environ['POSTGRE_HOST'],
-    database = os.environ['DATABASE']
-        
-)
+    Session_ = sessionmaker(autocommit=False, autoflush=False, bind=soldev_engine)
+    
+    print("Connected \n")
 
-
-soldev_engine = create_engine(
-    SOLDEV_DB,
-    pool_size=40, max_overflow=8   
-)
-
-Session_ = sessionmaker(autocommit=False, autoflush=False, bind=soldev_engine)
-
+except Exception as e:
+    print("Error making connection: ", e)
+    print("\n")
 
 Base = declarative_base()
 

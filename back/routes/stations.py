@@ -1,4 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, Header
+from models import init
+from functions.stations import crud
+from internal import connection
+
+from sqlalchemy.orm import Session
 
 
 station_router = APIRouter(
@@ -10,7 +15,11 @@ station_router = APIRouter(
 
 
 @station_router.get("/")
-async def retrieve_stations():
+async def retrieve_stations(db: Session = Depends(connection.get_db)):
     
-    return {"status":"ok"}
+    print(crud.get_stations(db))
+
+    
+    
+    return crud.get_stations(db)
 

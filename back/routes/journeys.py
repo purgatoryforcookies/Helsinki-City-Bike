@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, Header
-
+from models import init
 
 journey_router = APIRouter(
     prefix="/journey",
