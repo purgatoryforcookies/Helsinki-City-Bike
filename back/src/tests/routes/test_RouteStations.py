@@ -21,3 +21,10 @@ def test_station_get():
 
 
 
+def test_addFalsyStation():
+
+
+    response = client.post("/api/station/?name={}".format("te"))
+    print(response)
+    assert response.status_code == 400
+    assert response.json() == {"detail": "Name too short"}

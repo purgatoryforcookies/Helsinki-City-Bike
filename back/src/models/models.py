@@ -19,8 +19,11 @@ class Station(connection.Base):
     
     @validates('name')
     def validate_name(self, key, value):
-        assert len(value) > 5
-        return value
+        if len(value) < 3:
+            raise ValueError("Name too short")
+        else:
+            return value
+    
     
 
 class Log(connection.Base):

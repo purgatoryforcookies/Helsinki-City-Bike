@@ -1,17 +1,31 @@
 from models.models import Station
 from sqlalchemy.orm import join, outerjoin, joinedload
-
-
-
+from sqlalchemy.sql import or_
+from fastapi import HTTPException
+from sqlalchemy import cast, String
 
 
 
 def get_stations(db):
     
     result = db.query(Station).all()
+    return result
+
+
+
+
+
+def search_stations(db, search):
     
+    result = db.query(Station).filter(
+        or_(Station.name.like("%{}%".format(search)),
+            cast(Station.station_id, String).like("%{}%".format(search)))).limit(10).all()
 
     return result
+
+
+
+
 
 def insert_station(db, station_name):
     
@@ -24,11 +38,11 @@ def insert_station(db, station_name):
         db.commit()
         db.refresh(record)
         
-        # db.close()
-        
         return record
 
     except Exception as e:
-        print("Error in adding station:",e)
-        return False
-    
+       raise HTTPException(status_code=400, detail=str(e))
+   
+   
+   
+   

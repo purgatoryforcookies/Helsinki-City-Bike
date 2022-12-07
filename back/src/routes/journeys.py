@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Header
 from functions.journeys import crud_journey
 from internal import connection
 from sqlalchemy.orm import Session
-from models import responseModels
+from models import paramModels
 
 
 journey_router = APIRouter(
@@ -23,7 +23,7 @@ async def retrieve_journeys(db: Session = Depends(connection.get_db)):
 
 
 @journey_router.post("/")
-async def add_journey(journey: responseModels.NewJourney, db: Session = Depends(connection.get_db)):
+async def add_journey(journey: paramModels.NewJourney, db: Session = Depends(connection.get_db)):
     
     
     return crud_journey.add_journey(db, journey)
