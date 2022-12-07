@@ -1,8 +1,7 @@
 from sqlalchemy import create_engine, engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
-from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey
-from fastapi import Depends
+# from models import models
 
 import os
 
@@ -14,6 +13,11 @@ dotenv.load_dotenv("../.env")
 print("\n")
 print("Connection is being made")
 
+db_to_connect_to = "test"
+
+if os.environ['ENV'] == "prod":
+    db_to_connect_to = "postgres"
+
 try:
 
     SOLDEV_DB = engine.URL.create(
@@ -21,7 +25,7 @@ try:
         username = os.environ['POSTGRE_USER'],
         password = os.environ['POSTRGE_PASS'],
         host = os.environ['POSTGRE_HOST'],
-        database = os.environ['DATABASE']
+        database = db_to_connect_to
             
     )
 
@@ -33,7 +37,7 @@ try:
 
     Session_ = sessionmaker(autocommit=False, autoflush=False, bind=soldev_engine)
     
-    print("Connected \n")
+    print("Connected to", os.environ['ENV'])
 
 except Exception as e:
     print("Error making connection: ", e)

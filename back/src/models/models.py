@@ -1,11 +1,10 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Boolean, Float
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Boolean, Float, dialects
 from internal import connection
 from pydantic import BaseModel, validator
 from datetime import datetime, date
 # from pydantic_collections import BaseCollectionModel
-from sqlalchemy.orm import relationship
-
-from internal import config
+from sqlalchemy.orm import relationship, validates
+import os
 
 
 
@@ -16,7 +15,12 @@ class Station(connection.Base):
     name = Column(String(200), nullable=False)
     active = Column(Boolean, nullable=True, default=True)
     modified = Column(DateTime, nullable=True)
-    date_added = Column(DateTime, nullable=True)
+    date_added = Column(dialects.postgresql.TIMESTAMP(precision=2), nullable=True, default=datetime.now())
+    
+    @validates('name')
+    def validate_name(self, key, value):
+        assert len(value) > 5
+        return value
     
 
 class Log(connection.Base):
@@ -39,6 +43,10 @@ class Log(connection.Base):
 
     distance = Column('covered_distance_m',Integer, nullable=False)
     duration = Column('duration_s', Integer, nullable=False)
-  
+
+
+# if os.environ['ENV'] == "test":
+#     print("Dropping tables for test env")
+#     connection.Base.metadata.drop_all(connection.soldev_engine, [Log.__table__, Station.__table__])
 
 connection.Base.metadata.create_all(connection.soldev_engine)

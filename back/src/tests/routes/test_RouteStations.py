@@ -1,21 +1,23 @@
-from fastapi.testclient import TestClient
-import pytest
-
-import os
+import test_connection
+client = test_connection.client
 
 
-
-from src import main
-client = TestClient(main.app)
-
-def test_read_main():
-
-    response = client.get("/api/journey/")
+def test_db_with_stations():
+    test_names = ['Testiasema1', "Testiasema2", 'Vuosaari', 'Pisulahti', 'Tommi kähönen']
     
-    print(response.json())
+    for name in test_names:
+        response = client.post("/api/station/?name={}".format(name))
+        print(response)
+        assert response.status_code == 200
+        assert response.json()["name"] == name
+
+
+def test_station_get():
+
+    response = client.get("/api/station/")
 
     assert response.status_code == 200
-    # assert response.json()
+    assert len(response.json()) >= 5
 
 
 

@@ -4,12 +4,7 @@ import uvicorn
 
 from routes import journeys, stations
 
-
 app = FastAPI()
-prefix_ = APIRouter(prefix="/api")
-
-
-
 
 origins = [
     "http://localhost:3000",
