@@ -25,6 +25,25 @@ def test_addFalsyStation():
 
 
     response = client.post("/api/station/?name={}".format("te"))
-    print(response)
     assert response.status_code == 400
     assert response.json() == {"detail": "Name too short"}
+
+
+
+
+def test_searchingStation():
+
+
+    response = client.get("/api/station/search/?search={}".format("23"))
+    assert response.status_code == 200
+    assert len(response.json()) >= 1
+    
+    response = client.get("/api/station/search/?search={}".format("asema"))
+    assert response.status_code == 200
+    assert len(response.json()) >= 1
+    
+    response = client.get("/api/station/search/?search={}".format("DROP TABLE"))
+    assert response.status_code == 200
+    assert len(response.json()) == 0
+
+

@@ -18,8 +18,11 @@ def get_stations(db):
 def search_stations(db, search):
     
     result = db.query(Station).filter(
-        or_(Station.name.like("%{}%".format(search)),
-            cast(Station.station_id, String).like("%{}%".format(search)))).limit(10).all()
+        or_(
+            Station.name.like("%{}%".format(search)),
+            cast(Station.station_id, String).like("%{}%".format(search))
+            )
+        ).limit(10).all()
 
     return result
 
