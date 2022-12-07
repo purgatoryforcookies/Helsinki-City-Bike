@@ -1,5 +1,5 @@
-from models.init import Log
-from sqlalchemy.orm import join, outerjoin, joinedload
+from models.models import Log
+from sqlalchemy.orm import join
 from sqlalchemy.sql import select
 
 def get_log(db):

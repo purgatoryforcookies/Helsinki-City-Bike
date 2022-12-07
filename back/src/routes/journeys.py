@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, Header
-from models import init
+from models import models
 from functions.journeys import crud
 from internal import connection
 

@@ -6,7 +6,7 @@ dotenv.load_dotenv("../.env")
 
 from internal.ETL import main
 from internal import connection
-from models import init
+# from models import models
 import sqlalchemy
 
 def construct_db():
