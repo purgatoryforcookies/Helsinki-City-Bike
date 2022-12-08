@@ -8,7 +8,7 @@ from fastapi import HTTPException
 
 def get_log(db):
     
-    result = db.query(Log).limit(10).all()
+    result = db.query(Log).order_by(Log.arrival.desc()).limit(10).all()
 
     return result
 
