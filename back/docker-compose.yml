@@ -15,7 +15,7 @@ services:
   app:
     container_name: bike_app_test_env
     build: ./src
-    command: bash -c "ls && cd .. && python -m pytest src/tests"
+    command: bash -c "cd .. && python -m pytest src/tests"
 
     depends_on:
       - db
