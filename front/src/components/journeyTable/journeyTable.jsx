@@ -1,7 +1,8 @@
 import React from 'react'
 import { getAll } from '../../services/journeys'
 import {useQuery} from "react-query"
-
+import "./journeyTable.scss"
+import {journeyTableTheme} from './tableConfig'
 import {
   Table,
   Header,
@@ -17,7 +18,7 @@ import { getTheme } from '@table-library/react-table-library/baseline';
 
 function JourneyTable() {
 
-    const theme = useTheme(getTheme());
+    const theme = useTheme(journeyTableTheme);
 
     const {isError, data, error, isLoading} = useQuery(
         ['journeys'],
@@ -35,9 +36,9 @@ function JourneyTable() {
 
 
   return (
-    <div className='table_comp'>
+    <div className='journeyTable_comp'>
       
-      <Table data={{nodes:data}} theme={theme}>
+      <Table data={{nodes:data}} theme={theme} layout={{custom: true}}>
         {(tableList) => (
           <>
             <Header>
