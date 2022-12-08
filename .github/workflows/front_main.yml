@@ -1,0 +1,24 @@
+name: validation_front
+
+on:
+  push:
+    paths:
+      - front/**
+
+
+
+jobs:
+  test:
+    if: github.ref == 'refs/heads/master'
+    name: front unit testing
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: ./front
+    
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: npm install
+      - run: npm test
+      
