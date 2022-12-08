@@ -13,10 +13,10 @@ dotenv.load_dotenv("../.env")
 print("\n")
 print("Connection is being made")
 
-# db_to_connect_to = "test_db"
-
-# if os.environ['ENV'] == "prod":
 db_to_connect_to = "test_db"
+
+if os.environ['ENV'] == "prod":
+    db_to_connect_to = "postgres"
 
 try:
 

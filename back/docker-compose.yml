@@ -13,7 +13,7 @@ services:
       POSTGRES_DB: test_db
 
   app:
-    container_name: bike_app
+    container_name: bike_app_test_env
     build: ./src
     command: bash -c "cd .. && python -m pytest src/tests"
 
@@ -21,7 +21,6 @@ services:
       - db
     
     restart: "no"
-
 
 
 

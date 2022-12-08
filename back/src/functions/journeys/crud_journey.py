@@ -15,7 +15,6 @@ def get_log(db):
 
 def add_journey(db, journey):
     
-    print(journey.arrival)
     
     try:
         record = Log(departure=journey.departure,
