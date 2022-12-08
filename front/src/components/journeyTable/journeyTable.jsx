@@ -15,6 +15,7 @@ import {
 import { useTheme } from '@table-library/react-table-library/theme';
 import { getTheme } from '@table-library/react-table-library/baseline';
 
+import Loading from '../loading/loading'
 
 function JourneyTable() {
 
@@ -27,7 +28,9 @@ function JourneyTable() {
     )
 
     if (isLoading){
-        return <p>Loading</p>
+      return <div className='journeyTable_comp'>
+              <Loading/>
+            </div>
     }
     if (isError){
         return <p>{error}</p>

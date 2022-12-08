@@ -1,10 +1,10 @@
 import React from 'react'
-import "./loading"
+import "./loading.scss"
 
 function Loading() {
   return (
-    <div>
-      Loading
+    <div className='loading_body'>
+      <div className="pl pl-fade"></div>
     </div>
   )
 }
