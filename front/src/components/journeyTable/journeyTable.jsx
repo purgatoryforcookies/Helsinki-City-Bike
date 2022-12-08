@@ -51,8 +51,8 @@ function JourneyTable() {
                 <HeaderCell>Return</HeaderCell>
                 <HeaderCell>Departure station</HeaderCell>
                 <HeaderCell>Return station</HeaderCell>
-                <HeaderCell>Distance (m)</HeaderCell>
-                <HeaderCell>Duration (s)</HeaderCell>
+                <HeaderCell>Distance (km)</HeaderCell>
+                <HeaderCell>Duration (min)</HeaderCell>
               </HeaderRow>
             </Header>
 
@@ -64,8 +64,8 @@ function JourneyTable() {
                   <Cell>{new Date(item.arrival).toLocaleString('Fi')}</Cell>
                   <Cell>{item.departure_station.name }</Cell>
                   <Cell>{item.return_station.name }</Cell>
-                  <Cell>{item.distance }</Cell>
-                  <Cell>{item.duration }</Cell>
+                  <Cell>{(item.distance/1000).toString()}</Cell>
+                  <Cell>{(Math.round(item.duration/60)).toString()}</Cell>
                 </Row>
               ))}
             </Body>
