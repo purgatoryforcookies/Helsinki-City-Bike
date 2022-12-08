@@ -1,8 +1,7 @@
 import React from 'react'
-import { getAll } from '../../services/journeys'
-import {useQuery} from "react-query"
 import "./journeyTable.scss"
 import {journeyTableTheme} from './tableConfig'
+import { useFetchJourney } from '../../services/hooks/useFetchJourney';
 import {
   Table,
   Header,
@@ -15,17 +14,15 @@ import {
 import { useTheme } from '@table-library/react-table-library/theme';
 import SearchBox from '../searchBox/searchBox'
 
+
+
 import Loading from '../loading/loading'
 
 function JourneyTable() {
 
     const theme = useTheme(journeyTableTheme);
 
-    const {isError, data, error, isLoading} = useQuery(
-        ['journeys'],
-        getAll,
-        {staleTime: 60000}
-    )
+    const {isError, data, error, isLoading} = useFetchJourney()
 
     if (isLoading){
       return <div className='journeyTable_comp'>
@@ -33,11 +30,9 @@ function JourneyTable() {
             </div>
     }
     if (isError){
-        return <p>{error}</p>
+        return <p>Error!</p>
     }
-
-
-
+    
   return (
     <div className='journeyTable_comp'>
       <Table data={{nodes:data}} theme={theme} layout={{custom: true}}>

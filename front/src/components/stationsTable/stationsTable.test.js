@@ -48,14 +48,14 @@ describe("StationsTable", ()=>{
 
     it("Renders content", async ()=>{
 
-        const mockedProductData = {
+        const mockedStation = {
 			name:"Testiasema",
             station_id:1,
             active:true,
             date_added: '2022-12-07T20:04:38.140000',
             modified: null
 		};
-		useFetchStation.mockImplementation(() => ({ isLoading: false, data: [mockedProductData], isError:false }));
+		useFetchStation.mockImplementation(() => ({ isLoading: false, data: [mockedStation], isError:false }));
 
         render(<StationsTable/>)
 
