@@ -63,6 +63,7 @@ describe("StationsTable", ()=>{
           
             // screen.debug(undefined, 100000)
             screen.getByText('Testiasema')
+            screen.getByText('Name')
   
           })
 

@@ -75,6 +75,7 @@ describe("JourneysTable", ()=>{
             // screen.debug(undefined, 100000)
             screen.getByText('Testiasema1')
             screen.getByText('Vuosaari')
+            screen.getByText('Departure station')
             
   
           })
