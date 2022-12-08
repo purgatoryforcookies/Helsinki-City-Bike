@@ -1,0 +1,23 @@
+name: validation
+
+on: [push]
+
+
+
+jobs:
+  test:
+    if: github.ref == "refs/head/master"
+    name: backend api unit/integ test
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: ./back
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Build containers
+        run: docker-compose build
+
+      - name: Run tests
+        run: docker-compose up --exit-code-from app
