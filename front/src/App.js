@@ -1,4 +1,5 @@
-import Table from "./components/journeyTable/journeyTable";
+import JourneyTable from "./components/journeyTable/journeyTable";
+import StationsTable from "./components/stationsTable/stationsTable";
 import {QueryClientProvider, QueryClient} from "react-query"
 
 const queryClient = new QueryClient()
@@ -9,7 +10,8 @@ function App() {
 
     <div className="App">
 
-      <Table/>
+      <JourneyTable/>
+      <StationsTable/>
      
     </div>
     </QueryClientProvider>
