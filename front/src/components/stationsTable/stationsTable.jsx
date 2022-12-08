@@ -1,7 +1,8 @@
 import React from 'react'
-import { getAll } from '../../services/stations'
-import { useQuery } from "react-query"
+// import { getAll } from '../../services/stations'
+// import { useQuery } from "react-query"
 // import "./journeyTable.scss"
+import { useFetchStation } from '../../services/hooks/useFetchStation'
 import { stationTableTheme } from './tableConfig'
 import { Virtualized } from '@table-library/react-table-library/virtualized'
 import "./stationsTable.scss"
@@ -27,11 +28,7 @@ function StationsTable() {
     const [search, setSearch] = useState("")
 
 
-    const { isError, data, isLoading } = useQuery(
-        ['stations'],
-        getAll,
-        { staleTime: 60000 }
-    )
+    const { isError, data, isLoading } = useFetchStation()
 
     if (isLoading) {
         return <div className='stationTable_comp'>
