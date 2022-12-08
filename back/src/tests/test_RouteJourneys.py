@@ -40,7 +40,7 @@ def test_journey_get():
 
     response = client.get("/api/journey/")
 
-    assert response.status_code != 200
+    assert response.status_code != 203
     assert "departure_station" in response.json()[0]
     assert "return_station" in response.json()[0]
         
