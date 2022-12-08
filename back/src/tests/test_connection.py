@@ -2,7 +2,6 @@ from fastapi.testclient import TestClient
 from sqlalchemy import create_engine, engine
 from sqlalchemy.orm import sessionmaker
 import os
-from src.internal.connection import get_db, Base
 from src import main
 
 
@@ -35,6 +34,9 @@ def override_get_db():
         yield db
     finally:
         db.close()
+
+from src.internal.connection import get_db, Base
+
 
 main.app.dependency_overrides[get_db] = override_get_db
 
