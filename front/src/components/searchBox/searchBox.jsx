@@ -2,10 +2,12 @@ import React from 'react'
 import "./searchBox.scss"
 
 
-function SearchBox() {
+function SearchBox(props) {
+
+
   return (
-    <div>
-      
+    <div className='searchBoxBody'>
+      <input placeholder='Search' onChange={props.handleSearch}/>
     </div>
   )
 }

@@ -13,7 +13,7 @@ import {
   Cell,
 } from '@table-library/react-table-library/table';
 import { useTheme } from '@table-library/react-table-library/theme';
-
+import SearchBox from '../searchBox/searchBox'
 
 import Loading from '../loading/loading'
 
@@ -40,7 +40,6 @@ function JourneyTable() {
 
   return (
     <div className='journeyTable_comp'>
-      
       <Table data={{nodes:data}} theme={theme} layout={{custom: true}}>
         {(tableList) => (
           <>

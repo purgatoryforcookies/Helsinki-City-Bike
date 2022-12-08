@@ -4,6 +4,11 @@
 
     height: max-content;
     width: max-content;
+    position: relative;
+
+    left: 50%;
+    
+    transform: translateX(-50%);
     
 
     padding: 20px;
