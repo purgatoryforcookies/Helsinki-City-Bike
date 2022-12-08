@@ -61,7 +61,7 @@ def test_addFalsyJourney():
     'Content-Type': 'application/json'
     }
     
-    response = client.post("/api/journey/", content=newJourney, headers=headers)
+    response = client.post("/api/journey", content=newJourney, headers=headers)
     assert response.status_code == 400
     assert response.json() == {"detail": "Station id does not exist"}
     

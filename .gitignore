@@ -14,3 +14,7 @@ __pycache__/
 
 .pytest_cache
 local_pytest.ini
+
+
+data
+
