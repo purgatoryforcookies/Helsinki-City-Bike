@@ -2,18 +2,11 @@ import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, screen, waitFor } from '@testing-library/react'
 import StationsTable from './stationsTable'
-// import { QueryClientProvider, QueryClient} from "react-query"
-
-// import { getAll } from '../../services/stations'
 import { useFetchStation } from '../../services/hooks/useFetchStation'
-
-
-
 
 jest.mock("../../services/hooks/useFetchStation", ()=>({
     useFetchStation: jest.fn()
 }))
-
 
 
 describe("StationsTable", ()=>{
@@ -37,17 +30,15 @@ describe("StationsTable", ()=>{
 
 
     it("Renders loading", async ()=>{
-        // const queryClient = new QueryClient()
 
 		useFetchStation.mockImplementation(() => ({ isLoading: true }));
 
         const {container} = render(<StationsTable/>)
 
         await waitFor(()=>{
-          
             // screen.debug(undefined, 100000)
               // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-              expect(container.getElementsByClassName('loading_body').length).toBe(1)
+            expect(container.getElementsByClassName('loading_body').length).toBe(1)
   
           })
 
@@ -56,7 +47,6 @@ describe("StationsTable", ()=>{
 
 
     it("Renders content", async ()=>{
-        // const queryClient = new QueryClient()
 
         const mockedProductData = {
 			name:"Testiasema",
@@ -72,56 +62,24 @@ describe("StationsTable", ()=>{
         await waitFor(()=>{
           
             // screen.debug(undefined, 100000)
-              screen.getByText('Testiasema')
+            screen.getByText('Testiasema')
   
           })
 
     })
 
     it("Renders error", async ()=>{
-        // const queryClient = new QueryClient()
 
 		useFetchStation.mockImplementation(() => ({ isLoading: false, isError:true }));
 
         render(<StationsTable/>)
 
         await waitFor(()=>{
-          
             // screen.debug(undefined, 100000)
             screen.getByText('Error!')
-  
           })
 
     })
 
 })
 
-
-
-
-// test("renders content", async () =>{
-
-
-//     const mockedProductData = {
-//         name:"Testiasema",
-//         station_id:1,
-//     };
-//     useFetchStation.mockImplementation(() => ({isLoading: false, data: [mockedProductData], isError:false}));
-
-
-//       render(
-//       <StationsTable />
-//       );
-
-//       await waitFor(()=>{
-          
-//           screen.debug()
-//             screen.getByText('Id')
-
-//         })
-
-
-
-
-
-// })
