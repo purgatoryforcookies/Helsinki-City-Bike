@@ -6,6 +6,8 @@ from src.internal.connection import get_db, Base
 from src import main
 
 
+
+
 client = TestClient(main.app)
 
 SOLDEV_DB_TEST = engine.URL.create(
@@ -13,7 +15,7 @@ SOLDEV_DB_TEST = engine.URL.create(
         username = os.environ['POSTGRE_USER'],
         password = os.environ['POSTRGE_PASS'],
         host = os.environ['POSTGRE_HOST'],
-        database = "test"
+        database = "test_db"
             
     )
 
@@ -35,4 +37,6 @@ def override_get_db():
         db.close()
 
 main.app.dependency_overrides[get_db] = override_get_db
+
+Base.metadata.create_all(soldev_test_engine)
 

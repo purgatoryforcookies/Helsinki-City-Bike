@@ -1,16 +1,9 @@
-import test_connection
+from tests import test_connection
 import json
 client = test_connection.client
 
 
-def test_journey_get():
 
-    response = client.get("/api/journey/")
-
-    assert response.status_code == 200
-    assert "departure_station" in response.json()[0]
-    assert "return_station" in response.json()[0]
-        
 
 def test_addJourney():
     
@@ -32,6 +25,17 @@ def test_addJourney():
     assert response.status_code == 200
     assert response.json()['return_station_id'] == 1
     assert response.json()['distance'] == 150
+
+
+
+def test_journey_get():
+
+    response = client.get("/api/journey/")
+
+    assert response.status_code == 200
+    assert "departure_station" in response.json()[0]
+    assert "return_station" in response.json()[0]
+        
 
 
 def test_addFalsyJourney():

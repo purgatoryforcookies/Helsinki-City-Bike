@@ -1,9 +1,9 @@
-import test_connection
+from tests import test_connection
 client = test_connection.client
 
 
 def test_db_with_stations():
-    test_names = ['Testiasema1', "Testiasema2", 'Vuosaari', 'Pisulahti', 'Tommi kähönen']
+    test_names = ['Testiasema1', "Testiasema2", 'Vuosaari', 'Pisulahti', 'Tommi kähönen', 'Tommi 23kähönen']
     
     for name in test_names:
         response = client.post("/api/station/?name={}".format(name))

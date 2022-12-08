@@ -10,6 +10,6 @@ __pycache__/
 *.py[cod]
 *.pyc
 
-*.ini
+
 
 .pytest_cache

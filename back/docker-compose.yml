@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  db:
+    container_name: postgre_test
+    image: postgres:14
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: soldev2023_test_env
+      POSTGRES_PASSWORD: test_env_pass
+      POSTGRES_DB: test_db
+
+  app:
+    container_name: bike_app
+    build: ./src
+    command: bash -c "cd .. && python -m pytest src/tests"
+
+    depends_on:
+      - db
+    
+    restart: "no"
+
+
+
+
+  # pgadmin:
+  #   container_name: pgadmin2
+  #   image: dpage/pgadmin4
+  #   logging:
+  #     driver: none
+  #   user: root
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+  #     - PGADMIN_DEFAULT_PASSWORD=admin
+  #     - CONSOLE_LOG_LEVEL=40
+      
+  #   ports:
+  #     - 5050:80
+  #   depends_on:
+  #     - db
+  #   volumes:
+  #     - ./data/pg_data:/var/lib/pgadmin/
