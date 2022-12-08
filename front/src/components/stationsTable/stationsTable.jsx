@@ -1,7 +1,4 @@
 import React from 'react'
-// import { getAll } from '../../services/stations'
-// import { useQuery } from "react-query"
-// import "./journeyTable.scss"
 import { useFetchStation } from '../../services/hooks/useFetchStation'
 import { stationTableTheme } from './tableConfig'
 import { Virtualized } from '@table-library/react-table-library/virtualized'
@@ -57,6 +54,8 @@ function StationsTable() {
             <Table data={{ nodes: stationsToShow }} theme={theme} layout={{ custom: true, isDiv: true, fixedHeader: true }}>
                 {(tableList) => (
                     <>
+
+
                         <Virtualized
                             tableList={tableList}
                             rowHeight={28}
@@ -74,7 +73,8 @@ function StationsTable() {
 
                                 </Row>
                             )}
-                        />
+                            />
+
                     </>
                 )}
             </Table>
