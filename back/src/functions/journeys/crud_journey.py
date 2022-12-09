@@ -1,15 +1,32 @@
-from models.models import Log
+from models.models import Log, Station
 from sqlalchemy.orm import join
 from sqlalchemy.sql import select
 import psycopg2
 from sqlalchemy.exc import IntegrityError
 from fastapi import HTTPException
+import operator
 
 
 def get_log(db, params):
-    print(params)
+    # print(params)
     
-    result = db.query(Log).order_by(Log.arrival.desc()).limit(10).all()
+    
+    # Log.arrival.desc()
+    
+    
+    result = (db.query(Log)).all()
+    
+    # result.sort(key=operator.attrgetter(params.sortkey))
+    
+    result = result[:params.limit]
+    
+    # print(type(result))
+    
+    
+    # result = db.query(Log).limit(1)
+    
+    # result = result.order_by(getattr(Log, params.sortkey))
+    
 
     return result
 
