@@ -4,22 +4,22 @@ from sqlalchemy.sql import select
 import psycopg2
 from sqlalchemy.exc import IntegrityError
 from fastapi import HTTPException
-import operator
-from functions.utils import converters
+
+from functions.utils import sorter
 
 def get_log(db, params):
-    print(params)
+    print(params.sortkey)
+    
     
     
     # Log.arrival.desc()
     
     
     result = (db.query(Log)).all()
-    
-    if params.sortkey and params.sortkey['sortKey'] != 'NONE':
-        result.sort(key=operator.attrgetter(params.sortkey['sortKey']), 
-                    reverse=converters.string_to_bool(params.sortkey['reverse']))
-    
+    # params.sortkey = {sortKey: "", reverse: "True"/"False"}
+    if params.sortkey:
+        result = sorter.sort_class(result, params.sortkey)
+ 
     result = result[:params.limit]
     
     # print(type(result))
