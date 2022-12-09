@@ -1,6 +1,8 @@
 from pydantic import BaseModel
 from datetime import datetime
 
+
+
 class NewJourney(BaseModel):
     departure: datetime
     arrival: datetime
@@ -10,7 +12,8 @@ class NewJourney(BaseModel):
     duration: int
 
     
-
+class JourneyParams(BaseModel):
+    sortkey: str | None = None
     
 
 

@@ -3,7 +3,7 @@
 const journeyTableTheme = {
 
     Table: `
-    --data-table-library_grid-template-columns: 30px minmax(80px, 130px) minmax(80px, 130px) minmax(80px, 130px) minmax(80px, 130px) 110px 110px ;
+    --data-table-library_grid-template-columns: 50px minmax(80px, 130px) minmax(80px, 130px) minmax(80px, 130px) minmax(80px, 130px) 110px 110px ;
     align-content: start;
     padding-right: 3px
   `,

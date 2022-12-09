@@ -2,6 +2,8 @@ import React from 'react'
 import "./journeyTable.scss"
 import {journeyTableTheme} from './tableConfig'
 import { useFetchJourney } from '../../services/hooks/useFetchJourney';
+import { SortToggleType, HeaderCellSort } from '@table-library/react-table-library/sort';
+import { useSort } from '@table-library/react-table-library/sort';
 import {
   Table,
   Header,
@@ -12,17 +14,42 @@ import {
   Cell,
 } from '@table-library/react-table-library/table';
 import { useTheme } from '@table-library/react-table-library/theme';
-import SearchBox from '../searchBox/searchBox'
+// import SearchBox from '../searchBox/searchBox'
 
 
 
 import Loading from '../loading/loading'
+import { useState } from 'react';
 
 function JourneyTable() {
 
     const theme = useTheme(journeyTableTheme);
+    const [sortkey, setSortkey] = useState(null)
 
-    const {isError, data, error, isLoading} = useFetchJourney()
+    const {isError, data, isLoading} = useFetchJourney(sortkey)
+    // console.log(data);
+    
+
+    const sort = useSort(
+      data,
+      {
+        onChange: onSortChange,
+      },
+  
+      {
+        sortToggleType: SortToggleType.AlternateWithReset,
+        sortFns: {}
+      },
+    );
+
+    function onSortChange(action,state){
+      console.log(state);
+      setSortkey(state)
+      
+    }
+
+
+
 
     if (isLoading){
       return <div className='journeyTable_comp'>
@@ -32,15 +59,16 @@ function JourneyTable() {
     if (isError){
         return <p>Error!</p>
     }
+
     
   return (
     <div className='journeyTable_comp'>
-      <Table data={{nodes:data}} theme={theme} layout={{custom: true}}>
+      <Table data={{nodes:data}} theme={theme} layout={{custom: true}} sort={sort}>
         {(tableList) => (
           <>
             <Header>
               <HeaderRow>
-                <HeaderCell>Id</HeaderCell>
+                <HeaderCellSort sortKey='ride_id'>Id</HeaderCellSort>
                 <HeaderCell>Departure</HeaderCell>
                 <HeaderCell>Return</HeaderCell>
                 <HeaderCell>Departure station</HeaderCell>

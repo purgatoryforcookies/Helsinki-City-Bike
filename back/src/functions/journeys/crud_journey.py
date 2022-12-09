@@ -6,7 +6,8 @@ from sqlalchemy.exc import IntegrityError
 from fastapi import HTTPException
 
 
-def get_log(db):
+def get_log(db, params):
+    print(params)
     
     result = db.query(Log).order_by(Log.arrival.desc()).limit(10).all()
 

@@ -14,9 +14,9 @@ journey_router = APIRouter(
 
 
 @journey_router.get("/")
-async def retrieve_journeys(db: Session = Depends(connection.get_db)):
+async def retrieve_journeys( db: Session = Depends(connection.get_db)):
     
-    return crud_journey.get_log(db) 
+    return crud_journey.get_log(db, params) 
 # {"status":"ok"}
 
 
