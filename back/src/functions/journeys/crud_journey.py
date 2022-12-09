@@ -5,7 +5,7 @@ import psycopg2
 from sqlalchemy.exc import IntegrityError
 from fastapi import HTTPException
 import operator
-
+from functions.utils import converters
 
 def get_log(db, params):
     print(params)
@@ -16,9 +16,9 @@ def get_log(db, params):
     
     result = (db.query(Log)).all()
     
-    
     if params.sortkey and params.sortkey['sortKey'] != 'NONE':
-        result.sort(key=operator.attrgetter(params.sortkey['sortKey']))
+        result.sort(key=operator.attrgetter(params.sortkey['sortKey']), 
+                    reverse=converters.string_to_bool(params.sortkey['reverse']))
     
     result = result[:params.limit]
     
