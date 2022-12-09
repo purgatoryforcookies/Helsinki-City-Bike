@@ -42,7 +42,7 @@ function JourneyTable() {
     );
 
     function onSortChange(action,state){
-      console.log(state);
+      // console.log(state);
       setSortkey(state)
       
     }
@@ -68,7 +68,7 @@ function JourneyTable() {
             <Header>
               <HeaderRow>
                 <HeaderCellSort sortKey='ride_id'>Id</HeaderCellSort>
-                <HeaderCell>Departure</HeaderCell>
+                <HeaderCellSort sortKey='departure'>Departure</HeaderCellSort>
                 <HeaderCell>Return</HeaderCell>
                 <HeaderCell>Departure station</HeaderCell>
                 <HeaderCell>Return station</HeaderCell>

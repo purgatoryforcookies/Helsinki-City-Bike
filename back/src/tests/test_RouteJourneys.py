@@ -1,10 +1,10 @@
 from tests import test_connection
 import json
 from random import randrange
+import datetime
 client = test_connection.client
-
-
-
+import time
+import calendar
 
 def test_addJourney():
     
@@ -14,10 +14,10 @@ def test_addJourney():
         response = client.post("/api/station/?name={}".format(name))
         assert response.status_code == 200
         assert response.json()["name"] == name
-    
+   
     newJourney= json.dumps({
-                "departure": "2022-12-07T18:19:38.957Z",
-                "arrival": "2022-12-08T18:19:38.957Z",
+                "departure": calendar.timegm(time.gmtime()),
+                "arrival": calendar.timegm(time.gmtime()),
                 "departure_station_id": randrange(1,6),
                 "return_station_id": randrange(1,6),
                 "distance": randrange(12,15205),
