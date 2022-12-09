@@ -2,7 +2,9 @@ from pydantic import BaseModel, validator, ValidationError
 from datetime import datetime
 
 SORTKEYS = ('ride_id','departure', 'arrival', 
-            'departure_station','return_station','distance','duration')
+            'departure_station','return_station','distance','duration', 'NONE')
+
+
 
 class NewJourney(BaseModel):
     departure: datetime
@@ -32,13 +34,20 @@ class JourneyParams(BaseModel):
 
     @validator('sortkey')
     def correct_sortkey(cls,v):
+        if not v:
+            return v
         
-        # if v not in SORTKEYS:
-        #     raise ValueError("Invalid sortkey. Available sortkeys:", SORTKEYS)
+        if "sortKey" not in v:
+            raise ValueError("Invalid sorting dict key, should be sortKey")
+        
+        if "reverse" not in v:
+            raise ValueError("Invalid sorting order key, should be reversed")
         
         
-        # if v == 'departure_station':
-        #     v = 'departure_station.name'
+        if v['sortKey'] not in SORTKEYS:
+            raise ValueError("Invalid sortkey. Available sortkeys: "+", ".join(SORTKEYS))
+        
+
         
         
         return v

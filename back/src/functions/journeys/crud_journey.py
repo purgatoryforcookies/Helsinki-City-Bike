@@ -8,26 +8,17 @@ from fastapi import HTTPException
 from functions.utils import sorter
 
 def get_log(db, params):
-    print(params.sortkey)
-    
-    
-    
-    # Log.arrival.desc()
-    
+
     
     result = (db.query(Log)).all()
-    # params.sortkey = {sortKey: "", reverse: "True"/"False"}
-    if params.sortkey:
+    
+    
+    if params.sortkey: # params.sortkey = {sortKey: "", reverse: "True"/"False"} or None
         result = sorter.sort_class(result, params.sortkey)
  
     result = result[:params.limit]
     
-    # print(type(result))
     
-    
-    # result = db.query(Log).limit(1)
-    
-    # result = result.order_by(getattr(Log, params.sortkey))
     
 
     return result

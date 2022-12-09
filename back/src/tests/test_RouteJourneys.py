@@ -39,7 +39,7 @@ def test_addJourney():
 
 def test_journey_get():
 
-    response = client.get("/api/journey/")
+    response = client.post("/api/journey/fetch", content=json.dumps({}))
 
     assert response.status_code == 200
     assert "departure_station" in response.json()[0]
