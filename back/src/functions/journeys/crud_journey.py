@@ -8,7 +8,7 @@ import operator
 
 
 def get_log(db, params):
-    # print(params)
+    print(params)
     
     
     # Log.arrival.desc()
@@ -16,7 +16,9 @@ def get_log(db, params):
     
     result = (db.query(Log)).all()
     
-    # result.sort(key=operator.attrgetter(params.sortkey))
+    
+    if params.sortkey and params.sortkey['sortKey'] != 'NONE':
+        result.sort(key=operator.attrgetter(params.sortkey['sortKey']))
     
     result = result[:params.limit]
     
