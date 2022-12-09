@@ -46,8 +46,9 @@ class JourneyParams(BaseModel):
         
         if v['sortKey'] not in SORTKEYS:
             raise ValueError("Invalid sortkey. Available sortkeys: "+", ".join(SORTKEYS))
-        
 
+        if v['sortKey'] in ("departure_station", "return_station"):
+            v['sortKey'] += ".name"
         
         
         return v

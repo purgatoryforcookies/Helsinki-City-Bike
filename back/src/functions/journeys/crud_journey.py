@@ -18,8 +18,6 @@ def get_log(db, params):
  
     result = result[:params.limit]
     
-    
-    
 
     return result
 
