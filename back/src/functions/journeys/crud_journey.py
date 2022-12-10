@@ -20,7 +20,7 @@ def get_log(db, params):
     # rStation = aliased(Station)
     
     if params.searchkey:
-        result = search_by_string(params.searchkey)
+        result = search_by_string(db, params.searchkey)
     else:
         result = (db.query(Log)).all()
 
@@ -62,7 +62,7 @@ def add_journey(db, journey):
         
 
 
-def search_by_string(searchkey):
+def search_by_string(db, searchkey):
     dStation = aliased(Station)
     rStation = aliased(Station)
     
@@ -70,7 +70,7 @@ def search_by_string(searchkey):
         db.query(Log)
         .join(dStation, Log.departure_station)
         .join(rStation, Log.return_station)
-        .filter(dStation.name.contains('%{}%'.format(params.searchkey)))
+        .filter(dStation.name.contains('%{}%'.format(searchkey)))
         ).all()
 
     
