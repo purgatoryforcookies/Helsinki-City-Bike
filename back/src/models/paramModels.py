@@ -21,6 +21,12 @@ class JourneyParams(BaseModel):
     searchkey: str | None = None
     timeframe: dict[str,datetime] = None
     
+    @validator('searchkey')
+    def handle_empty_string(cls, v):
+        if v == "":
+            v = None
+        
+        return v
 
     @validator('timeframe')
     def correct_form(cls, v):
@@ -47,8 +53,8 @@ class JourneyParams(BaseModel):
         if v['sortKey'] not in SORTKEYS:
             raise ValueError("Invalid sortkey. Available sortkeys: "+", ".join(SORTKEYS))
 
-        if v['sortKey'] in ("departure_station", "return_station"):
-            v['sortKey'] += ".name"
+        # if v['sortKey'] in ("departure_station", "return_station"):
+        #     v['sortKey'] += ".name"
         
         
         return v

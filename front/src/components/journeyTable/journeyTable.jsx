@@ -2,14 +2,13 @@ import React,{ useState } from 'react'
 import "./journeyTable.scss"
 import { journeyTableTheme } from './tableConfig'
 import { useFetchJourney } from '../../services/hooks/useFetchJourney';
-import { SortToggleType, HeaderCellSort } from '@table-library/react-table-library/sort';
-import { useSort } from '@table-library/react-table-library/sort';
+import { SortToggleType, HeaderCellSort, useSort } from '@table-library/react-table-library/sort';
 import {Table, Header,  
   HeaderRow, Body,  
   Row, Cell,} from '@table-library/react-table-library/table';
 
 import { useTheme } from '@table-library/react-table-library/theme';
-// import SearchBox from '../searchBox/searchBox'
+import SearchBox from '../searchBox/searchBox'
 
 import Loading from '../loading/loading'
 
@@ -19,10 +18,11 @@ import Loading from '../loading/loading'
 function JourneyTable() {
 
   const theme = useTheme(journeyTableTheme);
-  const [sortkey, setSortkey] = useState()
+  const [params, setParams] = useState({sortColumn:"", searchkey:""})
 
-  const { isError, data, isLoading } = useFetchJourney(sortkey)
-
+  const { isError, data, isLoading } = useFetchJourney(params)
+  console.log(data);
+  
   const sort = useSort(
     data,
     {
@@ -30,14 +30,29 @@ function JourneyTable() {
     },
     {
       sortToggleType: SortToggleType.AlternateWithReset,
-      sortFns: {}
+      sortFns: {
+        ride_id: (array) => array.sort((a, b) => a.ride_id - b.ride_id),
+        distance: (array) => array.sort((a, b) => a.distance - b.distance),
+        duration: (array) => array.sort((a, b) => a.duration - b.duration),
+        departure_station: (array) => array.sort((a, b) => a.departure_station.name.localeCompare(b.departure_station.name)),
+        return_station: (array) => array.sort((a, b) => a.return_station.name.localeCompare(b.return_station.name)),
+        departure: (array) => array.sort((a, b) => new Date(a.departure) - new Date(b.departure)),
+        arrival: (array) => array.sort((a, b) => new Date(a.arrival) - new Date(b.arrival)),
+      }
     },
   );
 
   function onSortChange(action, state) {
-    setSortkey(state)
+    setParams({...params, sortColumn: state})
 
   }
+
+  function handleSearch(value){
+    setParams({...params, searchkey: value})
+    console.log(value);
+    
+  }
+
 
   if (isError) {
     return <p>Error!</p>
@@ -47,6 +62,7 @@ function JourneyTable() {
 
   return (
     <div className='journeyTable_comp'>
+      <SearchBox handleSearch={handleSearch}/>
       <Table data={{ nodes: dataToShow }} theme={theme} layout={{ custom: true }} sort={sort}>
         {(tableList) => (
 
@@ -81,8 +97,7 @@ function JourneyTable() {
                     <Cell>{(item.distance / 1000).toString()}</Cell>
                     <Cell>{(Math.round(item.duration / 60)).toString()}</Cell>
                   </Row>
-                )
-                )
+                ))
               }
             </Body>
           </>

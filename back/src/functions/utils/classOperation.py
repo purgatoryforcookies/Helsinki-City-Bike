@@ -13,6 +13,15 @@ def sort_class(class_list, key):
 
 
 
+def filter_class(class_list, keyword):
+    
+    print(dir(class_list[0]))
+    
+    # attributes = 
+    
+    return class_list
 
+    
+    
 
 

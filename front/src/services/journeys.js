@@ -3,9 +3,13 @@ const url = '/api/journey/'
 
 
 const getAll = (data) =>{
+
+    console.log(data);
+
     const body = {
-        limit:10,
-        sortkey: data.queryKey[1]
+        limit:5,
+        sortkey: data.queryKey[1].sortColumn,
+        searchkey: data.queryKey[1].searchkey
     }
 
     const request = axios.post(url+"fetch", body, {headers: {
