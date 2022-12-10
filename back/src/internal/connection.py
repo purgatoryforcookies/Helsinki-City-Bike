@@ -32,7 +32,7 @@ try:
 
     soldev_engine = create_engine(
         SOLDEV_DB,
-        pool_size=40, max_overflow=8   
+        pool_size=40, max_overflow=8, echo=False
     )
 
     Session_ = sessionmaker(autocommit=False, autoflush=False, bind=soldev_engine)

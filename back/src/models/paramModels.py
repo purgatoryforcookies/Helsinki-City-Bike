@@ -1,6 +1,6 @@
 from pydantic import BaseModel, validator, ValidationError
 from datetime import datetime
-
+from dateutil import parser
 SORTKEYS = ('ride_id','departure', 'arrival', 
             'departure_station','return_station','distance','duration', 'NONE')
 
@@ -19,7 +19,7 @@ class JourneyParams(BaseModel):
     sortkey: dict[str,str] = None
     limit: int = 20
     searchkey: str | None = None
-    timeframe: dict[str,datetime] = None
+    timeframe: dict[str,str] | None = None
     
     @validator('searchkey')
     def handle_empty_string(cls, v):
@@ -30,12 +30,22 @@ class JourneyParams(BaseModel):
 
     @validator('timeframe')
     def correct_form(cls, v):
-        assert len(v) == 2, "Only 'start' and 'end' are valid"
 
-        if not all(k in v for k in('start', 'end')):
-            raise ValueError("keys should be <start> and <end>")
+        if "start" in v and v['start'] != '':
+            try:
+                parser.parse(v['start'])
+            except:
+                v['start'] = ""
+            
+             
+        if "end" in v and v['end'] != '':
+            try:
+                parser.parse(v['end'])
+            except:
+                v['end'] = ""
         
         return v
+            
 
 
     @validator('sortkey')

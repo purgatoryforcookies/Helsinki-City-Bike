@@ -47,9 +47,9 @@ class Log(connection.Base):
     duration = Column('duration_s', Integer, nullable=False)
 
 
-if os.environ['ENV'] == "test":
-    print("Dropping tables for test env")
-    connection.Base.metadata.drop_all(connection.soldev_engine, [Log.__table__, Station.__table__])
+# if os.environ['ENV'] == "test":
+#     print("Dropping tables for test env")
+#     connection.Base.metadata.drop_all(connection.soldev_engine, [Log.__table__, Station.__table__])
 
 connection.Base.metadata.create_all(connection.soldev_engine)
 

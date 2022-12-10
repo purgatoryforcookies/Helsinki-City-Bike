@@ -4,7 +4,7 @@ import { getAll } from "../journeys"
 export const useFetchJourney = (params) =>{
 
 
-    const {isError, data, error, isFetching, isLoading} = useQuery({
+    const {isError, data, error, isFetching, isLoading, refetch} = useQuery({
         queryKey:['journeys', params],
         queryFn: getAll
         },
@@ -13,5 +13,5 @@ export const useFetchJourney = (params) =>{
           }
     )
 
-    return {isError, data, error, isFetching, isLoading}
+    return {isError, data, error, isFetching, isLoading, refetch}
 }
