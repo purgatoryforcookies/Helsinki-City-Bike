@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import "./journeyTable.scss"
 import {journeyTableTheme} from './tableConfig'
 import { useFetchJourney } from '../../services/hooks/useFetchJourney';
@@ -10,7 +10,7 @@ import {
   HeaderRow,
   Body,
   Row,
-  HeaderCell,
+  // HeaderCell,
   Cell,
 } from '@table-library/react-table-library/table';
 import { useTheme } from '@table-library/react-table-library/theme';
