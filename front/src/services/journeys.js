@@ -7,7 +7,7 @@ const getAll = (data) =>{
     console.log(data);
 
     const body = {
-        limit:5,
+        limit:20,
         sortkey: data.queryKey[1].sortColumn,
         searchkey: data.queryKey[1].searchkey
     }

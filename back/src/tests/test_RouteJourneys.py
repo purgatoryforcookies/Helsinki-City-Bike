@@ -7,7 +7,6 @@ from random import randrange
 import datetime
 client = test_connection.client
 
-
 def test_addJourney():
 
     test_names = ['ATestiasema88', "BTestiasema28", 'CVuosaari77',
@@ -66,11 +65,11 @@ def test_journey_sorting():
 
             params = {
                 "limit": 10,
-                "sortkey": {"sortkey": key, "reversed": condition},
+                "sortkey": {"sortKey": key, "reverse": condition},
             }
 
             response = client.post("/api/journey/fetch",
-                                   content=json.dumps({}))
+                                   content=json.dumps(params))
 
             assert response.status_code == 200
             assert "departure_station" in response.json()[0]
@@ -87,19 +86,49 @@ def test_journey_sorting():
                     )[0][key]) > datetime.datetime.fromisoformat(response.json()[-1][key])
                     
                 else:
-                    assert response.json()[0][key] < response.json()[-1][key]
+                    assert response.json()[0][key] > response.json()[-1][key]
 
             else:
                 if key in ("departure_station", "return_station"):
                     assert response.json()[
-                        0][key]['name'] >= response.json()[-1][key]['name']
+                        0][key]['name'] <= response.json()[-1][key]['name']
                     
                 elif key in ('departure', 'arrival'):
                     assert datetime.datetime.fromisoformat(response.json(
-                    )[0][key]) > datetime.datetime.fromisoformat(response.json()[-1][key])
+                    )[0][key]) < datetime.datetime.fromisoformat(response.json()[-1][key])
                     
                 else:
                     assert response.json()[0][key] < response.json()[-1][key]
+
+
+def test_search():
+
+    abc = ['A', 'B', 'C','X']    
+    
+    for letter in abc:
+
+        params = {
+                    "limit": 10,
+                    "searchkey": letter
+                }
+
+        response = client.post("/api/journey/fetch",
+                                content=json.dumps(params))
+
+        assert response.status_code == 200
+        assert "departure_station" in response.json()[0]
+        assert "return_station" in response.json()[0]
+        word = response.json()[0]['departure_station']['name']+response.json()[0]['return_station']['name']
+        assert letter.casefold() in word.casefold()
+    
+    
+    
+    
+    
+
+
+
+
 
 
 def test_addFalsyJourney():
