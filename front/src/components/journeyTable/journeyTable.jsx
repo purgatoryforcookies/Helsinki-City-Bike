@@ -49,8 +49,6 @@ function JourneyTable() {
 
   function handleSearch(value){
     setParams({...params, searchkey: value})
-    console.log(value);
-    
   }
 
 

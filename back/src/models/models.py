@@ -1,11 +1,10 @@
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Boolean, Float, dialects
 from internal import connection
 from pydantic import BaseModel, validator
-from datetime import datetime, date
-# from pydantic_collections import BaseCollectionModel
 from sqlalchemy.orm import relationship, validates
 import os
-
+from datetime import datetime
+from sqlalchemy.ext.hybrid import hybrid_property
 
 
 class Station(connection.Base):
@@ -31,8 +30,8 @@ class Log(connection.Base):
     
     
     ride_id = Column(Integer, primary_key=True)
-    departure = Column(DateTime, nullable = False)
-    arrival = Column(DateTime, nullable = False)
+    departure = Column(dialects.postgresql.TIMESTAMP(precision=2), nullable = False)
+    arrival = Column(dialects.postgresql.TIMESTAMP(precision=2), nullable = False)
     
     departure_station_id = Column(Integer, ForeignKey("stations.station_id"))
     return_station_id = Column(Integer, ForeignKey("stations.station_id"))
@@ -53,3 +52,14 @@ class Log(connection.Base):
 #     connection.Base.metadata.drop_all(connection.soldev_engine, [Log.__table__, Station.__table__])
 
 connection.Base.metadata.create_all(connection.soldev_engine)
+
+
+
+
+
+
+
+
+
+
+
