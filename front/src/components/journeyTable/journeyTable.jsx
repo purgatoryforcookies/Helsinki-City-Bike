@@ -28,7 +28,6 @@ function JourneyTable() {
     {
       onChange: onSortChange,
     },
-
     {
       sortToggleType: SortToggleType.AlternateWithReset,
       sortFns: {}
@@ -40,20 +39,11 @@ function JourneyTable() {
 
   }
 
-  // if (!data && isLoading){
-  //   return (
-  //     <div className='journeyTable_comp'>
-  //       <Loading/>
-  //     </div>
-  //   )
-  // }
-
   if (isError) {
     return <p>Error!</p>
   }
 
   const dataToShow = !data ? [] : data
-
 
   return (
     <div className='journeyTable_comp'>
@@ -73,17 +63,13 @@ function JourneyTable() {
               </HeaderRow>
             </Header>
 
-
             <Body>
               {isLoading ?
                 <Row >
                   <Cell></Cell>
                   <Cell></Cell>
                   <Cell></Cell>
-                  <Cell>
-                      <Loading/>
-                  </Cell>
-
+                  <Cell><Loading/></Cell>
                 </Row>
                 : tableList.map((item) => (
                   <Row key={item.ride_id} item={item}>

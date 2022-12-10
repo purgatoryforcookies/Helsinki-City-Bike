@@ -5,18 +5,17 @@ import { QueryClientProvider, QueryClient } from "react-query"
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000,
-      cacheTime: 5 * 60 * 1000
+      staleTime: 0,
+      cacheTime: 10 * 60 * 1000
     }
   }
 })
 
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-
       <div className="App">
-
         <JourneyTable />
         <StationsTable />
 
