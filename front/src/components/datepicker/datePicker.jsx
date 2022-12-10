@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 import "./datePicker.scss"
+import moment from 'moment-timezone';
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css'
+
 
 function DPicker(props) {
 
@@ -9,8 +11,9 @@ function DPicker(props) {
     const [end, setEnd] = useState("")
 
     const handlesubmit = () =>{
-        
-        props.handlePick({start:start, end:end})
+
+        props.handlePick({start:moment(start).local().format(),
+             end:moment(end).local().format()})
 
     }
 
@@ -21,9 +24,7 @@ function DPicker(props) {
         <DatePicker 
              selected={start}
              onChange={date => setStart(date)}
-            //  selectsRange
              showWeekNumbers
-            //  inline
             showTimeSelect
             timeIntervals={10}
             timeFormat="HH:mm"
@@ -39,9 +40,7 @@ function DPicker(props) {
         <DatePicker 
              selected={end}
              onChange={date => setEnd(date)}
-            //  selectsRange
              showWeekNumbers
-            //  inline
             showTimeSelect
             timeIntervals={10}
             timeFormat="HH:mm"

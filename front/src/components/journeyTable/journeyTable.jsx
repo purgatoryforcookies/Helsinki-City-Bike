@@ -23,7 +23,6 @@ function JourneyTable() {
   const [params, setParams] = useState({ sortColumn: "", searchkey: "" })
 
   const { isError, data, isLoading } = useFetchJourney(params)
-  // console.log(data);
 
   const sort = useSort(
     data,

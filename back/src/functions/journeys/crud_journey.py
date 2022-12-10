@@ -7,15 +7,14 @@ from fastapi import HTTPException
 from sqlalchemy import func
 from sqlalchemy.sql.expression import cast
 from sqlalchemy import String
-
+from datetime import datetime
 from functions.utils import classOperation
-
+from dateutil.tz import tzutc
 
 def get_log(db, params):
-
     dStation = aliased(Station)
     rStation = aliased(Station)
-
+    print(params)
     # baseline, and stacking the query based on conditions
     q = db.query(Log).join(dStation, Log.departure_station).join(
         rStation, Log.return_station)
@@ -29,6 +28,16 @@ def get_log(db, params):
             rStation.name.ilike('%{}%'.format(params.searchkey)),
             cast(Log.ride_id, String).ilike('%{}%'.format(params.searchkey))
         ))
+        
+
+    
+    if params.timeframe:
+        if params.timeframe['start']:
+            print('filtering after date')
+            q = q.filter(Log.departure > params.timeframe['start'])
+        if params.timeframe['end']:
+            print('filtering before date')
+            q = q.filter(Log.departure < params.timeframe['end'])
 
     result = q.limit(params.limit).all()
 
