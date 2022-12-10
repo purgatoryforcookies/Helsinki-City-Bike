@@ -21,6 +21,12 @@ class JourneyParams(BaseModel):
     searchkey: str | None = None
     timeframe: dict[str,datetime] = None
     
+    @validator('searchkey')
+    def handle_empty_string(cls, v):
+        if v == "":
+            v = None
+        
+        return v
 
     @validator('timeframe')
     def correct_form(cls, v):

@@ -9,10 +9,7 @@ function SearchBox(props) {
   useEffect(()=>{
 
     const valueChange = setTimeout(()=>{
-      if (value){
-
         props.handleSearch(value)
-      }
     }, 500)
 
     return ()=> clearTimeout(valueChange)
