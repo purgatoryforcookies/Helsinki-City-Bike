@@ -4,9 +4,6 @@ const url = '/api/journey/'
 
 const getAll = (data) =>{
 
-    console.log(data);
-    
-
     const body = {
         limit:20,
         sortkey: data.queryKey[1].sortColumn,
