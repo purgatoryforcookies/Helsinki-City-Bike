@@ -2,7 +2,7 @@ import React from 'react'
 
 function DatePicker() {
   return (
-    <div>
+    <div className='datepicker_body'>
       im a datepuicekr
     </div>
   )
