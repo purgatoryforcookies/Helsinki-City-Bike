@@ -118,8 +118,11 @@ def test_search():
         assert response.status_code == 200
         assert "departure_station" in response.json()[0]
         assert "return_station" in response.json()[0]
-        word = response.json()[0]['departure_station']['name']+response.json()[0]['return_station']['name']
-        assert letter.casefold() in word.casefold()
+        
+        for i in range(len(response.json())):
+        
+            word = response.json()[i]['departure_station']['name']+response.json()[i]['return_station']['name']
+            assert letter.casefold() in word.casefold()
     
     
     
