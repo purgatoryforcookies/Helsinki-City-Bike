@@ -2,7 +2,14 @@ import JourneyTable from "./components/journeyTable/journeyTable";
 import StationsTable from "./components/stationsTable/stationsTable";
 import { QueryClientProvider, QueryClient } from "react-query"
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000,
+      cacheTime: 5 * 60 * 1000
+    }
+  }
+})
 
 function App() {
   return (

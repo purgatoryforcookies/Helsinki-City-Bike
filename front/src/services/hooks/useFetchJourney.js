@@ -1,14 +1,17 @@
 import { useQuery} from "react-query"
 import { getAll } from "../journeys"
 
-export const useFetchJourney = (sortkey) =>{
+export const useFetchJourney = (sortkey, state) =>{
 
 
-    const {isError, data, error, isLoading} = useQuery(
-        ['journeys', sortkey],
-        getAll,
-        {staleTime: 60000}
+    const {isError, data, error, isFetching, isLoading} = useQuery({
+        queryKey:['journeys', sortkey],
+        queryFn: getAll
+        },
+        {
+            keepPreviousData: true
+          }
     )
 
-    return {isError, data, error, isLoading}
+    return {isError, data, error, isFetching, isLoading}
 }
