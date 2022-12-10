@@ -17,10 +17,11 @@ function SearchBox(props) {
   },[value])
 
 
-
   return (
     <div className='searchBoxBody'>
-      <input placeholder='Search' onChange={(e) => setValue(e.target.value)}/>
+      <form>
+      <input placeholder='Search' onChange={(e)=>setValue(e.target.value)}/>
+      </form>
     </div>
   )
 }
