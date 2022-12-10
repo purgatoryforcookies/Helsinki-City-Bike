@@ -2,8 +2,9 @@ name: validation_front
 
 on:
   push:
-    paths:
-      - front/**
+    branches: [master]
+    # paths:
+    #   - front/**
   pull_request:
     branches: [master]
 
@@ -11,7 +12,7 @@ on:
 
 jobs:
   test:
-    if: github.ref == 'refs/heads/master'
+    # if: github.ref == 'refs/heads/master'
     name: front unit testing
     runs-on: ubuntu-20.04
     defaults:
