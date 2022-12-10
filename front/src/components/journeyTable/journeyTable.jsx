@@ -69,11 +69,11 @@ function JourneyTable() {
               <HeaderRow>
                 <HeaderCellSort sortKey='ride_id'>Id</HeaderCellSort>
                 <HeaderCellSort sortKey='departure'>Departure</HeaderCellSort>
-                <HeaderCell>Return</HeaderCell>
-                <HeaderCell>Departure station</HeaderCell>
-                <HeaderCell>Return station</HeaderCell>
-                <HeaderCell>Distance (km)</HeaderCell>
-                <HeaderCell>Duration (min)</HeaderCell>
+                <HeaderCellSort sortKey='arrival'>Return</HeaderCellSort>
+                <HeaderCellSort sortKey='departure_station'>Departure station</HeaderCellSort>
+                <HeaderCellSort sortKey='return_station'>Return station</HeaderCellSort>
+                <HeaderCellSort sortKey='distance'>Distance (km)</HeaderCellSort>
+                <HeaderCellSort sortKey='duration'>Duration (min)</HeaderCellSort>
               </HeaderRow>
             </Header>
 
