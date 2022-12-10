@@ -36,8 +36,9 @@ function StationsTable() {
         return <p>Error!</p>
     }
 
-    function set_filter(e) {
-        setSearch(e.target.value)
+    function set_filter(value) {
+        
+        setSearch(value)
     }
 
     const stationsToShow = !search
