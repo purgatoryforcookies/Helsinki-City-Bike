@@ -2,7 +2,7 @@ const stationTableTheme = {
 
     Table: `
     --data-table-library_grid-template-columns: 50px minmax(80px, 150px);
-  `,
+    `,
     Row: `
       cursor: pointer;
       font-size: 14px;

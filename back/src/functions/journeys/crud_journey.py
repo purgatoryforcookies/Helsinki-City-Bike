@@ -1,14 +1,23 @@
-from models.models import Log
+from models.models import Log, Station
 from sqlalchemy.orm import join
 from sqlalchemy.sql import select
 import psycopg2
 from sqlalchemy.exc import IntegrityError
 from fastapi import HTTPException
 
+from functions.utils import sorter
 
-def get_log(db):
+def get_log(db, params):
+
     
-    result = db.query(Log).order_by(Log.arrival.desc()).limit(10).all()
+    result = (db.query(Log)).all()
+    
+    
+    if params.sortkey: # params.sortkey = {sortKey: "", reverse: "True"/"False"} or None
+        result = sorter.sort_class(result, params.sortkey)
+ 
+    result = result[:params.limit]
+    
 
     return result
 
