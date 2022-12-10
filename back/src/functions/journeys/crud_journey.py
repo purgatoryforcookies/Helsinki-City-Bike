@@ -34,10 +34,10 @@ def get_log(db, params):
     if params.timeframe:
         if params.timeframe['start']:
             print('filtering after date')
-            q = q.filter(Log.departure > params.timeframe['start'])
+            q = q.filter(Log.departure >= params.timeframe['start'])
         if params.timeframe['end']:
             print('filtering before date')
-            q = q.filter(Log.departure < params.timeframe['end'])
+            q = q.filter(Log.departure <= params.timeframe['end'])
 
     result = q.limit(params.limit).all()
 

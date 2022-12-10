@@ -20,9 +20,9 @@ import Loading from '../loading/loading'
 function JourneyTable() {
 
   const theme = useTheme(journeyTableTheme);
-  const [params, setParams] = useState({ sortColumn: "", searchkey: "" })
+  const [params, setParams] = useState({ sortColumn: "", searchkey: ""})
 
-  const { isError, data, isLoading } = useFetchJourney(params)
+  const { isError, data, isLoading, refetch } = useFetchJourney(params)
 
   const sort = useSort(
     data,
@@ -53,16 +53,11 @@ function JourneyTable() {
   }
 
   function handleDatePick(value){
-      console.log(value);
-      
       let params_ = params
       let {start, end} = value
-      // console.log(start, end);
-      
       params_.timeframe = {start:start, end:end}
-
       setParams(params_)
-  
+      refetch()
 
   }
 

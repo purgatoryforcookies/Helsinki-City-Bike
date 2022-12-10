@@ -28,17 +28,24 @@ class JourneyParams(BaseModel):
         
         return v
 
-    # @validator('timeframe')
-    # def correct_form(cls, v):
+    @validator('timeframe')
+    def correct_form(cls, v):
 
-    #     if "start" in v and v['start'] != '':
-    #         v['start'] = parser.parse(v['start'])
+        if "start" in v and v['start'] != '':
+            try:
+                parser.parse(v['start'])
+            except:
+                v['start'] = ""
             
              
-    #     if "end" in v and v['end'] != '':
-    #         v['end'] = parser.parse(v['end'])
-
+        if "end" in v and v['end'] != '':
+            try:
+                parser.parse(v['end'])
+            except:
+                v['end'] = ""
+        
         return v
+            
 
 
     @validator('sortkey')

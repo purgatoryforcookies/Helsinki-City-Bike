@@ -49,7 +49,7 @@ function DPicker(props) {
         />
         </div>
 
-        <input type='button' onClick={handlesubmit}/>
+        <button type='button' onClick={handlesubmit} >Search</button>
 
     </div>
   )
