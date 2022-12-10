@@ -14,12 +14,14 @@ def test_addJourney():
         response = client.post("/api/station/?name={}".format(name))
         assert response.status_code == 200
         assert response.json()["name"] == name
+        
+
    
     newJourney= json.dumps({
                 "departure": calendar.timegm(time.gmtime()),
                 "arrival": calendar.timegm(time.gmtime()),
-                "departure_station_id": randrange(1,6),
-                "return_station_id": randrange(1,6),
+                "departure_station_id": randrange(1,15),
+                "return_station_id": randrange(1,15),
                 "distance": randrange(12,15205),
                 "duration": randrange(100,10000)
                 })
@@ -34,6 +36,7 @@ def test_addJourney():
     assert response.json()['departure_station_id'] >= 1
     assert response.json()['return_station_id'] >= 1
     assert response.json()['distance'] >= 10
+
 
 
 
