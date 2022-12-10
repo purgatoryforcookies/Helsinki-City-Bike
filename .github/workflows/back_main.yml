@@ -2,8 +2,9 @@ name: validation_back
 
 on:
   push:
-    paths:
-      - back/**
+    branches: [master]
+    # paths:
+    #   - back/**
   pull_request:
     branches: [master]
 
