@@ -3,8 +3,6 @@ const url = '/api/journey/'
 
 
 const getAll = (data) =>{
-    console.log(data);
-
     const body = {
         limit:10,
         sortkey: data.queryKey[1]
