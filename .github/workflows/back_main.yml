@@ -11,7 +11,7 @@ on:
 
 jobs:
   test:
-    if: github.ref == 'refs/heads/master'
+    # if: github.ref == 'refs/heads/master'
     name: backend api unit/integ test
     runs-on: ubuntu-20.04
     defaults:
