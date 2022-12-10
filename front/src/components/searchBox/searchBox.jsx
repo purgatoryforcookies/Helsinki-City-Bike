@@ -14,6 +14,7 @@ function SearchBox(props) {
 
     return ()=> clearTimeout(valueChange)
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[value])
 
 

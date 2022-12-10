@@ -9,7 +9,7 @@ import {Table, Header,
 
 import { useTheme } from '@table-library/react-table-library/theme';
 import SearchBox from '../searchBox/searchBox'
-
+import DPicker from '../datepicker/datePicker';
 import Loading from '../loading/loading'
 
 
@@ -60,7 +60,10 @@ function JourneyTable() {
 
   return (
     <div className='journeyTable_comp'>
+      <div className='journeyTable_tools'>
       <SearchBox handleSearch={handleSearch}/>
+      <DPicker/>
+      </div>
       <Table data={{ nodes: dataToShow }} theme={theme} layout={{ custom: true }} sort={sort}>
         {(tableList) => (
 
