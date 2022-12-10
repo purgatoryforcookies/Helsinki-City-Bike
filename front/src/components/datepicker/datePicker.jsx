@@ -3,19 +3,24 @@ import "./datePicker.scss"
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css'
 
-function DPicker() {
+function DPicker(props) {
 
-    const [start, setStart] = useState()
-    const [end, setEnd] = useState()
+    const [start, setStart] = useState("")
+    const [end, setEnd] = useState("")
 
-    
+    const handlesubmit = () =>{
+        
+        props.handlePick({start:start, end:end})
+
+    }
+
 
   return (
     <div className='datepicker_body'>
         <div className='startPicker'>
         <DatePicker 
              selected={start}
-             onChange={(date)=>setStart(date)}
+             onChange={date => setStart(date)}
             //  selectsRange
              showWeekNumbers
             //  inline
@@ -33,7 +38,7 @@ function DPicker() {
 
         <DatePicker 
              selected={end}
-             onChange={(date)=>setEnd(date)}
+             onChange={date => setEnd(date)}
             //  selectsRange
              showWeekNumbers
             //  inline
@@ -44,6 +49,8 @@ function DPicker() {
             placeholderText="Filter by return date"
         />
         </div>
+
+        <input type='button' onClick={handlesubmit}/>
 
     </div>
   )

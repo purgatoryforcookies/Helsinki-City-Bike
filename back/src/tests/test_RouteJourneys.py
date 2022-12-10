@@ -5,6 +5,7 @@ from tests import test_connection
 import json
 from random import randrange
 import datetime
+from dateutil import parser
 client = test_connection.client
 
 def test_addJourney():
@@ -82,8 +83,8 @@ def test_journey_sorting():
                         0][key]['name'] >= response.json()[-1][key]['name']
                     
                 elif key in ('departure', 'arrival'):
-                    assert datetime.datetime.fromisoformat(response.json(
-                    )[0][key]) > datetime.datetime.fromisoformat(response.json()[-1][key])
+                    assert parser.parse(response.json(
+                    )[0][key]) > parser.parse(response.json()[-1][key])
                     
                 else:
                     assert response.json()[0][key] > response.json()[-1][key]
@@ -94,8 +95,8 @@ def test_journey_sorting():
                         0][key]['name'] <= response.json()[-1][key]['name']
                     
                 elif key in ('departure', 'arrival'):
-                    assert datetime.datetime.fromisoformat(response.json(
-                    )[0][key]) < datetime.datetime.fromisoformat(response.json()[-1][key])
+                    assert parser.parse(response.json(
+                    )[0][key]) < parser.parse(response.json()[-1][key])
                     
                 else:
                     assert response.json()[0][key] < response.json()[-1][key]
