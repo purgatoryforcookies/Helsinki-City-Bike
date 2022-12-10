@@ -10,7 +10,6 @@ import {
   HeaderRow,
   Body,
   Row,
-  // HeaderCell,
   Cell,
 } from '@table-library/react-table-library/table';
 import { useTheme } from '@table-library/react-table-library/theme';

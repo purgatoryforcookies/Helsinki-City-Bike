@@ -2,8 +2,9 @@ name: validation_front
 
 on:
   push:
-    paths:
-      - front/**
+    branches: [master]
+    # paths:
+    #   - front/**
   pull_request:
     branches: [master]
 
