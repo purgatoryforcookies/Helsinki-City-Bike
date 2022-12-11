@@ -1,0 +1,46 @@
+.ErrorBody{
+    border: 3px solid red;
+    border-radius: 5px;
+    width: 350px;
+
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-start;
+    align-items: center;
+
+        gap: 10px;
+
+    .formErrorChild{
+        width: 100%;
+        height: fit-content;
+        // background-color: aqua;
+        border-bottom: 1px solid black;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .errorheader{
+            font-weight: 600;
+            padding-left: 30px;
+            text-transform: capitalize;
+
+        }
+        .errorfooter{
+            font-weight: 400;
+            padding-left: 30px;
+            // text-transform: capitalize;
+
+        }
+        
+    }
+
+
+
+
+}

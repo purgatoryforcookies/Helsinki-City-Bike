@@ -4,17 +4,17 @@ import { AddJourney } from "../journeys"
 export const useAddJourney = (params) =>{
 
 
-    const {isError, data, error, isFetching, isLoading, refetch} = useQuery({
+    const {isError, data, error, isFetching, isLoading, refetch, isSuccess} = useQuery({
         queryKey:['addJourneys', params],
         queryFn: AddJourney,
         enabled: false,
-        retry: false
+        retry: 1
         },
         {
-            keepPreviousData: false,
+            keepPreviousData: true,
             
           }
     )
 
-    return {isError, data, error, isFetching, isLoading, refetch}
+    return {isError, data, error, isFetching, isLoading, refetch , isSuccess}
 }

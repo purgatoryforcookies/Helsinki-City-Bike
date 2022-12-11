@@ -33,7 +33,6 @@ async def retrieve_journeys(params: paramModels.JourneyParams,
 @journey_router.post("/")
 async def add_journey(journey: paramModels.NewJourney, db: Session = Depends(connection.get_db)):
     
-    print(journey)
     return crud_journey.add_journey(db, journey)
 
 

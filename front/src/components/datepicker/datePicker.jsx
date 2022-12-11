@@ -1,26 +1,25 @@
 import React from 'react'
 import "./datePicker.scss"
-// import moment from 'moment-timezone';
+import moment from 'moment-timezone';
 import DatePicker from "react-datepicker";
+import { useSelector } from 'react-redux';
 import 'react-datepicker/dist/react-datepicker.css'
 
-function DPicker({handler, selected}) {
+function DPicker({handler, new_ride}) {
 
-  function handleDates(value){
-    if(value.start){
-      handler({...selected, start: value.start})
-    }
-    else{
-      handler({...selected, end: value.end})
-    }
-  }
+  const departureTarget = !new_ride ? 'departure' : 'newDeparture',
+        arrivalTarget = !new_ride ? 'arrival' : 'newArrival'
+
+    const params = useSelector((state)=> state.journeySettings.journeyParams)
+    console.log(params);
+    
   
   return (
     <div className='datepicker_body'>
         <div className='startPicker'>
         <DatePicker 
-             selected={selected.start}
-             onChange={(date) => handleDates({start:date})}
+             selected={params[departureTarget] ? new Date(params[departureTarget]): ""}
+             onChange={(date) => handler({[departureTarget]:date ? moment(date).local().format():""})}
              showWeekNumbers
             showTimeSelect
             timeIntervals={10}
@@ -35,8 +34,8 @@ function DPicker({handler, selected}) {
         <div className='endPicker'>
 
         <DatePicker 
-             selected={selected.end}
-             onChange={(date) => handleDates({end:date})}
+             selected={params[arrivalTarget] ? new Date(params[arrivalTarget]): ""}
+             onChange={(date) => handler({[arrivalTarget]:date ? moment(date).local().format():""})}
              showWeekNumbers
             showTimeSelect
             timeIntervals={10}

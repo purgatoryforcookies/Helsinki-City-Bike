@@ -47,18 +47,18 @@ function SearchboxStations({handler, target}) {
   return (
     <div className='searchboxStationsBody'>
       <input type="text" onChange={(e)=>setSearch(e.target.value) } value={search} onClick={()=>setClose(false)}/>
-      <ul className="results_list" ref={result_list_ref}>
+      <div className="results_list" ref={result_list_ref}>
       {data&& dataToShow.map(item =>
-        <li className='search_result' key={item.station_id} onClick={()=>handleClick(item)}>
+        <div className='search_result' key={item.station_id} onClick={()=>handleClick(item)}>
             <div className="result_card">
                 <ResultCard data={item}/>
             </div>
             
-            </li>
+            </div>
         )}
         {isError && <div>Error!</div>}
 
-      </ul>
+      </div>
     </div>
   )
 }

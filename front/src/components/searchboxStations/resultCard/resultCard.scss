@@ -1,0 +1,23 @@
+.resultCardBody{
+    display: flex;
+    width: 100%;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+    // width: 100%;
+    .header{
+        font-weight: 600;
+    }
+
+    padding: 5px 0 5px 0;
+
+ 
+
+}
+
+.resultCardBody:hover{
+    cursor: pointer;
+    background-color: aqua;
+}

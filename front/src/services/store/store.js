@@ -4,7 +4,7 @@ import journeyReducer from "./journeySlice"
 
 export default configureStore({
   reducer: {
-    search: journeyReducer
+    journeySettings: journeyReducer
   },
 })
 
