@@ -1,29 +1,24 @@
-import React, {useState} from 'react'
+import React from 'react'
 import "./datePicker.scss"
-import moment from 'moment-timezone';
+// import moment from 'moment-timezone';
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css'
 
+import { useSelector, useDispatch } from 'react-redux';
+import {setJourneyParams} from "../../services/store/journeySlice"
 
-function DPicker(props) {
+function DPicker() {
 
-    const [start, setStart] = useState("")
-    const [end, setEnd] = useState("")
-
-    const handlesubmit = () =>{
-
-        props.handlePick({start:moment(start).local().format(),
-             end:moment(end).local().format()})
-
-    }
+    const params = useSelector((state)=> state.search.journeyParams)
+    const dispatch = useDispatch()
 
 
   return (
     <div className='datepicker_body'>
         <div className='startPicker'>
         <DatePicker 
-             selected={start}
-             onChange={date => setStart(date)}
+             selected={params.timeframe_start ? new Date(params.timeframe_start):""}
+             onChange={date => {dispatch(setJourneyParams({timeframe_start: new Date(date).toISOString()}))}}
              showWeekNumbers
             showTimeSelect
             timeIntervals={10}
@@ -38,8 +33,8 @@ function DPicker(props) {
         <div className='endPicker'>
 
         <DatePicker 
-             selected={end}
-             onChange={date => setEnd(date)}
+             selected={params.timeframe_end ? new Date(params.timeframe_end):""}
+             onChange={date => {dispatch(setJourneyParams({timeframe_end:new Date(date).toISOString()}))}}
              showWeekNumbers
             showTimeSelect
             timeIntervals={10}
@@ -48,9 +43,6 @@ function DPicker(props) {
             placeholderText="Return date"
         />
         </div>
-
-        <input type='button' onClick={handlesubmit} value='Search'/>
-
     </div>
   )
 }

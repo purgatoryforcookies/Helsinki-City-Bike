@@ -1,17 +1,13 @@
 import axios from 'axios'
+
 const url = '/api/journey/'
 
-
-const getAll = (data) =>{
-
+const getAll = ({queryKey}) =>{
     const body = {
         limit:20,
-        sortkey: data.queryKey[1].sortColumn,
-        searchkey: data.queryKey[1].searchkey
-    }
-
-    if (data.queryKey[1].timeframe !== undefined){
-        body.timeframe = data.queryKey[1].timeframe
+        sortkey: queryKey[1].sortkey,
+        searchkey: queryKey[1].searchkey,
+        timeframe: {start: queryKey[1].timeframe_start, end:queryKey[1].timeframe_end}
     }
 
     const request = axios.post(url+"fetch", body, {headers: {
@@ -22,7 +18,7 @@ const getAll = (data) =>{
 }
 
 
-const addJourney = (data) =>{
+const AddJourney = (data) =>{
 
     const body = {
         departure: "2022-12-11T08:43:19.278Z",
@@ -42,7 +38,7 @@ const addJourney = (data) =>{
 
 
 
-export {getAll, addJourney}
+export {getAll, AddJourney}
 
 
 

@@ -14,20 +14,27 @@ import SearchBox from '../searchBox/searchBox'
 import DPicker from '../datepicker/datePicker';
 import Loading from '../loading/loading'
 
-
-
+import { useDispatch } from 'react-redux';
+import {setJourneyParams} from "../../services/store/journeySlice"
 
 function JourneyTable() {
 
   const theme = useTheme(journeyTableTheme);
-  const [params, setParams] = useState({ sortColumn: "", searchkey: ""})
+  // const [params, setParams] = useState({ sortColumn: "", searchkey: ""})
 
-  const { isError, data, isLoading, refetch } = useFetchJourney(params)
+  const dispatch = useDispatch()
+
+  const { isError, data, isLoading, refetch } = useFetchJourney()
 
   const sort = useSort(
     data,
     {
-      onChange: onSortChange,
+      
+      
+      onChange: (a,state)=>
+               dispatch(setJourneyParams({sortkey:state}))
+        
+      ,
     },
     {
       sortToggleType: SortToggleType.AlternateWithReset,
@@ -43,24 +50,9 @@ function JourneyTable() {
     },
   );
 
-  function onSortChange(action, state) {
-    setParams({ ...params, sortColumn: state })
-
-  }
-
   function handleSearch(value) {
-    setParams({ ...params, searchkey: value })
+    dispatch(setJourneyParams({searchkey:value}))
   }
-
-  function handleDatePick(value){
-      let params_ = params
-      let {start, end} = value
-      params_.timeframe = {start:start, end:end}
-      setParams(params_)
-      refetch()
-
-  }
-
 
   if (isError) {
     return <p>Error!</p>
@@ -72,7 +64,7 @@ function JourneyTable() {
     <div className='journeyTable_comp'>
       <div className='journeyTable_tools'>
         <SearchBox handleSearch={handleSearch} />
-        <DPicker handlePick={handleDatePick}/>
+        <DPicker/>
       </div>
       <Table data={{ nodes: dataToShow }} theme={theme} layout={{ custom: true }} sort={sort}>
         {(tableList) => (

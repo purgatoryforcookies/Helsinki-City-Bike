@@ -4,6 +4,17 @@ import DPicker from '../datepicker/datePicker'
 import "./addJourney.scss"
 
 function AddJourney() {
+
+    function handleDatePick(value){
+        // let params_ = params
+        // let {start, end} = value
+        // params_.timeframe = {start:start, end:end}
+        // setParams(params_)
+        // refetch()
+  
+    }
+
+
     return (
         <div className='addJourney_comp'>
             <div className='header'></div>
@@ -11,7 +22,7 @@ function AddJourney() {
             <div className="options">
                 <div className="div1">
                     <div className="option_header">Departure</div>
-                    <div className="option_function"><DPicker/></div>
+                    <div className="option_function"><DPicker immediate={true} handlePick={handleDatePick}/></div>
                 </div>
                 <div className="div2">
                     <div className="option_header">Return</div>
