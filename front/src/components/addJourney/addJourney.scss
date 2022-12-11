@@ -9,6 +9,11 @@
     margin: 20px;
     margin-bottom: 1500px;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 
     .options{
 
@@ -19,6 +24,7 @@
         grid-template-rows: repeat(3, 90px);
         grid-column-gap: 0px;
         grid-row-gap: 0px;
+        width: 600px;
         
         .option_header{
             display: flex;

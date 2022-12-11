@@ -13,10 +13,10 @@ export const journeySlice = createSlice({
     newJourney:{
       departure: "",
       arrival: "",
-      departure_station_id: 0,
-      return_station_id: 0,
-      distance: 0,
-      duration: 0
+      departure_station_id: "",
+      return_station_id: "",
+      distance: "",
+      duration: ""
     }
   },
   reducers: {

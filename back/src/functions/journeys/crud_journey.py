@@ -65,7 +65,7 @@ def add_journey(db, journey):
     except IntegrityError as e:
 
         raise HTTPException(
-            status_code=400, detail="Station id does not exist")
+            status_code=400, detail={"errors":"Station id does not exist"})
 
     except Exception as e:
         # print(e)

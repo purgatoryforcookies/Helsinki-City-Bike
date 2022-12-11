@@ -56,6 +56,7 @@ function SearchboxStations({handler, target}) {
             
             </li>
         )}
+        {isError && <div>Error!</div>}
 
       </ul>
     </div>
