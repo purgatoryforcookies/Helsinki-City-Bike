@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import DPicker from '../datepicker/datePicker'
 import SearchboxStations from '../searchboxStations/searchboxStations'
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setNewjourney } from "../../services/store/journeySlice"
 import "./addJourney.scss"
 
 function AddJourney() {
@@ -9,7 +10,16 @@ function AddJourney() {
     const [data, setData] = useState()
     const [dates, setDates] = useState({start: "", end:""})
 
+    const dispatch = useDispatch()
+    
+    function handleselections(object){
+        dispatch(setNewjourney(object))
+    }
 
+
+    const params = useSelector((state)=> state.search.newJourney)
+    console.log(params);
+    
 
     return (
         <div className='addJourney_comp'>
@@ -25,13 +35,13 @@ function AddJourney() {
                 <div className="div2">
                     <div className="option_header">Left from</div>
                     <div className="option_function">
-                    <SearchboxStations/>
+                    <SearchboxStations handler={handleselections} target='departure_station_id'/>
                     </div>
                 </div>
                 <div className="div3">
                 <div className="option_header">Arrived to</div>
                     <div className="option_function">
-                    <SearchboxStations />
+                    <SearchboxStations handler={handleselections} target='return_station_id'/>
                     </div>
                 </div>
                 <div className="div4">

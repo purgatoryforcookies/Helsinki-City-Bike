@@ -3,11 +3,11 @@ import { useSearchStation } from '../../services/hooks/useSearchStations'
 import ResultCard from './resultCard/resultCard'
 import "./searchboxStations.scss"
 
-function SearchboxStations() {
+function SearchboxStations({handler, target}) {
 
     const [search, setSearch] = useState("")
     const [debouncedSearch, setDebounceSearch] = useState("")
-    const [close, setClose] = useState("")
+    const [close, setClose] = useState(true)
 
     const {isError, data, isLoading, refetch} = useSearchStation(debouncedSearch)
     const result_list_ref = useRef()
@@ -33,12 +33,13 @@ function SearchboxStations() {
         }
     }
     function handleClick(value){
-        console.log(value);
-        setSearch(value)
+      
+        setSearch(value.name)
         setClose(true)
+        handler({[target]:value.station_id})
+
+
     }
-
-
 
     const dataToShow = !close ? data : []
       
@@ -47,8 +48,8 @@ function SearchboxStations() {
     <div className='searchboxStationsBody'>
       <input type="text" onChange={(e)=>setSearch(e.target.value) } value={search} onClick={()=>setClose(false)}/>
       <ul className="results_list" ref={result_list_ref}>
-      { dataToShow.map(item =>
-        <li className='search_result' key={item.station_id} onClick={()=>handleClick(item.name)}>
+      {data&& dataToShow.map(item =>
+        <li className='search_result' key={item.station_id} onClick={()=>handleClick(item)}>
             <div className="result_card">
                 <ResultCard data={item}/>
             </div>
