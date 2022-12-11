@@ -21,6 +21,15 @@ def get_log(db, params):
 
     if params.sortkey and params.sortkey['sortKey'] != 'NONE':
         q = sort_records(q, dStation, rStation, params)
+        
+        
+    if params.timeframe:
+        if params.timeframe['start']:
+            q = q.filter(Log.departure >= params.timeframe['start'])
+        if params.timeframe['end']:
+            q = q.filter(Log.departure <= params.timeframe['end'])
+
+
 
     if params.searchkey:
         q = q.filter(or_(
@@ -29,15 +38,7 @@ def get_log(db, params):
             cast(Log.ride_id, String).ilike('%{}%'.format(params.searchkey))
         ))
         
-
     
-    if params.timeframe:
-        if params.timeframe['start']:
-            print('filtering after date')
-            q = q.filter(Log.departure >= params.timeframe['start'])
-        if params.timeframe['end']:
-            print('filtering before date')
-            q = q.filter(Log.departure <= params.timeframe['end'])
 
     result = q.limit(params.limit).all()
 

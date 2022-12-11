@@ -3,7 +3,7 @@ from functions.journeys import crud_journey
 from internal import connection
 from sqlalchemy.orm import Session
 from models import paramModels
-
+import time
 
 journey_router = APIRouter(
     prefix="/api/journey",
@@ -16,8 +16,14 @@ journey_router = APIRouter(
 @journey_router.post("/fetch")
 async def retrieve_journeys(params: paramModels.JourneyParams, 
                             db: Session = Depends(connection.get_db)):
-    # print(params)
-    return crud_journey.get_log(db, params) 
+
+    start = time.time()
+
+    res = crud_journey.get_log(db, params) 
+
+    print("journey fetch:", round(time.time()-start,2))
+
+    return res
 # {"status":"ok"}
 
 

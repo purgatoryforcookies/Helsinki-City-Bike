@@ -38,10 +38,10 @@ class Log(connection.Base):
     
     departure_station = relationship("Station", 
                                      foreign_keys=[departure_station_id], 
-                                     lazy='immediate', uselist=False)
+                                     lazy='joined', uselist=False)
     return_station = relationship("Station", 
                                   foreign_keys=[return_station_id], 
-                                  lazy='immediate', uselist=False)
+                                  lazy='joined', uselist=False)
 
     distance = Column('covered_distance_m',Integer, nullable=False)
     duration = Column('duration_s', Integer, nullable=False)
