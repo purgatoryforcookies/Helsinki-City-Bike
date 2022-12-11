@@ -1,50 +1,59 @@
 .addJourney_comp{
 
 
-    width: 600px;
-    height: 300px;
+    width: 800px;
+    height: 500px;
     border: 2px solid black;
     border-radius: 7px;
 
     margin: 20px;
+    margin-bottom: 1500px;
 
 
     .options{
 
-        height: 150px;
-        width: 400px;
+        margin: 50px;
 
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 90px);
         grid-column-gap: 0px;
         grid-row-gap: 0px;
+        
+        .option_header{
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+        .option_function{
+            display: flex;
+            justify-content: center;
+        }
 
 
         .div1 { 
-            grid-area: 1 / 1 / 2 / 2; 
+            grid-area: 1 / 1 / 2 / 3; 
             border: 2px solid black;
+
         }
         .div2 { 
-            grid-area: 1 / 2 / 2 / 3; 
+            grid-area: 2 / 1 / 3 / 2;
         border: 2px solid black;
         }
         .div3 { 
-            grid-area: 2 / 1 / 3 / 2; 
+            grid-area: 2 / 2 / 3 / 3;
         border: 2px solid black;
         }
         .div4 { 
-            grid-area: 2 / 2 / 3 / 3; 
+            grid-area: 3 / 1 / 4 / 2;
         border: 2px solid black;
         }
         .div5 { 
-            grid-area: 3 / 1 / 4 / 2; 
+            grid-area: 3 / 2 / 4 / 3;
         border: 2px solid black;
         }
-        .div6 { 
-            grid-area: 3 / 2 / 4 / 3; 
-        border: 2px solid black;
-        }
+
+
 
     }
 

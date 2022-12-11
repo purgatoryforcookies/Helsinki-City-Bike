@@ -9,7 +9,16 @@ const GetAll = () =>{
 
 }
 
+const searchStation = ({queryKey}) =>{
+    
 
-export {GetAll}
+    const request = axios.get(url+`/search/?search=${queryKey[1]}`)
+    return request.then(res => res.data).catch(err => err)
+
+}
+
+
+
+export {GetAll,searchStation}
 
 

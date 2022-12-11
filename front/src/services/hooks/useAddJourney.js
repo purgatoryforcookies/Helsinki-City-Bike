@@ -5,7 +5,7 @@ export const useAddJourney = (params) =>{
 
 
     const {isError, data, error, isFetching, isLoading, refetch} = useQuery({
-        queryKey:['journeys', params],
+        queryKey:['addJourneys', params],
         queryFn: addJourney
         },
         {

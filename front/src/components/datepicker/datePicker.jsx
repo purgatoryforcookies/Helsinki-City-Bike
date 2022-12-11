@@ -5,13 +5,22 @@ import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css'
 
 function DPicker({handler, selected}) {
+
+  function handleDates(value){
+    if(value.start){
+      handler({...selected, start: value.start})
+    }
+    else{
+      handler({...selected, end: value.end})
+    }
+  }
   
   return (
     <div className='datepicker_body'>
         <div className='startPicker'>
         <DatePicker 
              selected={selected.start}
-             onChange={(date) => handler({start:date})}
+             onChange={(date) => handleDates({start:date})}
              showWeekNumbers
             showTimeSelect
             timeIntervals={10}
@@ -27,7 +36,7 @@ function DPicker({handler, selected}) {
 
         <DatePicker 
              selected={selected.end}
-             onChange={(date) => handler({end:date})}
+             onChange={(date) => handleDates({end:date})}
              showWeekNumbers
             showTimeSelect
             timeIntervals={10}
