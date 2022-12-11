@@ -29,7 +29,7 @@ function DPicker(props) {
             timeIntervals={10}
             timeFormat="HH:mm"
             dateFormat="d.MM.yyyy - HH:mm"
-            placeholderText="Filter by departure date"
+            placeholderText="Departure date"
         />
         </div>
         <div>
@@ -45,11 +45,11 @@ function DPicker(props) {
             timeIntervals={10}
             timeFormat="HH:mm"
             dateFormat="d.MM.yyyy - HH:mm"
-            placeholderText="Filter by return date"
+            placeholderText="Return date"
         />
         </div>
 
-        <button type='button' onClick={handlesubmit} >Search</button>
+        <input type='button' onClick={handlesubmit} value='Search'/>
 
     </div>
   )

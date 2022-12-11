@@ -22,7 +22,7 @@ const getAll = (data) =>{
 }
 
 
-const add = (data) =>{
+const addJourney = (data) =>{
 
     const body = {
         departure: "2022-12-11T08:43:19.278Z",
@@ -42,7 +42,7 @@ const add = (data) =>{
 
 
 
-export {getAll, add}
+export {getAll, addJourney}
 
 
 
