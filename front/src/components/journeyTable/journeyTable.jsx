@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import "./journeyTable.scss"
 import { journeyTableTheme } from './tableConfig'
 import { useFetchJourney } from '../../services/hooks/useFetchJourney';
@@ -10,34 +10,25 @@ import {
 } from '@table-library/react-table-library/table';
 
 import { useTheme } from '@table-library/react-table-library/theme';
-import SearchBox from '../searchBox/searchBox'
-import DPicker from '../datepicker/datePicker';
 import Loading from '../loading/loading'
-
 import { useDispatch } from 'react-redux';
 import {setJourneyParams} from "../../services/store/journeySlice"
 
 function JourneyTable() {
 
   const theme = useTheme(journeyTableTheme);
-  // const [params, setParams] = useState({ sortColumn: "", searchkey: ""})
-
   const dispatch = useDispatch()
-
   const { isError, data, isLoading, refetch } = useFetchJourney()
+  
+
 
   const sort = useSort(
     data,
-    {
-      
-      
-      onChange: (a,state)=>
-               dispatch(setJourneyParams({sortkey:state}))
-        
-      ,
+    {onChange: (a,state)=> {
+      refetch()
+      return dispatch(setJourneyParams({sortkey:state}))}
     },
-    {
-      sortToggleType: SortToggleType.AlternateWithReset,
+    {sortToggleType: SortToggleType.AlternateWithReset,
       sortFns: {
         ride_id: (array) => array.sort((a, b) => a.ride_id - b.ride_id),
         distance: (array) => array.sort((a, b) => a.distance - b.distance),
@@ -50,10 +41,6 @@ function JourneyTable() {
     },
   );
 
-  function handleSearch(value) {
-    dispatch(setJourneyParams({searchkey:value}))
-  }
-
   if (isError) {
     return <p>Error!</p>
   }
@@ -62,10 +49,6 @@ function JourneyTable() {
 
   return (
     <div className='journeyTable_comp'>
-      <div className='journeyTable_tools'>
-        <SearchBox handleSearch={handleSearch} />
-        <DPicker/>
-      </div>
       <Table data={{ nodes: dataToShow }} theme={theme} layout={{ custom: true }} sort={sort}>
         {(tableList) => (
 

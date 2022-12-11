@@ -4,21 +4,14 @@ import "./datePicker.scss"
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css'
 
-import { useSelector, useDispatch } from 'react-redux';
-import {setJourneyParams} from "../../services/store/journeySlice"
-
-function DPicker() {
-
-    const params = useSelector((state)=> state.search.journeyParams)
-    const dispatch = useDispatch()
-
-
+function DPicker({handler, selected}) {
+  
   return (
     <div className='datepicker_body'>
         <div className='startPicker'>
         <DatePicker 
-             selected={params.timeframe_start ? new Date(params.timeframe_start):""}
-             onChange={date => {dispatch(setJourneyParams({timeframe_start: new Date(date).toISOString()}))}}
+             selected={selected.start}
+             onChange={(date) => handler({start:date})}
              showWeekNumbers
             showTimeSelect
             timeIntervals={10}
@@ -33,8 +26,8 @@ function DPicker() {
         <div className='endPicker'>
 
         <DatePicker 
-             selected={params.timeframe_end ? new Date(params.timeframe_end):""}
-             onChange={date => {dispatch(setJourneyParams({timeframe_end:new Date(date).toISOString()}))}}
+             selected={selected.end}
+             onChange={(date) => handler({end:date})}
              showWeekNumbers
             showTimeSelect
             timeIntervals={10}

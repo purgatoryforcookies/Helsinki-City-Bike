@@ -22,7 +22,7 @@ function AddJourney() {
             <div className="options">
                 <div className="div1">
                     <div className="option_header">Departure</div>
-                    <div className="option_function"><DPicker immediate={true} handlePick={handleDatePick}/></div>
+                    {/* <div className="option_function"><DPicker /></div> */}
                 </div>
                 <div className="div2">
                     <div className="option_header">Return</div>

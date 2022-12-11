@@ -20,9 +20,9 @@ function SearchBox(props) {
 
   return (
     <div className='searchBoxBody'>
-      <form>
-      <input placeholder='Search' onChange={(e)=>setValue(e.target.value)}/>
-      </form>
+      {/* <form> */}
+      <input placeholder='Search' onChange={(e)=>{setValue(e.target.value)}}/>
+      {/* </form> */}
     </div>
   )
 }
