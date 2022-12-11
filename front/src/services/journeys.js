@@ -22,7 +22,27 @@ const getAll = (data) =>{
 }
 
 
-export {getAll}
+const add = (data) =>{
+
+    const body = {
+        departure: "2022-12-11T08:43:19.278Z",
+        arrival: "2022-12-11T08:43:19.278Z",
+        departure_station_id: 0,
+        return_station_id: 0,
+        distance: 0,
+        duration: 0
+    }
+
+    const request = axios.post(url, body, {headers: {
+        'content-type': 'application/json',
+    }} )
+    return request.then(res => res.data).catch(err => err)
+
+}
+
+
+
+export {getAll, add}
 
 
 
