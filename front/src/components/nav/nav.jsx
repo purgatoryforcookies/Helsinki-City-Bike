@@ -24,8 +24,15 @@ function Nav() {
 
       function sendValues(){
         dispatch(setJourneyParams({searchkey:search, 
-            timeframe_start:moment(dates.start).local().format(), 
-            timeframe_end:moment(dates.end).local().format()}))
+            timeframe_start:dates.start ? moment(dates.start).local().format():"", 
+            timeframe_end:dates.end ? moment(dates.end).local().format():""}))
+      }
+
+      function clearValues(){
+        dispatch(setJourneyParams({searchkey:search, 
+            timeframe_start:"", 
+            timeframe_end:""}))
+        setDates({start: "", end:""})
       }
 
 
@@ -34,6 +41,7 @@ function Nav() {
         <input type={'text'} onChange={(e) => setSearch(e.target.value)}/>
       <DPicker handler={handleDates} selected={dates}/>
       <button onClick={sendValues}>Search</button>
+      <button onClick={clearValues}>Clear</button>
     </div>
   )
 }

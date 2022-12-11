@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import "./journeyTable.scss"
 import { journeyTableTheme } from './tableConfig'
 import { useFetchJourney } from '../../services/hooks/useFetchJourney';
@@ -18,15 +18,11 @@ function JourneyTable() {
 
   const theme = useTheme(journeyTableTheme);
   const dispatch = useDispatch()
-  const { isError, data, isLoading, refetch } = useFetchJourney()
+  const { isError, data, isLoading } = useFetchJourney()
   
-
-
   const sort = useSort(
     data,
-    {onChange: (a,state)=> {
-      refetch()
-      return dispatch(setJourneyParams({sortkey:state}))}
+    {onChange: (a,state)=> {dispatch(setJourneyParams({sortkey:state}))}
     },
     {sortToggleType: SortToggleType.AlternateWithReset,
       sortFns: {
