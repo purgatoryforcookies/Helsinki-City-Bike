@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useAddJourney } from '../../services/hooks/useAddJourney';
+import { dateToSec } from "../utils/dates";
 
 
 const useForm = (formState) =>{
@@ -10,9 +11,9 @@ const useForm = (formState) =>{
     const { mutate, isLoading, isError, error, isSuccess} = useAddJourney(formdata)
 
     const onChangeInput = (param) => {
-      const { name, value } = param.target
-      setFormdata({ ...formdata, [name]: value })
-      setFreshError(false)
+        const { name, value } = param.target
+        setFormdata({ ...formdata, [name]: value })
+        setFreshError(false)
     }
   
     const onSubmitForm = (e) => {

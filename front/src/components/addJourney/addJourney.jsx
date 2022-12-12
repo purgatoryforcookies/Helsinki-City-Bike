@@ -16,8 +16,8 @@ function AddJourney() {
         arrival: "",
         departure_station_id: "",
         return_station_id: "",
-        distance: "",
-        duration: ""
+        distance: 0,
+        duration: 0
     })
     const {min, sec } = timeToSecMin(formdata.departure, formdata.arrival)
 
