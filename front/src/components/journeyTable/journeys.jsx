@@ -22,6 +22,8 @@ function Journeys() {
 
 
   const handleChange = (param) => {
+    console.log(param);
+    
     const { name, value } = param.target
     setParams({ ...params, [name]: value })
 
@@ -50,7 +52,10 @@ function Journeys() {
 
 
 
-    <JourneyTable data={data} name='sortkey' onchange={handleChange} isloading={isLoading} iserror={isError}/>
+    <JourneyTable data={data} name='sortkey' 
+    onchange={handleChange} 
+    isloading={isLoading} 
+    iserror={isError}/>
 
 
     </div>

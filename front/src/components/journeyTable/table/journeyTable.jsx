@@ -10,19 +10,16 @@ import {
 
 import { useTheme } from '@table-library/react-table-library/theme';
 import Loading from '../../loading/loading'
-function JourneyTable({data, onchange, isLoading, isError, name}) {
+function JourneyTable({data, onchange, isloading, iserror, name}) {
 
   const theme = useTheme(journeyTableTheme);
  
-  
-  const sort = useSort(
-    data,
-    {onChange: (a,state)=> {onchange({target: {name:state}})}},
-    {sortToggleType: SortToggleType.AlternateWithReset,
-      sortFns: sortingFunc
-    });
+  const sort = useSort(data,
+    { onChange: (_,state)=> onchange({target: {name:name, value:state}}) },
+    { sortToggleType: SortToggleType.AlternateWithReset,
+      sortFns: sortingFunc });
 
-  if (isError) {
+  if (iserror) {
     return <p>Error!</p>
   }
 
@@ -47,7 +44,7 @@ function JourneyTable({data, onchange, isLoading, isError, name}) {
             </Header>
 
             <Body>
-              {isLoading ?
+              {isloading ?
                 <Row >
                   <Cell></Cell>
                   <Cell></Cell>

@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 export const useFetchJourney = (params) =>{
 
 
-    const {isError, data, error, isFetching, isLoading, refetch} = useQuery({
+    const {isError, data, error, isFetching, isLoading} = useQuery({
         queryKey:['journeys', params],
         queryFn: getAll,
         enabled: true
@@ -16,5 +16,5 @@ export const useFetchJourney = (params) =>{
           }
     )
 
-    return {isError, data, error, isFetching, isLoading, refetch}
+    return {isError, data, error, isFetching, isLoading}
 }
