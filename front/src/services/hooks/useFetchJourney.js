@@ -3,9 +3,9 @@ import { getAll } from "../journeys"
 import { useSelector } from 'react-redux';
 
 
-export const useFetchJourney = () =>{
+export const useFetchJourney = (params) =>{
 
-    const params = useSelector((state)=> state.journeySettings.journeyParams)
+    // const params = useSelector((state)=> state.journeySettings.journeyParams)
 
     const {isError, data, error, isFetching, isLoading, refetch} = useQuery({
         queryKey:['journeys', params],

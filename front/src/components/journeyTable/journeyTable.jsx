@@ -1,6 +1,6 @@
 import React from 'react'
 import "./journeyTable.scss"
-import { journeyTableTheme } from './tableConfig'
+import { journeyTableTheme, sortingFunc } from './tableConfig'
 import { useFetchJourney } from '../../services/hooks/useFetchJourney';
 import { SortToggleType, HeaderCellSort, useSort } from '@table-library/react-table-library/sort';
 import {
@@ -22,20 +22,10 @@ function JourneyTable() {
   
   const sort = useSort(
     data,
-    {onChange: (a,state)=> {dispatch(setJourneyParams({sortkey:state}))}
-    },
+    {onChange: (a,state)=> {dispatch(setJourneyParams({sortkey:state}))}},
     {sortToggleType: SortToggleType.AlternateWithReset,
-      sortFns: {
-        ride_id: (array) => array.sort((a, b) => a.ride_id - b.ride_id),
-        distance: (array) => array.sort((a, b) => a.distance - b.distance),
-        duration: (array) => array.sort((a, b) => a.duration - b.duration),
-        departure_station: (array) => array.sort((a, b) => a.departure_station.name.localeCompare(b.departure_station.name)),
-        return_station: (array) => array.sort((a, b) => a.return_station.name.localeCompare(b.return_station.name)),
-        departure: (array) => array.sort((a, b) => new Date(a.departure) - new Date(b.departure)),
-        arrival: (array) => array.sort((a, b) => new Date(a.arrival) - new Date(b.arrival)),
-      }
-    },
-  );
+      sortFns: sortingFunc
+    });
 
   if (isError) {
     return <p>Error!</p>
@@ -88,7 +78,6 @@ function JourneyTable() {
 
     </div>
   )
-
 }
 
 export default JourneyTable

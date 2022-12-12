@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import "./nav.scss"
 import DPicker from '../datepicker/datePicker'
-import { useDispatch } from 'react-redux';
-import { setJourneyParams } from "../../services/store/journeySlice"
+// import { useDispatch } from 'react-redux';
+// import { setJourneyParams } from "../../services/store/journeySlice"
 import moment from 'moment-timezone';
+
+import { useFetchJourney } from '../../services/hooks/useFetchJourney';
 
 function Nav() {
 
@@ -11,33 +13,43 @@ function Nav() {
 
   const [search, setSearch] = useState("")
 
-  const dispatch = useDispatch()
+  const [params, setParams] = useState({
+    limit:20,
+    searchkey:"",
+    sortkey: "",
+    departure:"",
+    arrival:""
+  })
+
+  const {isError, data, error, isFetching, isLoading, refetch} = useFetchJourney(params)
 
 
-  function sendValues() {
-    dispatch(setJourneyParams({
-      searchkey: search,
-      timeframe_start: dates.start ? moment(dates.start).local().format() : "",
-      timeframe_end: dates.end ? moment(dates.end).local().format() : ""
-    }))
+  const handleChange = (param) => {
+    const { name, value } = param.target
+    setParams({ ...params, [name]: value })
+
   }
-
-  function clearValues() {
-    dispatch(setJourneyParams({
-      searchkey: search,
-      timeframe_start: "",
-      timeframe_end: ""
-    }))
-    setDates({ start: "", end: "" })
-  }
+  console.log(params);
+  
 
 
   return (
     <div className='navBody'>
       <input type={'text'} onChange={(e) => setSearch(e.target.value)} />
-      <DPicker handler={setDates} selected={dates} />
-      <button onClick={sendValues}>Search</button>
-      <button onClick={clearValues}>Clear</button>
+      <div className="navDatesChoosing">
+      <DPicker onchange={handleChange}
+                                placeholder="Departure"
+                                value={params.timeframe.start}
+                                name='departure'
+                            />
+                            <DPicker onchange={handleChange}
+                                placeholder="Arrival"
+                                value={params.timeframe.end}
+                                name='arrival'
+                            />
+      </div>
+      {/* <button onClick={sendValues}>Search</button> */}
+      {/* <button onClick={clearValues}>Clear</button> */}
     </div>
   )
 }

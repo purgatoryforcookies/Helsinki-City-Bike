@@ -24,8 +24,8 @@ function DPicker({name, value, onchange, placeholder}) {
             showWeekNumbers
             showTimeSelect
             timeIntervals={10}
-            timeFormat="HH:mm"
-            dateFormat="d.MM.yyyy - HH:mm"
+            timeFormat="HH:mm:ss"
+            dateFormat="d.MM.yyyy - HH:mm:ss"
             placeholderText={placeholder}
         />
     </div>

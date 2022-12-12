@@ -3,7 +3,7 @@ import DPicker from '../datepicker/datePicker'
 import SearchboxStations from '../searchboxStations/searchboxStations'
 import NumberBox from '../numberBox/numberBox';
 import ErrorComp from '../error/error';
-
+import { timeToSecMin } from '../../services/utils/dates';
 import "./addJourney.scss"
 
 import useForm from '../../services/hooks/useForm';
@@ -19,8 +19,7 @@ function AddJourney() {
         distance: "",
         duration: ""
     })
-    console.log(freshError);
-    
+    const {min, sec } = timeToSecMin(formdata.departure, formdata.arrival)
 
     return (
         <div className='addJourney_comp'>
@@ -74,9 +73,7 @@ function AddJourney() {
                     <div className="div5">
                         <div className="option_header">Duration</div>
                         <div className="option_function">
-                            <NumberBox onchange={onChangeInput}
-                                name='duration'
-                                value={formdata.duration} />
+                               {(formdata.departure && formdata.arrival) ? `${min}min ${sec}sec` : ""}
                         </div>
                     </div>
 

@@ -9,7 +9,6 @@ export const useAddJourney = (params) =>{
 
     const {mutate, isLoading ,isError, error, isSuccess} = useMutation(AddJourney, {
         onSuccess: data =>{
-            
         },
         onError: (err) => {
             return err

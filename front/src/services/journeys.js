@@ -8,12 +8,9 @@ const getAll = ({queryKey}) =>{
         limit:20,
         sortkey: queryKey[1].sortkey,
         searchkey: queryKey[1].searchkey,
-        timeframe: 
-            {start: moment(queryKey[1].departure).local().format(), 
-                end:moment(queryKey[1].arrival).local().format()}
+        departure: queryKey[1].departure,
+        arrival: queryKey[1].arrival
     }
-    console.log(body);
-
     const request = axios.post(url+"fetch", body, {headers: {
         'content-type': 'application/json',
     }} )
@@ -29,8 +26,6 @@ const AddJourney = (data) =>{
 
     }} )
     return request.then(res => res)
-    // .catch(err=> err)
-
 }
 
 
