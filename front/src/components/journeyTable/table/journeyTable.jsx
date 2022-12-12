@@ -29,8 +29,9 @@ function JourneyTable({data, onchange, isloading, iserror, name}) {
     <div className='journeyTable_comp'>
       <Table data={{ nodes: dataToShow }} theme={theme} layout={{ custom: true }} sort={sort}>
         {(tableList) => (
-
+          
           <>
+          
             <Header>
               <HeaderRow>
                 <HeaderCellSort sortKey='ride_id'>Id</HeaderCellSort>
@@ -42,7 +43,6 @@ function JourneyTable({data, onchange, isloading, iserror, name}) {
                 <HeaderCellSort sortKey='duration'>Duration (min)</HeaderCellSort>
               </HeaderRow>
             </Header>
-
             <Body>
               {isloading ?
                 <Row >
@@ -65,7 +65,8 @@ function JourneyTable({data, onchange, isloading, iserror, name}) {
               }
             </Body>
           </>
-        )}
+        )
+        }
       </Table>
 
     </div>

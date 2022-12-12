@@ -2,13 +2,16 @@ import React from 'react'
 import "./searchBox.scss"
 
 
-function SearchBox({name, value, onchange}) {
+function SearchBox({name, value, onchange, style}) {
 
 
   return (
-    <div className='searchBoxBody'>
-      <input placeholder='Search' autoComplete='off' name={name} value={value} onChange={onchange}/>
-    </div>
+      <input className='searchBoxBody' 
+      placeholder='Search' autoComplete='off' 
+      name={name} value={value} onChange={onchange}
+      style={style}
+      />
+
   )
 }
 

@@ -49,7 +49,7 @@ function Journeys() {
       <form onSubmit={handleSubmit} >
 
         <div className='navBody'>
-          <SearchBox name="searchkey" value={params.searchkey} onchange={handleChange} />
+          <SearchBox name="searchkey" value={params.searchkey} onchange={handleChange} style={{marginLeft:40}}/>
 
           <div className="navDatesChoosing">
             <DPicker onchange={handleChange}

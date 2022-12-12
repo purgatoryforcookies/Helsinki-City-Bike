@@ -1,9 +1,9 @@
 import Journeys from "./components/journeyTable/journeys";
-// import StationsTable from "./components/stationsTable/stationsTable";
+import StationsTable from "./components/stationsTable/stationsTable";
 import AddJourney from "./components/addJourney/addJourney";
 import { QueryClientProvider, QueryClient } from "react-query"
 
-
+import "./App.css"
 
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -20,12 +20,30 @@ function App() {
 
   return (
     <div className="App">
-
-
         <QueryClientProvider client={queryClient}>
+      <div className="appHeader">
+        
+      </div>
+      <div className="lmargin">
+
+      </div>
+      <div className="rmargin">
+
+      </div>
+      <div className="journies">
           <Journeys />
 
-          <AddJourney />
+      </div>
+      <div className="stations">
+        <StationsTable/>
+      </div>
+      <div className="dynamicIsland">
+
+      </div>
+
+
+
+          {/* <AddJourney /> */}
 
 
         </QueryClientProvider>
