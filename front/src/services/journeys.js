@@ -3,7 +3,8 @@ import moment from 'moment-timezone';
 const url = '/api/journey/'
 
 const getAll = ({queryKey}) =>{
-
+    console.log(queryKey);
+    
     const body = {
         limit:20,
         sortkey: queryKey[1].sortkey,

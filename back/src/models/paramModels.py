@@ -37,7 +37,7 @@ class JourneyParams(BaseModel):
             v = ""
         return v
         
-    @validator('departure')
+    @validator('arrival')
     def arrivalDate(cls, v):
         try:
             parser.parse(v)

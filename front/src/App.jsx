@@ -1,5 +1,4 @@
-import JourneyTable from "./components/journeyTable/journeyTable";
-import Nav from "./components/nav/nav";
+import Journeys from "./components/journeyTable/tableJourneys";
 // import StationsTable from "./components/stationsTable/stationsTable";
 import AddJourney from "./components/addJourney/addJourney";
 import { QueryClientProvider, QueryClient } from "react-query"
@@ -25,9 +24,7 @@ function App() {
 
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-
-          <Nav />
-          <JourneyTable />
+          <Journeys />
 
           <AddJourney />
 
