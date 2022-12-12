@@ -1,20 +1,23 @@
-import { useQuery} from "react-query"
+import {useMutation, useQueryClient } from "react-query"
+// import queryClient from "../../App"
 import { AddJourney } from "../journeys"
 
 export const useAddJourney = (params) =>{
 
+    const queryClient = useQueryClient();
 
-    const {isError, data, error, isFetching, isLoading, refetch, isSuccess} = useQuery({
-        queryKey:['addJourneys', params],
-        queryFn: AddJourney,
-        enabled: false,
-        retry: 1
-        },
-        {
-            keepPreviousData: true,
+
+    const {mutate, isLoading ,isError, error, isSuccess} = useMutation(AddJourney, {
+        onSuccess: data =>{
             
+        },
+        onError: (err) => {
+            return err
+          },
+          onSettled: () => {
+            queryClient.invalidateQueries('create');
           }
-    )
+    })
 
-    return {isError, data, error, isFetching, isLoading, refetch , isSuccess}
+    return {mutate, isLoading, isError, error, isSuccess}
 }

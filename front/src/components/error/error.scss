@@ -1,4 +1,9 @@
 .ErrorBody{
+
+    position:fixed;
+    bottom: 20px;
+    right: 0;
+
     border: 3px solid red;
     border-radius: 5px;
     width: 350px;
@@ -6,7 +11,6 @@
     max-height: 200px;
     overflow-y: auto;
     overflow-x: hidden;
-    position: relative;
     display: flex;
     flex-direction: column;
 

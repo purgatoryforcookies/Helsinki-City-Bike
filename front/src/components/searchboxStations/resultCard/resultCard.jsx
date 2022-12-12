@@ -1,20 +1,21 @@
 import React from 'react'
 import "./resultCard.scss"
+import { BsFillCheckCircleFill, BsFillExclamationCircleFill } from 'react-icons/bs';
 
-
-function ResultCard({data}) {
+function ResultCard({ data }) {
   return (
     <div className='resultCardBody'>
-      <div className="header">
-        {data.name} - Id: {data.station_id}
+      <div className="resulcard_notice">
+      {data.active ? <BsFillCheckCircleFill size={22} color='green'/> 
+      : <BsFillExclamationCircleFill size={22} color='#b38710'/>}
       </div>
-      <div className="body">
+      <div className="resultCardheader">
+        {data.name}
+      </div>
+      <div className="resultCardbody">
+        <span>Station ID: {data.station_id}</span>
+      </div>
 
-      </div>
-      <div className="footer">
-        <div></div>
-        <div>Added: {new Date(data.date_added).toLocaleDateString('fi')}</div>
-      </div>
     </div>
   )
 }

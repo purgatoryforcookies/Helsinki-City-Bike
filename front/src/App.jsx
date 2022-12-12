@@ -6,30 +6,35 @@ import { QueryClientProvider, QueryClient } from "react-query"
 import store from "./services/store/store"
 import { Provider } from 'react-redux'
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000,
-      cacheTime: 10 * 60 * 1000
+
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 5 * 60 * 1000,
+        cacheTime: 10 * 60 * 1000
+      }
     }
-  }
-})
+  })
 
 
 function App() {
+  
+
   return (
+    <div className="App">
+
       <Provider store={store}>
-    <QueryClientProvider client={queryClient}>
+        <QueryClientProvider client={queryClient}>
 
-      <div className="App">
-        <Nav/>
-        <JourneyTable />
-        {/* <StationsTable /> */}
-        <AddJourney/>
+          <Nav />
+          <JourneyTable />
 
-      </div>
-    </QueryClientProvider>
+          <AddJourney />
+
+
+        </QueryClientProvider>
       </Provider>
+    </div>
   );
 }
 

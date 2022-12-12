@@ -22,23 +22,13 @@ const getAll = ({queryKey}) =>{
 }
 
 
-const AddJourney = ({queryKey}) =>{
+const AddJourney = (data) =>{
 
-    const body = {
-        departure: queryKey[1].newDeparture,
-        arrival: queryKey[1].newArrival,
-        departure_station_id: queryKey[1].newDepartureStationId,
-        return_station_id: queryKey[1].newReturnStationId,
-        distance: queryKey[1].newDistance,
-        duration: queryKey[1].newDuration
-    }
-
-
-    const request = axios.post(url, body, {headers: {
+    const request = axios.post(url, data, {headers: {
         'content-type': 'application/json',
 
     }} )
-    return request.then(res => res.data)
+    return request.then(res => res)
     // .catch(err=> err)
 
 }
