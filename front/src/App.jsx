@@ -1,4 +1,4 @@
-import Journeys from "./components/journeyTable/tableJourneys";
+import Journeys from "./components/journeyTable/journeys";
 // import StationsTable from "./components/stationsTable/stationsTable";
 import AddJourney from "./components/addJourney/addJourney";
 import { QueryClientProvider, QueryClient } from "react-query"
