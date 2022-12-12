@@ -9,14 +9,16 @@ import { useFetchJourney } from '../../services/hooks/useFetchJourney';
 function Journeys() {
 
   const [immediate, setImmediate] = useState(false)
-  
-  const [params, setParams] = useState({
+
+  const initialData = {
     limit: 20,
     sortkey: "",
     searchkey: "",
     departure: "",
     arrival: ""
-  })
+  }
+  
+  const [params, setParams] = useState(initialData)
 
 
   const { isError, data, error, isLoading, refetch } = useFetchJourney(params, immediate)
@@ -44,8 +46,11 @@ function Journeys() {
   const handleSubmit = (e) =>{
     e.preventDefault()
     setImmediate(true)
-    
+  }
 
+  const clearValues = () =>{
+    setImmediate(true)
+    setParams(initialData)
   }
 
 
@@ -69,7 +74,7 @@ function Journeys() {
             />
           </div>
           <button onClick={handleSubmit}>Search</button>
-          {/* <button onClick={clearValues}>Clear</button> */}
+          <button onClick={clearValues}>Clear</button>
         </div>
       </form>
 
