@@ -1,28 +1,37 @@
 import axios from 'axios'
+import moment from 'moment-timezone';
 const url = '/api/journey/'
 
-
-const getAll = (data) =>{
-
+const getAll = ({queryKey}) =>{
+    console.log(queryKey);
+    
     const body = {
         limit:20,
-        sortkey: data.queryKey[1].sortColumn,
-        searchkey: data.queryKey[1].searchkey
+        sortkey: queryKey[1].sortkey,
+        searchkey: queryKey[1].searchkey,
+        departure: queryKey[1].departure,
+        arrival: queryKey[1].arrival
     }
-
-    if (data.queryKey[1].timeframe !== undefined){
-        body.timeframe = data.queryKey[1].timeframe
-    }
-
     const request = axios.post(url+"fetch", body, {headers: {
         'content-type': 'application/json',
     }} )
-    return request.then(res => res.data).catch(err => err)
+    return request.then(res => res.data)
 
 }
 
 
-export {getAll}
+const AddJourney = (data) =>{
+
+    const request = axios.post(url, data, {headers: {
+        'content-type': 'application/json',
+
+    }} )
+    return request.then(res => res)
+}
+
+
+
+export {getAll, AddJourney}
 
 
 

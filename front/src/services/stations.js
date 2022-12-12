@@ -1,16 +1,24 @@
 import axios from 'axios'
-
 const url = '/api/station/'
 
 
-const getAll = () =>{
+const GetAll = () =>{
 
     const request = axios.get(url)
     return request.then(res => res.data).catch(err => err)
 
 }
 
+const searchStation = ({queryKey}) =>{
+    
 
-export {getAll}
+    const request = axios.get(url+`/search/?search=${queryKey[1]}`)
+    return request.then(res => res.data).catch(err => err)
+
+}
+
+
+
+export {GetAll,searchStation}
 
 

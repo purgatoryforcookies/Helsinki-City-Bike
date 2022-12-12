@@ -19,7 +19,8 @@ class JourneyParams(BaseModel):
     sortkey: dict[str,str] = None
     limit: int = 20
     searchkey: str | None = None
-    timeframe: dict[str,str] | None = None
+    departure: str | None = None
+    arrival: str | None = None
     
     @validator('searchkey')
     def handle_empty_string(cls, v):
@@ -28,24 +29,21 @@ class JourneyParams(BaseModel):
         
         return v
 
-    @validator('timeframe')
-    def correct_form(cls, v):
-
-        if "start" in v and v['start'] != '':
-            try:
-                parser.parse(v['start'])
-            except:
-                v['start'] = ""
-            
-             
-        if "end" in v and v['end'] != '':
-            try:
-                parser.parse(v['end'])
-            except:
-                v['end'] = ""
-        
+    @validator('departure')
+    def departureDate(cls, v):
+        try:
+            parser.parse(v)
+        except:
+            v = ""
         return v
-            
+        
+    @validator('arrival')
+    def arrivalDate(cls, v):
+        try:
+            parser.parse(v)
+        except:
+            v = ""
+        return v
 
 
     @validator('sortkey')

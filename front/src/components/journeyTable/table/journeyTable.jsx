@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "./journeyTable.scss"
-import { journeyTableTheme } from './tableConfig'
-import { useFetchJourney } from '../../services/hooks/useFetchJourney';
+import { journeyTableTheme, sortingFunc } from './tableConfig'
 import { SortToggleType, HeaderCellSort, useSort } from '@table-library/react-table-library/sort';
 import {
   Table, Header,
@@ -10,59 +9,17 @@ import {
 } from '@table-library/react-table-library/table';
 
 import { useTheme } from '@table-library/react-table-library/theme';
-import SearchBox from '../searchBox/searchBox'
-import DPicker from '../datepicker/datePicker';
-import Loading from '../loading/loading'
-
-
-
-
-function JourneyTable() {
+import Loading from '../../loading/loading'
+function JourneyTable({data, onchange, isloading, iserror, name}) {
 
   const theme = useTheme(journeyTableTheme);
-  const [params, setParams] = useState({ sortColumn: "", searchkey: ""})
+ 
+  const sort = useSort(data,
+    { onChange: (_,state)=> onchange({target: {name:name, value:state}}) },
+    { sortToggleType: SortToggleType.AlternateWithReset,
+      sortFns: sortingFunc });
 
-  const { isError, data, isLoading, refetch } = useFetchJourney(params)
-
-  const sort = useSort(
-    data,
-    {
-      onChange: onSortChange,
-    },
-    {
-      sortToggleType: SortToggleType.AlternateWithReset,
-      sortFns: {
-        ride_id: (array) => array.sort((a, b) => a.ride_id - b.ride_id),
-        distance: (array) => array.sort((a, b) => a.distance - b.distance),
-        duration: (array) => array.sort((a, b) => a.duration - b.duration),
-        departure_station: (array) => array.sort((a, b) => a.departure_station.name.localeCompare(b.departure_station.name)),
-        return_station: (array) => array.sort((a, b) => a.return_station.name.localeCompare(b.return_station.name)),
-        departure: (array) => array.sort((a, b) => new Date(a.departure) - new Date(b.departure)),
-        arrival: (array) => array.sort((a, b) => new Date(a.arrival) - new Date(b.arrival)),
-      }
-    },
-  );
-
-  function onSortChange(action, state) {
-    setParams({ ...params, sortColumn: state })
-
-  }
-
-  function handleSearch(value) {
-    setParams({ ...params, searchkey: value })
-  }
-
-  function handleDatePick(value){
-      let params_ = params
-      let {start, end} = value
-      params_.timeframe = {start:start, end:end}
-      setParams(params_)
-      refetch()
-
-  }
-
-
-  if (isError) {
+  if (iserror) {
     return <p>Error!</p>
   }
 
@@ -70,10 +27,6 @@ function JourneyTable() {
 
   return (
     <div className='journeyTable_comp'>
-      <div className='journeyTable_tools'>
-        <SearchBox handleSearch={handleSearch} />
-        <DPicker handlePick={handleDatePick}/>
-      </div>
       <Table data={{ nodes: dataToShow }} theme={theme} layout={{ custom: true }} sort={sort}>
         {(tableList) => (
 
@@ -91,7 +44,7 @@ function JourneyTable() {
             </Header>
 
             <Body>
-              {isLoading ?
+              {isloading ?
                 <Row >
                   <Cell></Cell>
                   <Cell></Cell>
@@ -117,7 +70,6 @@ function JourneyTable() {
 
     </div>
   )
-
 }
 
 export default JourneyTable

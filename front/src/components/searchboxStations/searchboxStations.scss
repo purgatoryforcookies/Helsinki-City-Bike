@@ -1,0 +1,27 @@
+.searchboxStationsBody{
+    z-index: 3;
+    width: 220px;
+    input{
+        height: 22px;
+        padding-left: 10px;
+        font-weight: 600;
+        width: 100%;
+        
+    }
+
+    .results_list{
+        z-index: 99;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgb(87, 87, 87);
+        background-color: rgba(203, 204, 204, 0.541);
+        width: 300px;
+        
+
+     
+
+    }
+
+
+
+
+}

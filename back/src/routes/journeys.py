@@ -22,6 +22,7 @@ async def retrieve_journeys(params: paramModels.JourneyParams,
     res = crud_journey.get_log(db, params) 
 
     print("journey fetch:", round(time.time()-start,2))
+    print("lenght of response is:,", len(res))
 
     return res
 # {"status":"ok"}
@@ -31,7 +32,6 @@ async def retrieve_journeys(params: paramModels.JourneyParams,
 
 @journey_router.post("/")
 async def add_journey(journey: paramModels.NewJourney, db: Session = Depends(connection.get_db)):
-    
     
     return crud_journey.add_journey(db, journey)
 
