@@ -2,14 +2,14 @@ import { useQuery} from "react-query"
 import { getAll } from "../journeys"
 
 
-export const useFetchJourney = (params) =>{
+export const useFetchJourney = (params, immediate) =>{
 
 
 
     const {isError, data, error, isFetching, isLoading, refetch} = useQuery({
-        queryKey:['journeys', params],
+        queryKey:['journeys', params, immediate],
         queryFn: getAll,
-        enabled: true
+        enabled: !!immediate
         },
         {
             keepPreviousData: false,

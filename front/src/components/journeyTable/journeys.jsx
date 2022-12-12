@@ -8,19 +8,18 @@ import { useFetchJourney } from '../../services/hooks/useFetchJourney';
 
 function Journeys() {
 
+  const [immediate, setImmediate] = useState(false)
   
   const [params, setParams] = useState({
     limit: 20,
     sortkey: "",
-    // searchkey: "",
-    // departure: "",
-    // arrival: ""
+    searchkey: "",
+    departure: "",
+    arrival: ""
   })
-  
 
 
-
-  const { isError, data, error, isLoading, refetch } = useFetchJourney(params)
+  const { isError, data, error, isLoading, refetch } = useFetchJourney(params, immediate)
   console.log(data);
   
   useState(()=>{
@@ -29,19 +28,23 @@ function Journeys() {
 
   const handleChange = (param) => {
     const { name, value } = param.target
-    setParams({ ...params, [name]: value })
-
-    if (name ==='sortkey'){
-      console.log('refetch');
-      
-      refetch()
+   
+    if(name ==='sortkey'){
+      setImmediate(true)
     }
+    else{
+      setImmediate(false)
+    }
+
+    
+    setParams({ ...params, [name]: value })
 
   }
 
   const handleSubmit = (e) =>{
     e.preventDefault()
-    refetch()
+    setImmediate(true)
+    
 
   }
 
