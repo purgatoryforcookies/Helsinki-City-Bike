@@ -2,8 +2,7 @@ import Journeys from "./components/journeyTable/journeys";
 // import StationsTable from "./components/stationsTable/stationsTable";
 import AddJourney from "./components/addJourney/addJourney";
 import { QueryClientProvider, QueryClient } from "react-query"
-import store from "./services/store/store"
-import { Provider } from 'react-redux'
+
 
 
   const queryClient = new QueryClient({
@@ -22,7 +21,7 @@ function App() {
   return (
     <div className="App">
 
-      <Provider store={store}>
+
         <QueryClientProvider client={queryClient}>
           <Journeys />
 
@@ -30,7 +29,7 @@ function App() {
 
 
         </QueryClientProvider>
-      </Provider>
+
     </div>
   );
 }

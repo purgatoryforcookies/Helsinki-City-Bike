@@ -22,7 +22,6 @@
     "react-error-boundary": "^3.1.4",
     "react-icons": "^4.7.1",
     "react-query": "^3.39.2",
-    "react-redux": "^8.0.5",
     "react-scripts": "5.0.1",
     "sass": "^1.56.1",
     "web-vitals": "^2.1.4"
