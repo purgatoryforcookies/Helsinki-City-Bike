@@ -21,13 +21,11 @@ def get_log(db, params):
 
     if params.sortkey and params.sortkey['sortKey'] != 'NONE':
         q = sort_records(q, dStation, rStation, params)
-        
-        
-    if params.timeframe:
-        if params.timeframe['start']:
-            q = q.filter(Log.departure >= params.timeframe['start'])
-        if params.timeframe['end']:
-            q = q.filter(Log.departure <= params.timeframe['end'])
+    if params.departure:
+      
+            q = q.filter(Log.departure >= params.departure)
+    if params.arrival:
+        q = q.filter(Log.departure <= params.arrival)
 
 
 

@@ -9,7 +9,7 @@ import { useFetchJourney } from '../../services/hooks/useFetchJourney';
 
 function Nav() {
 
-  const [dates, setDates] = useState({ start: "", end: "" })
+  // const [dates, setDates] = useState({ start: "", end: "" })
 
   const [search, setSearch] = useState("")
 
@@ -39,12 +39,12 @@ function Nav() {
       <div className="navDatesChoosing">
       <DPicker onchange={handleChange}
                                 placeholder="Departure"
-                                value={params.timeframe.start}
+                                value={params.departure}
                                 name='departure'
                             />
                             <DPicker onchange={handleChange}
                                 placeholder="Arrival"
-                                value={params.timeframe.end}
+                                value={params.arrival}
                                 name='arrival'
                             />
       </div>
