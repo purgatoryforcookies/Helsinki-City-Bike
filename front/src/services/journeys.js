@@ -1,5 +1,4 @@
 import axios from 'axios'
-import moment from 'moment-timezone';
 const url = '/api/journey/'
 
 const getAll = ({queryKey}) =>{
@@ -8,13 +7,15 @@ const getAll = ({queryKey}) =>{
     const body = {
         limit:20,
         sortkey: queryKey[1].sortkey,
-        searchkey: queryKey[1].searchkey,
-        departure: queryKey[1].departure,
-        arrival: queryKey[1].arrival
+        searchkey: queryKey[1].searchkey ? queryKey[1].searchkey : "",
+        departure: queryKey[1].departure ? queryKey[1].departure : "",
+        arrival: queryKey[1].arrival ? queryKey[1].departure : ""
     }
+
     const request = axios.post(url+"fetch", body, {headers: {
         'content-type': 'application/json',
     }} )
+    
     return request.then(res => res.data)
 
 }
