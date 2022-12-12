@@ -14,7 +14,7 @@ from dateutil.tz import tzutc
 def get_log(db, params):
     dStation = aliased(Station)
     rStation = aliased(Station)
-    print(params)
+    # print(params)
     # baseline, and stacking the query based on conditions
     q = db.query(Log).join(dStation, Log.departure_station).join(
         rStation, Log.return_station)
@@ -44,7 +44,7 @@ def get_log(db, params):
 
 
 def add_journey(db, journey):
-
+    
     try:
         record = Log(departure=journey.departure,
                      arrival=journey.arrival,

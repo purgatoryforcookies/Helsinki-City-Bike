@@ -4,6 +4,7 @@ from internal import connection
 from sqlalchemy.orm import Session
 from models import paramModels
 import time
+import datetime
 
 journey_router = APIRouter(
     prefix="/api/journey",
@@ -32,6 +33,7 @@ async def retrieve_journeys(params: paramModels.JourneyParams,
 
 @journey_router.post("/")
 async def add_journey(journey: paramModels.NewJourney, db: Session = Depends(connection.get_db)):
+
     
     return crud_journey.add_journey(db, journey)
 

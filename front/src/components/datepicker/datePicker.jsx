@@ -7,6 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 function DPicker({name, value, onchange, placeholder}) {
 
+
   function handleChange(date){
 
     onchange({

@@ -1,20 +1,22 @@
 import { useQuery} from "react-query"
 import { getAll } from "../journeys"
-import { useSelector } from 'react-redux';
 
 
-export const useFetchJourney = (params) =>{
+export const useFetchJourney = (params, immediate) =>{
 
 
-    const {isError, data, error, isFetching, isLoading} = useQuery({
-        queryKey:['journeys', params],
+
+    const {isError, data, error, isFetching, isLoading, refetch} = useQuery({
+        queryKey:['journeys', params, immediate],
         queryFn: getAll,
-        enabled: true
+        enabled: !!immediate
         },
         {
-            keepPreviousData: true
+            keepPreviousData: false,
+            refetchOnWindowFocus: false
+
           }
     )
 
-    return {isError, data, error, isFetching, isLoading}
+    return {isError, data, error, isFetching, isLoading, refetch}
 }
