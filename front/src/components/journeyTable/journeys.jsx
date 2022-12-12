@@ -3,12 +3,12 @@ import "./journeys.scss"
 import DPicker from '../datepicker/datePicker'
 import JourneyTable from './table/journeyTable';
 import SearchBox from '../searchBox/searchBox';
+// import Button from '../button/button';
+import Button from '@mui/material/Button';
 
 import { useFetchJourney } from '../../services/hooks/useFetchJourney';
 
 function Journeys() {
-
-  const [immediate, setImmediate] = useState(false)
 
   const initialData = {
     limit: 20,
@@ -17,42 +17,32 @@ function Journeys() {
     departure: "",
     arrival: ""
   }
-  
+
   const [params, setParams] = useState(initialData)
-
-
+  const [immediate, setImmediate] = useState(true)
   const { isError, data, error, isLoading, refetch } = useFetchJourney(params, immediate)
-  console.log(data);
-  
-  useState(()=>{
-    refetch()
-  },[])
 
   const handleChange = (param) => {
     const { name, value } = param.target
-   
-    if(name ==='sortkey'){
+    if (name === 'sortkey') {
       setImmediate(true)
     }
-    else{
+    else {
       setImmediate(false)
     }
-
-    
     setParams({ ...params, [name]: value })
 
   }
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault()
     setImmediate(true)
   }
 
-  const clearValues = () =>{
+  const clearValues = () => {
     setImmediate(true)
     setParams(initialData)
   }
-
 
   return (
     <div className="journieTableBody">
@@ -73,8 +63,12 @@ function Journeys() {
               name='arrival'
             />
           </div>
-          <button onClick={handleSubmit}>Search</button>
-          <button onClick={clearValues}>Clear</button>
+          <div className="buttonrow">
+
+          <Button variant="outlined" onClick={handleSubmit}>Search</Button>
+          <Button variant="outlined" onClick={clearValues} >Clear</Button>
+          </div>
+          
         </div>
       </form>
 

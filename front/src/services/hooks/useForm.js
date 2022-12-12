@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-
 import { useAddJourney } from '../../services/hooks/useAddJourney';
-import { dateToSec } from "../utils/dates";
 
 
 const useForm = (formState) =>{
