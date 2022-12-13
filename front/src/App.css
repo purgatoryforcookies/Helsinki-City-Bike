@@ -11,7 +11,8 @@
 .appHeader { 
     
     grid-area: 1 / 1 / 2 / 6;
-    /* background-color: aqua; */
+    background-color: #54BAB9;
+
 
 
 }
@@ -33,7 +34,7 @@
     
     grid-area: 2 / 2 / 3 / 5;
 
-
+    margin: 20px;
 
 }
 .stations { 

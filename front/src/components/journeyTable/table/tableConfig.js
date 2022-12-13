@@ -4,11 +4,24 @@ const journeyTableTheme = {
   Table: `
   --data-table-library_grid-template-columns: 90px repeat(2, minmax(80px, 300px))  repeat(2, minmax(80px, 300px)) 130px 150px ;
   align-content: start;
-  padding-right: 3px
+  padding-right: 0px;
+
+    color:white;
 
     `,
+
+     
+    Body: `
+
+    &.journey_custom_body>* {
+    background-color: #191919;
+    // overflow:auto;
+    }
+    `,
+
     Row: `
-    background-color: #F7ECDE;
+    // background-color: #191919;
+    // color:white;
       cursor: pointer;
       font-size: 14px;
       padding-right: 10px;
@@ -32,11 +45,18 @@ const journeyTableTheme = {
      `,
 
     HeaderRow: `
-    background-color: #E9DAC1;
+    background-color: #191919;
+
+   
+    button>span>svg{
+      fill:white;
+    }
     .td{
-      border-radius: 5px;
+      // border-radius: 5px;
     }
           .th {
+            position: sticky;
+            top:0;
 
             border-bottom: 1px solid #a0a8ae;
             text-align: center;
