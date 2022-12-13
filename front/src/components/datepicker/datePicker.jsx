@@ -28,6 +28,7 @@ function DPicker({name, value, onchange, placeholder}) {
             timeFormat="HH:mm:ss"
             dateFormat="d.MM.yyyy - HH:mm:ss"
             placeholderText={placeholder}
+         
         />
     </div>
   )

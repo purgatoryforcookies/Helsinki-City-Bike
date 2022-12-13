@@ -4,6 +4,9 @@
     
     background-image: url(./anm.svg);
     background-size: cover;
+    z-index: 99;
+    position: relative;
+    
 
     .toolbar{
         background: rgba(165, 165, 165, 0.096);
@@ -17,6 +20,7 @@
         height: 50px;
         justify-content: flex-start;
         align-items: center;
+        
 
 
 

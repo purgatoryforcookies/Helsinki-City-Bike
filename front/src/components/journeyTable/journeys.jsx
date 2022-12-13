@@ -51,8 +51,6 @@ function Journeys() {
       <form onSubmit={handleSubmit} >
         <div className='toolbar'>
 
-
-
           <SearchBox name="searchkey" value={params.searchkey} onchange={handleChange} style={{ marginLeft: 40 }} />
 
           <div className="navDatesChoosing">

@@ -5,6 +5,7 @@ const journeyTableTheme = {
   --data-table-library_grid-template-columns: 90px repeat(2, minmax(80px, 300px))  repeat(2, minmax(80px, 300px)) 130px 150px ;
   align-content: start;
   color:white;
+
     `,
 
      
@@ -31,6 +32,7 @@ const journeyTableTheme = {
       }
     `,
     HeaderCell: `
+
       div > *{
         justify-content: center;
         padding-left: 2px;

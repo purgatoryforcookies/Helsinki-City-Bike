@@ -31,7 +31,7 @@ function JourneyTable({ data, onchange, isloading, iserror, name }) {
 
   return (
     <div className='journeyTable_comp'>
-        <Table data={{ nodes: dataToShow }} theme={theme} layout={{ custom: true, isDiv: true, fixedHeader: true }} sort={sort}>
+        <Table data={{ nodes: dataToShow }} theme={theme} layout={{ custom: true, isDiv: false, fixedHeader: true }} sort={sort}>
         
           {(tableList) => (
 
