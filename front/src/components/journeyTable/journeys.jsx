@@ -3,17 +3,11 @@ import "./journeys.scss"
 import DPicker from '../datepicker/datePicker'
 import JourneyTable from './table/journeyTable';
 import SearchBox from '../searchBox/searchBox';
-// import Button from '../button/button';
-import Button from '@mui/material/Button';
-// import animateSVG from "../../misc/svg/anm.svg"
+import CustomButton from '../button/button';
+// import Button from '@mui/material/Button';
+
 import { useFetchJourney } from '../../services/hooks/useFetchJourney';
 
-const buttonStyle = {color: '#d3d3d3', borderColor:'#d3d3d3',
- "&:hover": {
-  border: "1px solid #fcba03",
-  fontWeight: '500',
-  color:'white'
-} }
 
 
 
@@ -75,9 +69,8 @@ function Journeys() {
             />
           </div>
           <div className="buttonrow">
-
-            <Button sx={buttonStyle} variant="outlined" type='submit' onClick={handleSubmit}>Search</Button>
-            <Button sx={buttonStyle} variant="outlined" onClick={clearValues} >Clear</Button>
+            <CustomButton clickd={handleSubmit} title='Search' loading ={isLoading} />
+            <CustomButton clickd={clearValues} title='Clear' />
           </div>
 
         </div>

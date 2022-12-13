@@ -1,6 +1,7 @@
 import Journeys from "./components/journeyTable/journeys";
 import StationsTable from "./components/stationsTable/stationsTable";
 import AddJourney from "./components/addJourney/addJourney";
+import NavBar from "./components/navBar/navBar";
 import { QueryClientProvider, QueryClient } from "react-query"
 
 import "./App.css"
@@ -22,7 +23,7 @@ function App() {
     <div className="App">
         <QueryClientProvider client={queryClient}>
       <div className="appHeader">
-        
+        <NavBar/>
       </div>
       <div className="lmargin">
 
