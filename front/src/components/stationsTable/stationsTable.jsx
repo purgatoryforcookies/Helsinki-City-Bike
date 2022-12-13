@@ -41,7 +41,7 @@ function StationsTable() {
         setSearch(value.target.value)
     }
 
-    
+
 
     const stationsToShow = !search
         ? data
@@ -52,18 +52,16 @@ function StationsTable() {
 
     return (
         <div className='stationTable_comp'>
-            <SearchBox onchange={set_filter} style={{height:25}}/>
+            <SearchBox onchange={set_filter} style={{ height: 25 }} />
 
             <Table data={{ nodes: stationsToShow }} theme={theme} layout={{ custom: true, isDiv: true, fixedHeader: true }}>
                 {(tableList) => (
                     <>
-
-
                         <Virtualized
                             tableList={tableList}
                             rowHeight={28}
                             header={() => (
-                                <HeaderRow>
+                                <HeaderRow >
                                     <HeaderCell>Id</HeaderCell>
                                     <HeaderCell>Name</HeaderCell>
                                 </HeaderRow>
@@ -76,7 +74,7 @@ function StationsTable() {
 
                                 </Row>
                             )}
-                            />
+                        />
 
                     </>
                 )}
