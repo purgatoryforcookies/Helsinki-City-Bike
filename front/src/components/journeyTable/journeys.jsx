@@ -8,6 +8,15 @@ import Button from '@mui/material/Button';
 // import animateSVG from "../../misc/svg/anm.svg"
 import { useFetchJourney } from '../../services/hooks/useFetchJourney';
 
+const buttonStyle = {color: '#d3d3d3', borderColor:'#d3d3d3',
+ "&:hover": {
+  border: "1px solid #fcba03",
+  fontWeight: '500',
+  color:'white'
+} }
+
+
+
 function Journeys() {
 
   const initialData = {
@@ -67,8 +76,8 @@ function Journeys() {
           </div>
           <div className="buttonrow">
 
-            <Button variant="outlined" type='submit' onClick={handleSubmit}>Search</Button>
-            <Button variant="outlined" onClick={clearValues} >Clear</Button>
+            <Button sx={buttonStyle} variant="outlined" type='submit' onClick={handleSubmit}>Search</Button>
+            <Button sx={buttonStyle} variant="outlined" onClick={clearValues} >Clear</Button>
           </div>
 
         </div>
