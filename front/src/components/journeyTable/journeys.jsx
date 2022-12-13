@@ -5,7 +5,7 @@ import JourneyTable from './table/journeyTable';
 import SearchBox from '../searchBox/searchBox';
 // import Button from '../button/button';
 import Button from '@mui/material/Button';
-
+// import animateSVG from "../../misc/svg/anm.svg"
 import { useFetchJourney } from '../../services/hooks/useFetchJourney';
 
 function Journeys() {
@@ -46,17 +46,21 @@ function Journeys() {
 
   return (
     <div className="journieTableBody">
-      <form onSubmit={handleSubmit} >
+      <div className="navBody">
 
-        <div className='navBody'>
-          <SearchBox name="searchkey" value={params.searchkey} onchange={handleChange} style={{marginLeft:40}}/>
+      <form onSubmit={handleSubmit} >
+        <div className='toolbar'>
+
+
+
+          <SearchBox name="searchkey" value={params.searchkey} onchange={handleChange} style={{ marginLeft: 40 }} />
 
           <div className="navDatesChoosing">
             <DPicker onchange={handleChange}
               placeholder="Departure"
               value={params.departure}
               name='departure'
-            />
+              />
             <DPicker onchange={handleChange}
               placeholder="Arrival"
               value={params.arrival}
@@ -65,12 +69,13 @@ function Journeys() {
           </div>
           <div className="buttonrow">
 
-          <Button variant="outlined" onClick={handleSubmit}>Search</Button>
-          <Button variant="outlined" onClick={clearValues} >Clear</Button>
+            <Button variant="outlined" type='submit' onClick={handleSubmit}>Search</Button>
+            <Button variant="outlined" onClick={clearValues} >Clear</Button>
           </div>
-          
+
         </div>
       </form>
+              </div>
 
 
 

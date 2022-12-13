@@ -1,9 +1,6 @@
 .stationTable_comp{
 
     margin: 20px;
-    padding:10px;
-
-    height: 450px;
     width: 250px;
 
     
@@ -11,6 +8,10 @@
     flex-direction: column;
     justify-content: center;
 
+
+    .stationsTable{
+        height: 450px;
+    }
 
     ::-webkit-scrollbar {
         width: 10px;

@@ -53,6 +53,7 @@ function StationsTable() {
     return (
         <div className='stationTable_comp'>
             <SearchBox onchange={set_filter} style={{ height: 25 }} />
+        <div className="stationsTable">
 
             <Table data={{ nodes: stationsToShow }} theme={theme} layout={{ custom: true, isDiv: true, fixedHeader: true }}>
                 {(tableList) => (
@@ -74,12 +75,13 @@ function StationsTable() {
 
                                 </Row>
                             )}
-                        />
+                            />
 
                     </>
                 )}
             </Table>
 
+                </div>
         </div>
 
     )
