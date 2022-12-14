@@ -2,6 +2,7 @@ import Journeys from "./components/journeyTable/journeys";
 import StationsTable from "./components/stationsTable/stationsTable";
 import AddJourney from "./components/addJourney/addJourney";
 import NavBar from "./components/navBar/navBar";
+import DynamicIsland from "./components/dynamicIsland/dynamicIsland";
 import { QueryClientProvider, QueryClient } from "react-query"
 
 import "./App.css"
@@ -39,7 +40,7 @@ function App() {
         <StationsTable/>
       </div>
       <div className="dynamicIsland">
-
+        <DynamicIsland/>
       </div>
 
 
