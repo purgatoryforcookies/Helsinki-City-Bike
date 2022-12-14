@@ -66,7 +66,7 @@ describe("JourneysTable", ()=>{
                 }
             };
 
-		useFetchJourney.mockImplementation(() => ({ isLoading: false, data: [mockedJourney], isError:false }));
+		useFetchJourney.mockImplementation(() => ({ isLoading: false,  isError:false }));
 
         render(<JourneyTable data={[mockedJourney]}/>)
 
