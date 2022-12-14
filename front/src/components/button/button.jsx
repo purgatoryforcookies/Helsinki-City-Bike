@@ -1,53 +1,33 @@
 import React from 'react'
 import LoadingButton from '@mui/lab/LoadingButton';
 import CircularProgress from '@mui/material/CircularProgress';
-import { styled } from '@mui/material/styles';
-
-import "./button.scss"
-
-const Button = ({ title, success, submit, dim, loading }) => {
+import Button from '@mui/material/Button';
 
 
-    const BootstrapButton = styled(LoadingButton)({
-        // boxShadow: 'none',
-        // textTransform: 'none',
-        fontSize: 14,
-        padding: '6px 12px',
-        height:'26px',
-        width:'35px',
-        border: '1px solid',
-        // lineHeight: 1.5,
-        // backgroundColor: '#0063cc',
-        // borderColor: '#0063cc',
-       
-        '&:hover': {
-        //   backgroundColor: '#0069d9',
-        //   borderColor: '#0062cc',
-          boxShadow: 'none',
-        },
-        '&:active': {
-          boxShadow: 'none',
-          backgroundColor: '#0062cc',
-          borderColor: '#005cbf',
-        },
-        // '&:focus': {
-        //   boxShadow: '0 0 0 0.5rem rgba(0,123,255,.5)',
-        // },
-      });
+const CustomButton = ({ title, success, clickd, dim, loading }) => {
 
+    const buttonStyle = {color: '#d3d3d3', borderColor:'#d3d3d3',
+    "&:hover": {
+     border: "1px solid #fcba03",
+     fontWeight: '500',
+     color:'white'
+   } }
 
+   const loadingStyle = {color: '#fcba03', borderColor:'#fcba03' }
+   
 
-    return <BootstrapButton
-                onClick={submit}
+    return <LoadingButton
+                onClick={clickd}
                 loading={loading}
                 variant="outlined"
-                loadingIndicator={<CircularProgress size={22}/>}
-                type='Submit'
+                loadingIndicator={<CircularProgress sx={loadingStyle} size={20}/>}
+                type='submit'
+                sx={buttonStyle}
             >
                 {title}
-            </BootstrapButton>
+            </LoadingButton>
       
     
 }
 
-export default Button
+export default CustomButton

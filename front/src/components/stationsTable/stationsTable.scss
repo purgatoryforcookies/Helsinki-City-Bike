@@ -1,10 +1,7 @@
 .stationTable_comp{
 
     margin: 20px;
-    padding:10px;
-
-    height: 350px;
-    width: 200px;
+    width: 280px;
 
     
     display: flex;
@@ -12,4 +9,33 @@
     justify-content: center;
 
 
+    .stationsTable{
+        height: 450px;
+        margin-top: 10px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        
+      }
+      
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        margin-top: 30px;
+        border-radius: 5px;
+      }
+      
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+      }
+      
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+
+    
+    }
 }

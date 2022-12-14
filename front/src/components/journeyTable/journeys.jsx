@@ -3,10 +3,10 @@ import "./journeys.scss"
 import DPicker from '../datepicker/datePicker'
 import JourneyTable from './table/journeyTable';
 import SearchBox from '../searchBox/searchBox';
-// import Button from '../button/button';
-import Button from '@mui/material/Button';
+import CustomButton from '../button/button';
 
 import { useFetchJourney } from '../../services/hooks/useFetchJourney';
+
 
 function Journeys() {
 
@@ -20,7 +20,7 @@ function Journeys() {
 
   const [params, setParams] = useState(initialData)
   const [immediate, setImmediate] = useState(true)
-  const { isError, data, error, isLoading, refetch } = useFetchJourney(params, immediate)
+  const { isError, data, error, isLoading } = useFetchJourney(params, immediate)
 
   const handleChange = (param) => {
     const { name, value } = param.target
@@ -46,17 +46,19 @@ function Journeys() {
 
   return (
     <div className="journieTableBody">
-      <form onSubmit={handleSubmit} >
+      <div className="navBody">
 
-        <div className='navBody'>
-          <SearchBox name="searchkey" value={params.searchkey} onchange={handleChange} />
+      <form onSubmit={handleSubmit} >
+        <div className='toolbar'>
+
+          <SearchBox name="searchkey" value={params.searchkey} onchange={handleChange} style={{ marginLeft: 40 }} />
 
           <div className="navDatesChoosing">
             <DPicker onchange={handleChange}
               placeholder="Departure"
               value={params.departure}
               name='departure'
-            />
+              />
             <DPicker onchange={handleChange}
               placeholder="Arrival"
               value={params.arrival}
@@ -64,13 +66,13 @@ function Journeys() {
             />
           </div>
           <div className="buttonrow">
-
-          <Button variant="outlined" onClick={handleSubmit}>Search</Button>
-          <Button variant="outlined" onClick={clearValues} >Clear</Button>
+            <CustomButton clickd={handleSubmit} title='Search' loading ={isLoading} />
+            <CustomButton clickd={clearValues} title='Clear' />
           </div>
-          
+
         </div>
       </form>
+              </div>
 
 
 
