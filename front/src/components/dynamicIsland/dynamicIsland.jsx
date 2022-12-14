@@ -1,5 +1,6 @@
 import React from 'react'
 import StatsRow from './minorComponents/statsRow/statsRow'
+import LeaderBoard from './minorComponents/leaderBoard/leaderBoard'
 import "./dynamicIsland.scss"
 
 function DynamicIsland() {
@@ -24,8 +25,8 @@ function DynamicIsland() {
 
       </div>
       <div className="islandTraffic">
-
-
+      <LeaderBoard title='Top 5' subtitle='Outgoing'/>
+      <LeaderBoard title='Top 5' subtitle='Outgoing'/>
       </div>
 
 

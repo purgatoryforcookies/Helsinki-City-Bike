@@ -1,0 +1,39 @@
+.islandLeaderboard{
+
+
+    width: 40%;
+    height: 100%;
+
+    // border: 1px solid white;
+
+    display: grid;
+    // grid-template-columns: 1fr;
+    grid-template-rows: 0.1fr 0.8fr 0.1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+
+    align-items: stretch;
+    text-align: center;
+    color: rgb(199, 198, 198);
+
+    .leaderboardHeader{
+        
+        // background-color: rgba(240, 248, 255, 0.247);
+        font-size: 24px;
+    }
+    .leaderboardContent{
+        // background-color: rgba(39, 92, 138, 0.178);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .leaderboardFooter{
+        // background-color: aliceblue;
+        font-size: 22px;
+        
+
+
+    }
+
+}

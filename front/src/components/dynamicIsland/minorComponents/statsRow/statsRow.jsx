@@ -5,7 +5,8 @@ import "./statsRow.scss"
 function StatsRow() {
 
     const style={
-        paddingLeft:90
+        position: 'relative',
+        left: 50
     }
 
 
