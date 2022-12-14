@@ -1,4 +1,5 @@
 import React from 'react'
+import StatsRow from './minorComponents/statsRow/statsRow'
 import "./dynamicIsland.scss"
 
 function DynamicIsland() {
@@ -6,12 +7,12 @@ function DynamicIsland() {
     <div className='dynamicIslandBody'>
 
       <div className="islandHeader">
-        
+
       </div>
 
 
       <div className="islandMetrics">
-
+        <StatsRow/>
 
       </div>
       <div className="islandAddress">
