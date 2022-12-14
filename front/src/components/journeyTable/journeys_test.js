@@ -40,38 +40,38 @@
 
 
 
-    // it("Renders content", async ()=>{
+//     it("Renders content", async ()=>{
 
 
 
-	// 	useFetchJourney.mockImplementation(() => ({ isLoading: false,  isError:false }));
+// 		useFetchJourney.mockImplementation(() => ({ isLoading: false,  isError:false }));
 
-    //     render(<Journeys/>)
+//         render(<Journeys/>)
 
-    //     await waitFor(()=>{
+//         await waitFor(()=>{
           
-    //         // screen.debug(undefined, 100000)
-    //         screen.getByText('Testiasema1')
-    //         screen.getByText('Vuosaari')
-    //         screen.getByText('Departure station')
+//             // screen.debug(undefined, 100000)
+//             screen.getByText('Testiasema1')
+//             screen.getByText('Vuosaari')
+//             screen.getByText('Departure station')
             
   
-    //       })
+//           })
 
-    // })
+//     })
 
-    // it("Renders error", async ()=>{
+//     it("Renders error", async ()=>{
 
-	// 	useFetchJourney.mockImplementation(() => ({ isLoading: false, isError:true }));
+// 		useFetchJourney.mockImplementation(() => ({ isLoading: false, isError:true }));
 
-    //     render(<Journeys/>)
+//         render(<Journeys/>)
 
-    //     await waitFor(()=>{
-    //         // screen.debug(undefined, 100000)
-    //         screen.getByText('Error!')
-    //       })
+//         await waitFor(()=>{
+//             // screen.debug(undefined, 100000)
+//             screen.getByText('Error!')
+//           })
 
-    // })
+//     })
 
 // })
 

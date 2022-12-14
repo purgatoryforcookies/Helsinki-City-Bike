@@ -152,7 +152,7 @@ def test_addFalsyJourney():
 
     response = client.post("/api/journey", content=newJourney, headers=headers)
     assert response.status_code == 400
-    assert response.json() == {"detail": "Station id does not exist"}
+    assert response.json() == {'detail': {'errors': 'Station id does not exist'}}
 
     newJourney = json.dumps({
         "departure": "sjnjsnjgjdgsdsv",
