@@ -4,11 +4,8 @@ import DPicker from '../datepicker/datePicker'
 import JourneyTable from './table/journeyTable';
 import SearchBox from '../searchBox/searchBox';
 import CustomButton from '../button/button';
-// import Button from '@mui/material/Button';
 
 import { useFetchJourney } from '../../services/hooks/useFetchJourney';
-
-
 
 
 function Journeys() {
@@ -23,7 +20,7 @@ function Journeys() {
 
   const [params, setParams] = useState(initialData)
   const [immediate, setImmediate] = useState(true)
-  const { isError, data, error, isLoading, refetch } = useFetchJourney(params, immediate)
+  const { isError, data, error, isLoading } = useFetchJourney(params, immediate)
 
   const handleChange = (param) => {
     const { name, value } = param.target
