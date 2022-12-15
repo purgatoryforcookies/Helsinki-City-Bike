@@ -10,7 +10,7 @@
     // border: 1px solid white;
   
     display: grid;
-    grid-template-columns: 0.6fr;
+    grid-template-columns: 0.9fr;
     grid-template-rows: 60px 0.4fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
@@ -31,13 +31,13 @@
     .islandAddress { 
         
         grid-area: 2 / 2 / 3 / 3;
-        background-color: rgba(18, 72, 233, 0.295);
+        // background-color: rgba(18, 72, 233, 0.295);
     
     }
     .islandMap { 
         
         grid-area: 3 / 2 / 4 / 3;
-        background-color: rgba(43, 236, 17, 0.295);
+        // background-color: rgba(43, 236, 17, 0.295);
     
     }
     .islandTraffic { 

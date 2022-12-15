@@ -42,7 +42,7 @@ const LeaderBoard = ({title, subtitle, data}) => {
           
           {fakedate.map((data, i)=>
             
-            <div className="leaderboardResult">
+            <div key={data.name} className="leaderboardResult">
               <div>{i+1}</div>
               <div className='leaderboardResultName'>{data.name}</div>
               <div>{data.out}</div>
