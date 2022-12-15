@@ -6,14 +6,16 @@ function TimelineSelector({value, onselection}) {
 
     const [selected, setSelected] = useState('3mo')
 
-
+    function handleChange(value) {
+        onselection(value.target.value)
+    }
 
   return (
     <div className='timelineSelectorBody'>
-      <div className="timelineOption">1 vko</div>
-      <div className="timelineOption">1 mo</div>
-      <div className="timelineOption">3 mo</div>
-      <div className="timelineOption">all</div>
+      <div className="timelineOption" onClick={handleChange}>1 vko</div>
+      <div className="timelineOption" onClick={handleChange}>1 mo</div>
+      <div className="timelineOption" onClick={handleChange}>3 mo</div>
+      <div className="timelineOption" onClick={handleChange}>all</div>
     </div>
   )
 }

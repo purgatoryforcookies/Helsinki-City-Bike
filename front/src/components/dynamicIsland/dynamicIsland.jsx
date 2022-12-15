@@ -8,6 +8,12 @@ import TimelineSelector from './minorComponents/timelineSelector/timelineSelecto
 import "./dynamicIsland.scss"
 
 function DynamicIsland() {
+
+
+  
+
+
+
   return (
     <div className='dynamicIslandBody'>
       <div className="islandHeader">
