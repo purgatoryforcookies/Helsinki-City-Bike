@@ -25,7 +25,7 @@ function DynamicIsland() {
 
       </div>
       <div className="islandTraffic">
-      <LeaderBoard title='Top 5' subtitle='Outgoing'/>
+      <LeaderBoard title='Top 5' subtitle='Incoming'/>
       <LeaderBoard title='Top 5' subtitle='Outgoing'/>
       </div>
 
