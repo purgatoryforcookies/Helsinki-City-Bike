@@ -2,8 +2,6 @@ import React from 'react'
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import "./mapComponent.scss"
 
-// import 'leaflet/dist/leaflet.css'
-
 function MapComponent({x,y}) {
 
   const lat = x ? x : 60.192059
