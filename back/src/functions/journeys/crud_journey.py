@@ -25,9 +25,11 @@ def get_log_byId(db, station_id, days):
     
     df_log = pd.read_sql_query(q, con=db)
     
+    
+    
     return journey_metrics(df_log, station_id)
     
-    return
+
 
 
 def get_log(db, params):

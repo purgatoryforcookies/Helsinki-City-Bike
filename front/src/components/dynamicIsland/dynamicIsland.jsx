@@ -4,15 +4,19 @@ import LeaderBoard from './minorComponents/leaderBoard/leaderBoard'
 import AddressBlock from './minorComponents/addressBlock/addressBlock'
 import MapComponent from './minorComponents/map/mapComponent'
 import TimelineSelector from './minorComponents/timelineSelector/timelineSelector'
+import { useFetchStation } from '../../services/hooks/useFetchStation'
+import {useFetchMetrics} from '../../services/hooks/useFetchMetrics'
 
 import "./dynamicIsland.scss"
 
 function DynamicIsland() {
 
+  const { isError, data, isLoading } = useFetchStation()
 
+  const { isError2, data2, isLoading2 } = useFetchMetrics()
+
+  console.log(data2);
   
-
-
 
   return (
     <div className='dynamicIslandBody'>
@@ -21,7 +25,7 @@ function DynamicIsland() {
       </div>
 
 
-      <div className="islandMetrics">
+      <div className="islandMetrics" stationData={data}>
         <StatsRow />
       </div>
 
