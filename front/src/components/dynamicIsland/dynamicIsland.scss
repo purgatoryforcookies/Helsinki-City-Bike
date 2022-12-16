@@ -1,0 +1,56 @@
+.dynamicIslandBody{
+    box-sizing: border-box;
+
+    width: 100%;
+    height: 100%;
+  
+    display: grid;
+    grid-template-columns: 0.9fr;
+    grid-template-rows: 60px 0.4fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+
+
+    .islandHeader { 
+        
+        grid-area: 1 / 1 / 2 / 3;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        position: relative;
+        left: 30px;
+    
+    }
+    .islandMetrics { 
+        
+        grid-area: 2 / 1 / 3 / 2;
+        // background-color: rgba(64, 209, 28, 0.295);
+    
+    }
+    .islandAddress { 
+        
+        grid-area: 2 / 2 / 3 / 3;
+        // background-color: rgba(18, 72, 233, 0.295);
+    
+    }
+    .islandMap { 
+        
+        grid-area: 3 / 2 / 4 / 3;
+        // background-color: rgba(43, 236, 17, 0.295);
+    
+    }
+    .islandTraffic { 
+        
+        grid-area: 3 / 1 / 4 / 2;
+        // background-color: rgba(48, 150, 27, 0.295);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        // padding: 10px 0 10px 0;
+
+        
+    
+    }
+
+
+}
