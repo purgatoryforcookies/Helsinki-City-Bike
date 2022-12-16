@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Header
 # from models.models import init
 from functions.stations import crud_station
+from functions.journeys import crud_journey
 from internal import connection
 from sqlalchemy.orm import Session
 from datetime import datetime
@@ -36,3 +37,16 @@ async def add_new_station(db: Session = Depends(connection.get_db), name: str = 
     
 
     return crud_station.insert_station(db, name)
+
+@station_router.get("/dynamic/")
+async def add_new_station(station_id: str, days: int = None, db: Session = Depends(connection.get_db)):
+    
+    # crud_journey.get_log_byId(connection.soldev_engine, station_id, days)
+    
+    respond = {}
+    respond['station'] = crud_station.get_station_byId(db, station_id)
+    respond['leaderboard'] = crud_journey.get_log_byId(connection.soldev_engine, station_id, days)
+
+    return respond
+
+

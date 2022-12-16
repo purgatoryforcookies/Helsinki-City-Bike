@@ -26,7 +26,14 @@ class NewJourney(BaseModel):
         except:
             pass
 
-    
+class StationRetrieve(BaseModel):
+    station_id: int
+    days: int | None = None
+
+
+
+
+
 class JourneyParams(BaseModel):
     sortkey: dict[str,str] = None
     limit: int = 20

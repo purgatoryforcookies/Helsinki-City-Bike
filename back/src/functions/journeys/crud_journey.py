@@ -1,33 +1,48 @@
 from models.models import Log, Station
 from sqlalchemy.orm import join, aliased
 from sqlalchemy.sql import select, text, or_
-import psycopg2
 from sqlalchemy.exc import IntegrityError
 from fastapi import HTTPException
 from sqlalchemy import func
 from sqlalchemy.sql.expression import cast
 from sqlalchemy import String
-from datetime import datetime
-from functions.utils import classOperation
-from dateutil.tz import tzutc
+from datetime import datetime, timedelta
+import pandas as pd
+from functions.utils.journeyFunctions import journey_metrics
+
+
+def get_log_byId(db, station_id, days):
+    
+    q = select(Log.departure_station_id, 
+               Log.return_station_id, 
+               Log.distance, 
+               Log.duration).filter(or_ (Log.departure_station_id == station_id, 
+                                  Log.return_station_id == station_id))
+
+    if days and days != None:
+        daysBack = datetime.today() - timedelta(days=days)
+        q = q.filter(Log.arrival >= daysBack)
+    
+    df_log = pd.read_sql_query(q, con=db)
+    
+    return journey_metrics(df_log, station_id)
+    
+    return
+
 
 def get_log(db, params):
     dStation = aliased(Station)
     rStation = aliased(Station)
-    # print(params)
-    # baseline, and stacking the query based on conditions
+
     q = db.query(Log).join(dStation, Log.departure_station).join(
         rStation, Log.return_station)
 
     if params.sortkey and params.sortkey['sortKey'] != 'NONE':
         q = sort_records(q, dStation, rStation, params)
     if params.departure:
-      
             q = q.filter(Log.departure >= params.departure)
     if params.arrival:
         q = q.filter(Log.departure <= params.arrival)
-
-
 
     if params.searchkey:
         q = q.filter(or_(
@@ -36,8 +51,6 @@ def get_log(db, params):
             cast(Log.ride_id, String).ilike('%{}%'.format(params.searchkey))
         ))
         
-    
-
     result = q.limit(params.limit).all()
 
     return result
