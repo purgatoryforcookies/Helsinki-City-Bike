@@ -2,7 +2,7 @@
 const journeyTableTheme = {
 
   Table: `
-  --data-table-library_grid-template-columns: 90px repeat(2, minmax(80px, 300px))  repeat(2, minmax(80px, 300px)) 130px 150px ;
+  --data-table-library_grid-template-columns: 90px repeat(2, minmax(80px, 300px))  repeat(2, minmax(80px, 100%)) 130px 150px ;
   align-content: start;
   color:white;
 
