@@ -5,14 +5,17 @@ import { BsFillCheckCircleFill, BsFillExclamationCircleFill, BsPinMap } from 're
 
 function AddressBlock({ data }) {
 
+  console.log(data);
+
+
   return (
     <div className='addressBlockBody'>
 
       <div className="addressHeader">
         <div>Id: {data.station_id}</div>
         <div id='addressTitle'>{data.name}</div>
-        <div id='addressStatusIcon'>{data.active ? <BsFillCheckCircleFill size={22} color='green'/> 
-      : <BsFillExclamationCircleFill size={22} color='#b38710'/>}</div>
+        <div id='addressStatusIcon'>{data.active ? <BsFillCheckCircleFill size={22} color='green' />
+          : <BsFillExclamationCircleFill size={22} color='#b38710' />}</div>
       </div>
 
       <div className="addressBodyLeft">
@@ -33,12 +36,16 @@ function AddressBlock({ data }) {
       </div>
 
       <div className="addressBodyRigth">
-        <div id='mapIcon'>
-          <BsPinMap size={20}/>
-        </div>
-        <div id='mapCoordinates'>
-          [{data.x} <br/> {data.y}]
-        </div>
+        {data.x && data.y ?
+          <>
+            <div id='mapIcon'>
+              <BsPinMap size={20} />
+            </div>
+            <div id='mapCoordinates'>
+              [{data.x} <br /> {data.y}]
+            </div>
+          </>
+          : <div></div>}
       </div>
 
       {/* </div> */}
