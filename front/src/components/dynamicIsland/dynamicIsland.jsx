@@ -11,11 +11,14 @@ import "./dynamicIsland.scss"
 
 function DynamicIsland() {
 
-  const { isError, data, isLoading } = useFetchStation()
+  // const { isError, data, isLoading } = useFetchStation()
 
-  const { isError2, data2, isLoading2 } = useFetchMetrics()
+  const params = {station_id: 1, days:20}
 
-  console.log(data2);
+  const { isError, data, isLoading } = useFetchMetrics(params)
+
+
+  console.log(data);
   
 
   return (
@@ -25,8 +28,8 @@ function DynamicIsland() {
       </div>
 
 
-      <div className="islandMetrics" stationData={data}>
-        <StatsRow />
+      <div className="islandMetrics" >
+        <StatsRow data={data} />
       </div>
 
       <div className="islandAddress">

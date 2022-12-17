@@ -45,7 +45,7 @@ async def add_new_station(station_id: str, days: int = None, db: Session = Depen
     
     respond = {}
     respond['station'] = crud_station.get_station_byId(db, station_id)
-    respond['leaderboard'] = crud_journey.get_log_byId(connection.soldev_engine, station_id, days)
+    respond['metrics'] = crud_journey.get_log_byId(connection.soldev_engine, station_id, days)
 
     return respond
 

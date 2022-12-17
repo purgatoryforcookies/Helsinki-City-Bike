@@ -19,7 +19,7 @@ def get_log_byId(db, station_id, days):
                Log.duration).filter(or_ (Log.departure_station_id == station_id, 
                                   Log.return_station_id == station_id))
 
-    if days and days != None:
+    if days and days != 0:
         daysBack = datetime.today() - timedelta(days=days)
         q = q.filter(Log.arrival >= daysBack)
     

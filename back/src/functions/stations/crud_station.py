@@ -11,6 +11,8 @@ def get_stations(db):
     result = db.query(Station).all()
     return result
 
+
+
 def get_station_byId(db, id_):
     
     result = db.query(Station).filter(Station.station_id == id_).first()

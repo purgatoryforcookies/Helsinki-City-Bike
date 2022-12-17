@@ -2,7 +2,7 @@ import axios from 'axios'
 const url = '/api/journey/'
 
 const getAll = ({queryKey}) =>{
-    console.log(queryKey);
+    // console.log(queryKey);
     
     const body = {
         limit:20,
