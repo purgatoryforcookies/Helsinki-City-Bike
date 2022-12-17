@@ -7,6 +7,10 @@ from collections import defaultdict
 import uvicorn
 
 from routes import journeys, stations
+from internal.ETL import config
+
+config.construct_db()
+
 
 app = FastAPI()
 

@@ -11,7 +11,7 @@ class Station(connection.Base):
     __tablename__ =  'stations'
     
     station_id = Column(Integer, primary_key=True)
-    f_id = Column(Integer, Identity(start=1, cycle=False))
+    fid = Column(Integer, Identity(start=1, cycle=False))
     name = Column(String(200), nullable=False)
     name_swe = Column(String(200), nullable=False)
     name_eng = Column(String(200), nullable=False)
