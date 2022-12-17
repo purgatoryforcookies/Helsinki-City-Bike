@@ -10,11 +10,11 @@ import Loading from "../loading/loading"
 
 import "./dynamicIsland.scss"
 
-function DynamicIsland() {
+function DynamicIsland({selectedId}) {
 
   // const { isError, data, isLoading } = useFetchStation()
 
-  const params = {station_id: 1, days:0}
+  const params = {station_id: selectedId, days:0}
 
   const { isError, data, isLoading } = useFetchMetrics(params)
 

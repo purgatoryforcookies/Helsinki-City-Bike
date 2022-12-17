@@ -19,7 +19,7 @@ import SearchBox from '../searchBox/searchBox'
 import { useState } from 'react'
 
 
-function StationsTable() {
+function StationsTable({handleSelection}) {
 
     const theme = useTheme(stationTableTheme);
     const [search, setSearch] = useState("")
@@ -40,6 +40,8 @@ function StationsTable() {
 
         setSearch(value.target.value)
     }
+
+    
 
 
 
@@ -68,7 +70,7 @@ function StationsTable() {
                                 </HeaderRow>
                             )}
                             body={(item) => (
-                                <Row key={item.id} item={item}>
+                                <Row key={item.id} item={item} onClick={({item})=>handleSelection(item.id)}>
 
                                     <Cell>{item.station_id}</Cell>
                                     <Cell>{item.name}</Cell>

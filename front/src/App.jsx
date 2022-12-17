@@ -6,6 +6,7 @@ import DynamicIsland from "./components/dynamicIsland/dynamicIsland";
 import { QueryClientProvider, QueryClient } from "react-query"
 
 import "./App.css"
+import { useState } from "react";
 
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -18,7 +19,9 @@ import "./App.css"
 
 
 function App() {
-  
+
+  const [stationSelection, setStationSelection] = useState("")
+
 
   return (
     <div className="App">
@@ -37,10 +40,10 @@ function App() {
 
       </div>
       <div className="stations">
-        <StationsTable/>
+        <StationsTable handleSelection={(id) => setStationSelection(id)}/>
       </div>
       <div className="dynamicIsland">
-        <DynamicIsland/>
+        <DynamicIsland selected={stationSelection}/>
       </div>
 
 
