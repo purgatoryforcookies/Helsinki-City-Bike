@@ -12,8 +12,6 @@ function StatsRow({data}) {
     const incoming = data ? data.incoming : 0
     const outgoing = data ? data.outgoing : 0
     const balance =  incoming-outgoing
-
-
     
 
   return (

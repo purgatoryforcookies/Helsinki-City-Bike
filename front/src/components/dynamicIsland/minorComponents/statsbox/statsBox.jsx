@@ -5,10 +5,12 @@ import "./statsBox.scss"
 
 const StatsBox = ({ value, title, subtitle, style }) => {
 
+
+
     return (
         <div className='islandStatsBox' style={style}>
             <div className="statsboxHero">
-            <CountUp
+            {Number(value) ?  <CountUp
                             end={value}
                             separator=" "
                             decimal=","
@@ -16,7 +18,7 @@ const StatsBox = ({ value, title, subtitle, style }) => {
                             duration={1.2}
 
                             className="heroValue"
-                        />
+                        />: <span className='heroValue'>NaN</span>}
             </div>
             <div className="statsboxTitle">
                 {title}

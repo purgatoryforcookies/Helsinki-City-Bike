@@ -35,7 +35,8 @@ describe("StatsRow component", ()=>{
         render(<StatsRow data={mockData}/>)
         await new Promise((r) => setTimeout(r, 2000));
 
-        expect( screen.getAllByText('0').length).toBe(3)
+        expect( screen.getAllByText('NaN').length).toBe(3)
+
 
     })
 
