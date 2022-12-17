@@ -1,38 +1,13 @@
 import React from 'react'
 import "./leaderBoard.scss"
+import { useFetchStation } from '../../../../services/hooks/useFetchStation'
 
 
-const LeaderBoard = ({title, subtitle, data}) => {
+const LeaderBoard = ({title, subtitle, leaderboardData}) => {
 
-  const fakedate =[{
-    name: "Haapasalo",
-    in: 15,
-    out: 22,
-  },
-  {
-    name: "Linna",
-    in: 14,
-    out: 30,
-  },
-  {
-    name: "Kaakkola",
-    in: 13,
-    out: 7,
-  },
-  {
-    name: "Helsingin ammattikorkeakoussssssssssssslu",
-    in: 11,
-    out: 8,
-  },
-  {
-    name: "Karelia työväenopisto",
-    in: 8,
-    out: 3,
-  },
+  const {data} = useFetchStation()
 
 
-
-]
   return (
     <div className='islandLeaderboard'>
         <div className="leaderboardHeader">
@@ -40,12 +15,12 @@ const LeaderBoard = ({title, subtitle, data}) => {
         </div>
         <div className="leaderboardContent">  
           
-          {fakedate.map((data, i)=>
+          {leaderboardData.map((d, i)=>
             
-            <div key={data.name} className="leaderboardResult">
+            <div key={d.id} className="leaderboardResult">
               <div>{i+1}</div>
-              <div className='leaderboardResultName'>{data.name}</div>
-              <div>{data.out}</div>
+              <div className='leaderboardResultName'>{data.find(obj => obj.station_id === d.id).name}</div>
+              <div>{d.count}</div>
             </div>
             
             )}

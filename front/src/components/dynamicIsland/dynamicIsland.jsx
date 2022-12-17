@@ -12,11 +12,8 @@ import "./dynamicIsland.scss"
 
 function DynamicIsland({selected}) {
 
-  // const { isError, data, isLoading } = useFetchStation()
   const [days, setDays] = useState(0)
   
-  // const params = {station_id: selected, days:0}
-
   const { isError, data, isLoading } = useFetchMetrics({station_id: selected, days:days})
   console.log(data);
   
@@ -48,8 +45,8 @@ function DynamicIsland({selected}) {
       </div>
 
       <div className="islandTraffic">
-        <LeaderBoard title='Top 5' subtitle='Incoming' />
-        <LeaderBoard title='Top 5' subtitle='Outgoing' />
+        <LeaderBoard title='Top 5' subtitle='Incoming' leaderboardData={data.metrics.leaderboard.incoming}/>
+        <LeaderBoard title='Top 5' subtitle='Outgoing' leaderboardData={data.metrics.leaderboard.outgoing} />
       </div>
 
 

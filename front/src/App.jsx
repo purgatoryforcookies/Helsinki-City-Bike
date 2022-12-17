@@ -20,7 +20,7 @@ import { useState } from "react";
 
 function App() {
 
-  const [stationSelection, setStationSelection] = useState("")
+  const [stationSelection, setStationSelection] = useState(1)
 
 
   return (

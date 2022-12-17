@@ -8,7 +8,7 @@ from sqlalchemy import cast, String
 
 def get_stations(db):
     
-    result = db.query(Station).all()
+    result = db.query(Station).order_by(Station.station_id).all()
     return result
 
 

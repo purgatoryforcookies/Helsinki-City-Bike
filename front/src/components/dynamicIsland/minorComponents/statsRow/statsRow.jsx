@@ -14,6 +14,8 @@ function StatsRow({data}) {
     const balance =  incoming-outgoing
 
 
+    
+
   return (
     <div className='islandStatsRow'>
       <StatsBox value={incoming} title='Incoming'/>
