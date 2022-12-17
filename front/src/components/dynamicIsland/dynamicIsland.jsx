@@ -1,23 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import StatsRow from './minorComponents/statsRow/statsRow'
 import LeaderBoard from './minorComponents/leaderBoard/leaderBoard'
 import AddressBlock from './minorComponents/addressBlock/addressBlock'
 import MapComponent from './minorComponents/map/mapComponent'
 import TimelineSelector from './minorComponents/timelineSelector/timelineSelector'
-import { useFetchStation } from '../../services/hooks/useFetchStation'
+// import { useFetchStation } from '../../services/hooks/useFetchStation'
 import {useFetchMetrics} from '../../services/hooks/useFetchMetrics'
 import Loading from "../loading/loading"
 
 import "./dynamicIsland.scss"
 
-function DynamicIsland({selectedId}) {
+function DynamicIsland({selected}) {
 
   // const { isError, data, isLoading } = useFetchStation()
+  const [days, setDays] = useState(0)
+  
+  // const params = {station_id: selected, days:0}
 
-  const params = {station_id: selectedId, days:0}
-
-  const { isError, data, isLoading } = useFetchMetrics(params)
-
+  const { isError, data, isLoading } = useFetchMetrics({station_id: selected, days:days})
+  console.log(data);
+  
 
   if (isLoading){
     return <Loading/>
@@ -27,7 +29,7 @@ function DynamicIsland({selectedId}) {
   return (
     <div className='dynamicIslandBody'>
       <div className="islandHeader">
-        <TimelineSelector/>
+        <TimelineSelector onselection={setDays}/>
       </div>
 
 
@@ -36,7 +38,7 @@ function DynamicIsland({selectedId}) {
       </div>
 
       <div className="islandAddress">
-        <AddressBlock />
+        <AddressBlock data={data.station}/>
       </div>
 
       <div className="islandMap">

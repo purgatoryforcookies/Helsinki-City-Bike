@@ -41,9 +41,6 @@ function StationsTable({handleSelection}) {
         setSearch(value.target.value)
     }
 
-    
-
-
 
     const stationsToShow = !search
         ? data
@@ -70,7 +67,7 @@ function StationsTable({handleSelection}) {
                                 </HeaderRow>
                             )}
                             body={(item) => (
-                                <Row key={item.id} item={item} onClick={({item})=>handleSelection(item.id)}>
+                                <Row key={item.station_id} item={item} onClick={(item)=>handleSelection(item.station_id)}>
 
                                     <Cell>{item.station_id}</Cell>
                                     <Cell>{item.name}</Cell>

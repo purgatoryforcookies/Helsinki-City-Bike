@@ -39,7 +39,7 @@ async def add_new_station(db: Session = Depends(connection.get_db), name: str = 
     return crud_station.insert_station(db, name)
 
 @station_router.get("/dynamic/")
-async def add_new_station(station_id: str, days: int = None, db: Session = Depends(connection.get_db)):
+async def add_new_station(station_id: int, days: int = None, db: Session = Depends(connection.get_db)):
     
     # crud_journey.get_log_byId(connection.soldev_engine, station_id, days)
     

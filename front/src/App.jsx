@@ -43,7 +43,7 @@ function App() {
         <StationsTable handleSelection={(id) => setStationSelection(id)}/>
       </div>
       <div className="dynamicIsland">
-        <DynamicIsland selected={stationSelection}/>
+       {stationSelection ?  <DynamicIsland selected={stationSelection}/>: null}
       </div>
 
 
