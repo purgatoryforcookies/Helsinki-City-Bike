@@ -5,6 +5,10 @@ from sqlalchemy.orm import relationship, validates
 import os
 from datetime import datetime
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.sql import func
+
+
+dateColumnSpec = dialects.postgresql.TIMESTAMP(timezone=False, precision=2)
 
 
 class Station(connection.Base):
@@ -17,15 +21,15 @@ class Station(connection.Base):
     name_eng = Column(String(200), nullable=False)
     address = Column(String(200), nullable=False)
     address_swe = Column(String(200), nullable=False)
-    city = Column(String(120), nullable=False)
-    city_swe = Column(String(120), nullable=False)
-    operator = Column(String(120), nullable=False)
+    city = Column(String(120), nullable=True)
+    city_swe = Column(String(120), nullable=True)
+    operator = Column(String(120), nullable=True)
     capacity = Column(Integer, nullable=False)
     x = Column(Float, nullable=False)
     y = Column(Float, nullable=False)
-    active = Column(Boolean, nullable=True, default=True)
-    modified = Column(DateTime, nullable=True)
-    date_added = Column(dialects.postgresql.TIMESTAMP(precision=2), nullable=True, default=datetime.now())
+    active = Column(Boolean, nullable=True, default=True, server_default="true")
+    modified = Column(dateColumnSpec, nullable=True, onupdate=func.now())
+    date_added = Column(dateColumnSpec, nullable=True, server_default=func.now())
     
     @validates('name')
     def validate_name(self, key, value):
@@ -41,8 +45,8 @@ class Log(connection.Base):
     
     
     ride_id = Column(Integer, primary_key=True)
-    departure = Column(dialects.postgresql.TIMESTAMP(precision=2), nullable = False)
-    arrival = Column(dialects.postgresql.TIMESTAMP(precision=2), nullable = False)
+    departure = Column(dateColumnSpec, nullable = False)
+    arrival = Column(dateColumnSpec, nullable = False)
     
     departure_station_id = Column(Integer, ForeignKey("stations.station_id"))
     return_station_id = Column(Integer, ForeignKey("stations.station_id"))
@@ -58,9 +62,9 @@ class Log(connection.Base):
     duration = Column('duration_s', Integer, nullable=False)
 
 
-if os.environ['ENV'] == "test":
-    print("Dropping tables for test env")
-    connection.Base.metadata.drop_all(connection.soldev_engine, [Log.__table__, Station.__table__])
+# if os.environ['ENV'] == "test":
+    # print("Dropping tables for test env")
+    # connection.Base.metadata.drop_all(connection.soldev_engine, [Log.__table__, Station.__table__])
 
 connection.Base.metadata.create_all(connection.soldev_engine)
 
