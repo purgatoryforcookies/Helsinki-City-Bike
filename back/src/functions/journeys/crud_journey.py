@@ -1,5 +1,5 @@
 from models.models import Log, Station
-from sqlalchemy.orm import join, aliased
+from sqlalchemy.orm import join, aliased, Load
 from sqlalchemy.sql import select, text, or_
 from sqlalchemy.exc import IntegrityError
 from fastapi import HTTPException
@@ -33,6 +33,7 @@ def get_log_byId(db, station_id, days):
 
 
 def get_log(db, params):
+    # TODO: exclude all other columns from this query other than the name. 
     dStation = aliased(Station)
     rStation = aliased(Station)
 

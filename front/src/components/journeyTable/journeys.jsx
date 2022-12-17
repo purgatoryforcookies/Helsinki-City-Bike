@@ -21,6 +21,7 @@ function Journeys() {
   const [params, setParams] = useState(initialData)
   const [immediate, setImmediate] = useState(true)
   const { isError, data, error, isLoading } = useFetchJourney(params, immediate)
+  
 
   const handleChange = (param) => {
     const { name, value } = param.target
