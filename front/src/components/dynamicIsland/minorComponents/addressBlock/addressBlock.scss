@@ -1,12 +1,12 @@
 .addressBlockBody{
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr) 50px;
     grid-template-rows: repeat(3, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     color: #caccce;
-    min-width: 300px;
+    width: 320px;
 
     .div1 { 
         grid-area: 1 / 1 / 2 / 2;
@@ -14,11 +14,11 @@
 
     }
     .div2 { 
-        grid-area: 1 / 2 / 2 / 3;
+        grid-area: 1 / 1 / 2 / 3;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 22px;
+        font-size: 18px;
         font-weight: 300;
         letter-spacing: 1px;
     

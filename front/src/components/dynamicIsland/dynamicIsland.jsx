@@ -43,7 +43,7 @@ function DynamicIsland({selected}) {
 
       <div className="islandMap">
 
-        <MapComponent />
+        <MapComponent data={data}/>
       
       </div>
 
