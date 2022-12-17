@@ -22,4 +22,4 @@ def construct_db():
         print("Something went wrong in ETL: ", e)
     
 
-    
+

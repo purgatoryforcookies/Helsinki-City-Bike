@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Boolean, Float, dialects
+from sqlalchemy import Column, Integer, String, Identity, DateTime, ForeignKey, Boolean, Float, dialects
 from internal import connection
 from pydantic import BaseModel, validator
 from sqlalchemy.orm import relationship, validates
@@ -11,6 +11,7 @@ class Station(connection.Base):
     __tablename__ =  'stations'
     
     station_id = Column(Integer, primary_key=True)
+    f_id = Column(Integer, Identity(start=1, cycle=False))
     name = Column(String(200), nullable=False)
     name_swe = Column(String(200), nullable=False)
     name_eng = Column(String(200), nullable=False)
