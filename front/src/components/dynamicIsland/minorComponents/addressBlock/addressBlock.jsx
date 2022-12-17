@@ -3,9 +3,6 @@ import "./addressBlock.scss"
 
 function AddressBlock({data}) {
 
-
-
-
   return (
     <div className='addressBlockBody'>
 
