@@ -15,7 +15,7 @@ const LeaderBoard = ({title, subtitle, leaderboardData}) => {
         </div>
         <div className="leaderboardContent">  
           
-          {leaderboardData.map((d, i)=>
+          {(data && leaderboardData) ? leaderboardData.map((d, i)=>
             
             <div key={d.id} className="leaderboardResult">
               <div>{i+1}</div>
@@ -23,7 +23,7 @@ const LeaderBoard = ({title, subtitle, leaderboardData}) => {
               <div>{d.count}</div>
             </div>
             
-            )}
+            ):null}
 
         </div>
         <div className="leaderboardFooter">

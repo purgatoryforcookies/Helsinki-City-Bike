@@ -13,18 +13,21 @@ from functions.utils.journeyFunctions import journey_metrics
 
 def get_log_byId(db, station_id, days):
     
-    q = select(Log.departure_station_id, 
-               Log.return_station_id, 
-               Log.distance, 
-               Log.duration).filter(or_ (Log.departure_station_id == station_id, 
-                                  Log.return_station_id == station_id))
+    try:
+    
+        q = select(Log.departure_station_id, 
+                Log.return_station_id, 
+                Log.distance, 
+                Log.duration).filter(or_ (Log.departure_station_id == station_id, 
+                                    Log.return_station_id == station_id))
 
-    if days and days != 0:
-        daysBack = datetime.today() - timedelta(days=days)
-        q = q.filter(Log.arrival >= daysBack)
-    
-    df_log = pd.read_sql_query(q, con=db)
-    
+        if days and days != 0:
+            daysBack = datetime.today() - timedelta(days=days)
+            q = q.filter(Log.arrival >= daysBack)
+        
+        df_log = pd.read_sql_query(q, con=db)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Server error")
     
     
     return journey_metrics(df_log, station_id)
@@ -43,9 +46,9 @@ def get_log(db, params):
     if params.sortkey and params.sortkey['sortKey'] != 'NONE':
         q = sort_records(q, dStation, rStation, params)
     if params.departure:
-            q = q.filter(Log.departure >= params.departure)
+            q = q.filter(Log.departure >= params.departure).order_by(Log.departure.asc())
     if params.arrival:
-        q = q.filter(Log.departure <= params.arrival)
+        q = q.filter(Log.arrival <= params.arrival).order_by(Log.arrival.asc())
 
     if params.searchkey:
         q = q.filter(or_(

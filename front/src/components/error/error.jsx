@@ -1,12 +1,13 @@
 import React from 'react'
 import "./error.scss"
 function ErrorComp({ serverError, clientError }) {
+    
 
     if (!serverError && !clientError) {
         return <div className='ErrorBody'>
             <div className='formErrorChild'>
-                <div className="errorheader">Client Error</div>
-                <div className="errorfooter">Please try again</div>
+                <div className="errorheader">Fatal Error</div>
+                <div className="errorfooter">Please try again later</div>
             </div>
         </div>
     }

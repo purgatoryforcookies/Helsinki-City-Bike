@@ -4,12 +4,10 @@ import "./mapComponent.scss"
 
 function MapComponent({data}) {
 
+
   const lon = data.station.x ? data.station.x : 24.945831
   const lat = data.station.y ? data.station.y : 60.192059
   
-  console.log(lat,lon);
-  
-
   return (
     <div className='islandMapBody'>
 
