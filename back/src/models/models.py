@@ -12,6 +12,16 @@ class Station(connection.Base):
     
     station_id = Column(Integer, primary_key=True)
     name = Column(String(200), nullable=False)
+    name_swe = Column(String(200), nullable=False)
+    name_eng = Column(String(200), nullable=False)
+    address = Column(String(200), nullable=False)
+    address_swe = Column(String(200), nullable=False)
+    city = Column(String(120), nullable=False)
+    city_swe = Column(String(120), nullable=False)
+    operator = Column(String(120), nullable=False)
+    capacity = Column(Integer, nullable=False)
+    x = Column(Float, nullable=False)
+    y = Column(Float, nullable=False)
     active = Column(Boolean, nullable=True, default=True)
     modified = Column(DateTime, nullable=True)
     date_added = Column(dialects.postgresql.TIMESTAMP(precision=2), nullable=True, default=datetime.now())
@@ -47,9 +57,9 @@ class Log(connection.Base):
     duration = Column('duration_s', Integer, nullable=False)
 
 
-# if os.environ['ENV'] == "test":
-#     print("Dropping tables for test env")
-#     connection.Base.metadata.drop_all(connection.soldev_engine, [Log.__table__, Station.__table__])
+if os.environ['ENV'] == "test":
+    print("Dropping tables for test env")
+    connection.Base.metadata.drop_all(connection.soldev_engine, [Log.__table__, Station.__table__])
 
 connection.Base.metadata.create_all(connection.soldev_engine)
 

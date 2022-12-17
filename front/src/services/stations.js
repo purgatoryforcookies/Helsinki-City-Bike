@@ -19,7 +19,7 @@ const searchStation = ({queryKey}) =>{
 
 const metricPerStation = ({queryKey}) =>{
 
-    const request = axios.get(url+`/dynamic/?station_id=${queryKey[1].station_id}`)
+    const request = axios.get(url+`/dynamic/?station_id=${queryKey[1].station_id}&days=${queryKey[1].days}`)
     return request.then(res => res.data)
 
 }

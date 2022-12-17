@@ -11,9 +11,10 @@ import sqlalchemy
 
 def construct_db():
     try:
-        df = main.process_local_files(validate=True)
+        df_log, df_station_details = main.process_local_files(validate=True)
 
-        main_df, stations_df = main.separate_tables(df)
+        main_df = main.remove_names_columns(df_log)
+        print(df_station_details)
         
         stations_df.to_sql('stations', connection.soldev_engine, if_exists='fail', index=False)
         main_df.to_sql('ridelog', connection.soldev_engine, if_exists='fail', index=False)

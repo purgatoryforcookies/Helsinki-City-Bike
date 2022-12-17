@@ -2,19 +2,23 @@ import React from 'react'
 import StatsBox from '../statsbox/statsBox'
 import "./statsRow.scss"
 
-function StatsRow() {
+function StatsRow({data}) {
 
     const style={
         position: 'relative',
         left: 50
     }
 
+    const incoming = data ? data.incoming : 0
+    const outgoing = data ? data.outgoing : 0
+    const balance =  incoming-outgoing
+
 
   return (
     <div className='islandStatsRow'>
-      <StatsBox value={50} title='Incoming'/>
-      <StatsBox value={60} title='Outoging'/>
-      <StatsBox value={-60} title='Balance' style={style}/>
+      <StatsBox value={incoming} title='Incoming'/>
+      <StatsBox value={outgoing} title='Outoging'/>
+      <StatsBox value={balance} title='Balance' style={style}/>
     </div>
   )
 }

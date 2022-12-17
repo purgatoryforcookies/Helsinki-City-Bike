@@ -6,6 +6,7 @@ import MapComponent from './minorComponents/map/mapComponent'
 import TimelineSelector from './minorComponents/timelineSelector/timelineSelector'
 import { useFetchStation } from '../../services/hooks/useFetchStation'
 import {useFetchMetrics} from '../../services/hooks/useFetchMetrics'
+import Loading from "../loading/loading"
 
 import "./dynamicIsland.scss"
 
@@ -13,12 +14,14 @@ function DynamicIsland() {
 
   // const { isError, data, isLoading } = useFetchStation()
 
-  const params = {station_id: 1, days:20}
+  const params = {station_id: 1, days:0}
 
   const { isError, data, isLoading } = useFetchMetrics(params)
 
 
-  console.log(data);
+  if (isLoading){
+    return <Loading/>
+  }
   
 
   return (
@@ -29,7 +32,7 @@ function DynamicIsland() {
 
 
       <div className="islandMetrics" >
-        <StatsRow data={data} />
+        <StatsRow data={data.metrics} />
       </div>
 
       <div className="islandAddress">
