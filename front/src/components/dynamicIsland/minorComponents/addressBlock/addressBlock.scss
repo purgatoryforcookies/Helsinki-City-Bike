@@ -1,70 +1,117 @@
 .addressBlockBody{
 
+    color: #caccce;
+    width: 440px;
+    height: 150px;
+    margin: 10px;
+  
+
     display: grid;
-    grid-template-columns: repeat(2, 1fr) 50px;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 30px 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    color: #caccce;
-    width: 320px;
 
-    .div1 { 
-        grid-area: 1 / 1 / 2 / 2;
-    
 
-    }
-    .div2 { 
-        grid-area: 1 / 1 / 2 / 3;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 18px;
-        font-weight: 300;
-        letter-spacing: 1px;
-    
-
-    }
-    .div3 { 
-        grid-area: 1 / 3 / 2 / 4;
+    .addressHeader { 
         
+        
+        grid-area: 1 / 1 / 2 / 4; 
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
+        padding: 4px 10px 4px 10px;
+       
+
+        #addressTitle{
+            letter-spacing: 1px;
+            font-size: 18px;
+        }
+
+        #addressStatusIcon{
+            position: relative;
+            top: 5px;
+            right: 5px;
+        }
+
+    }
+    .addressBodyLeft { 
+        
+        grid-area: 2 / 1 / 3 / 2; 
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
         align-items: center;
-
-    }
-    .div4 { 
-        grid-area: 2 / 1 / 3 / 4;
         position: relative;
-        left: 25px;
-        letter-spacing: 1px;
-        font-weight: 300;
-    
+        bottom: 9px;
+        gap: 10px;
+        width: 100%;
+        padding: 8px;
 
+        .columns{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: fit-content;
+            
+        }
+        .columns_values{
+            width: 200px;
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+        }
+
+    
     }
-    .div5 { 
-        grid-area: 3 / 3 / 4 / 4;
+    .addressBodyMiddle { 
+        
+        grid-area: 2 / 2 / 3 / 3; 
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         position: relative;
-        bottom: 20px;
+        right:90px;
+        top:25px;
 
         #capacityValue{
-            font-size: 22px;
-            font-weight: 400;
-        }
-
-        #capacityTitle{
-            font-size: 18px;
             font-weight: 300;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+        #capacityTitle{
+            font-weight: 300;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+    
+    }
+    .addressBodyRigth { 
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        // overflow: hidden;
+        position: relative;
+        right: 10px;
+        width: 90px;
+
+        grid-area: 2 / 3 / 3 / 4; 
+
+        #mapIcon{
+            position: relative;
+            right: 30px;
+            bottom: 10px;
+        }
+        #mapCoordinates{
+            font-size: 13px;
+            position: relative;
+            right: 30px;
+            bottom: 10px;
         }
 
+    
     }
-
-
-
-
 
 
 }

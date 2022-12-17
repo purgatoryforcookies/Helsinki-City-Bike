@@ -1,11 +1,17 @@
 .navBody{
+    box-sizing: border-box;
 
     margin: 0 10px 0 10px;
     
     background-image: url(./anm.svg);
+    background-origin: content-box;
+    border-radius: 16px;
+    margin-bottom: 10px;
+    
     background-size: cover;
     z-index: 99;
     position: relative;
+    min-width: 100%;
     
 
     .toolbar{

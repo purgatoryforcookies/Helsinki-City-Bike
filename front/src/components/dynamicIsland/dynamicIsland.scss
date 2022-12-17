@@ -30,6 +30,9 @@
     .islandAddress { 
         
         grid-area: 2 / 2 / 3 / 3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         // background-color: rgba(18, 72, 233, 0.295);
     
     }

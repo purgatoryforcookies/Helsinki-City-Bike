@@ -16,7 +16,7 @@ function DynamicIsland({ selected }) {
 
   const { isError, data, isLoading, error } = useFetchMetrics({ station_id: selected, days: days })
     
-  console.log(data);
+  // console.log(data);
   
   if (isError){
     return <ErrorComp serverError={error}/>
