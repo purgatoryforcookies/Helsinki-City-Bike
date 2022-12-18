@@ -10,7 +10,7 @@ const StatsBox = ({ value, title, subtitle, style }) => {
     return (
         <div className='islandStatsBox' style={style}>
             <div className="statsboxHero">
-            {Number(value) ?  <CountUp
+            {Number(value) || value === 0 ?  <CountUp
                             end={value}
                             separator=" "
                             decimal=","

@@ -19,12 +19,16 @@
         align-items: center;
         position: relative;
         left: 30px;
+        top: 30px;
+        
     
     }
     .islandMetrics { 
         
         grid-area: 2 / 1 / 3 / 2;
-        // background-color: rgba(64, 209, 28, 0.295);
+        height: 80px;
+        position: relative;
+        top: 50px;
     
     }
     .islandAddress { 
