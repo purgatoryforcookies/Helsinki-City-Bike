@@ -2,7 +2,11 @@ import React from 'react'
 import CustomButton from '../button/button'
 import "./navBar.scss"
 
-function NavBar() {
+function NavBar({modal}) {
+
+  function handleClick(){
+    modal(true)
+  }
 
 
     
@@ -15,7 +19,7 @@ function NavBar() {
 
         </div>
         <div className="navFunctions">
-            <CustomButton title='Add New' />
+            <CustomButton title='Add New' clickd={handleClick}/>
         </div>
     </div>
   )

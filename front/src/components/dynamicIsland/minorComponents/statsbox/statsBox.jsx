@@ -10,21 +10,21 @@ const StatsBox = ({ value, title, subtitle, style }) => {
     return (
         <div className='islandStatsBox' style={style}>
             <div className="statsboxHero">
-            {Number(value) || value === 0 ?  <CountUp
-                            end={value}
-                            separator=" "
-                            decimal=","
-                            delay={0.1}
-                            duration={1.2}
+                {Number(value) || value === 0 ? <CountUp
+                    end={value}
+                    separator=" "
+                    decimal=","
+                    delay={0.1}
+                    duration={1.2}
 
-                            className="heroValue"
-                        />: <span className='heroValue'>NaN</span>}
+                    className="heroValue"
+                /> : <span className='heroValue'>NaN</span>}
             </div>
             <div className="statsboxTitle">
                 {title}
             </div>
             <div className="statsboxSubtitle">
-            {subtitle}
+                {subtitle}
             </div>
 
         </div>

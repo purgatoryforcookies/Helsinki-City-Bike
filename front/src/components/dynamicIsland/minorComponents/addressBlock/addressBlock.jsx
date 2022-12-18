@@ -5,9 +5,6 @@ import { BsFillCheckCircleFill, BsFillExclamationCircleFill, BsPinMap } from 're
 
 function AddressBlock({ data }) {
 
-  console.log(data);
-
-
   return (
     <div className='addressBlockBody'>
 

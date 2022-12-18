@@ -4,6 +4,7 @@ import AddJourney from "./components/addJourney/addJourney";
 import NavBar from "./components/navBar/navBar";
 import DynamicIsland from "./components/dynamicIsland/dynamicIsland";
 import { QueryClientProvider, QueryClient } from "react-query"
+import ModalBody from "./components/modal/modal";
 
 import "./App.css"
 import { useState } from "react";
@@ -21,13 +22,13 @@ const queryClient = new QueryClient({
 function App() {
 
   const [stationSelection, setStationSelection] = useState(1)
-
+  const [modalState, setModalState] = useState(false)
 
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
         <div className="appHeader">
-          <NavBar />
+          <NavBar modal={setModalState}/>
         </div>
         <div className="lmargin">
 
@@ -46,7 +47,7 @@ function App() {
           {stationSelection ? <DynamicIsland selected={stationSelection} /> : null}
         </div>
 
-
+        <ModalBody modalState={modalState} handleState={setModalState}/>
 
         {/* <AddJourney /> */}
 
