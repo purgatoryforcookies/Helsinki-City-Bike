@@ -20,6 +20,7 @@ function SearchboxStations({ name, value, onchange, success }) {
             setDebounceSearch(search)
         }, 500)
         return () => clearTimeout(valueChange)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [search])
 
     useEffect(() => {
