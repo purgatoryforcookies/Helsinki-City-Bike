@@ -17,20 +17,11 @@ class NewJourney(BaseModel):
     
     @validator('duration', always=True)
     def compute_duration(cls, v, values):
+        duration = (values['arrival'] - values['departure']).total_seconds()   
+        if duration < 0:
+            raise ValueError('Duration cannot be negative based on dates!')
+        return duration
         
-        try:
-            duration = (values['arrival'] - values['departure']).total_seconds()   
-            if duration < 0:
-                raise ValueError('Duration cannot be negative based on dates!')
-            return duration
-        except:
-            pass
-
-class StationRetrieve(BaseModel):
-    station_id: int
-    days: int | None = None
-
-
 
 
 
@@ -79,10 +70,6 @@ class JourneyParams(BaseModel):
         
         if v['sortKey'] not in SORTKEYS:
             raise ValueError("Invalid sortkey. Available sortkeys: "+", ".join(SORTKEYS))
-
-        # if v['sortKey'] in ("departure_station", "return_station"):
-        #     v['sortKey'] += ".name"
-        
         
         return v
     

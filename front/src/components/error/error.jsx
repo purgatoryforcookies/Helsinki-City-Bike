@@ -4,14 +4,14 @@ function ErrorComp({ serverError, clientError }) {
     // TODO: when backend errors have been standardized, handle them accordingly. 
 
 
-    if (!serverError && !clientError) {
+    // if (!serverError && !clientError) {
         return <div className='ErrorBody'>
                     <div className='formErrorChild'>
                         <div className="errorheader">Fatal Error</div>
                         <div className="errorfooter">Please try again later</div>
                     </div>
                 </div>
-    }
+    // }
 
 
     return (
