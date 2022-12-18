@@ -14,8 +14,8 @@ function AddressBlock({ data }) {
       <div className="addressHeader">
         <div>Id: {data.station_id}</div>
         <div id='addressTitle'>{data.name}</div>
-        <div id='addressStatusIcon'>{data.active ? <BsFillCheckCircleFill size={22} color='green' />
-          : <BsFillExclamationCircleFill size={22} color='#b38710' />}</div>
+        {data.active ? <BsFillCheckCircleFill size={22} color='green' />
+          : <BsFillExclamationCircleFill size={22} color='#b38710' />}
       </div>
 
       <div className="addressBodyLeft">
