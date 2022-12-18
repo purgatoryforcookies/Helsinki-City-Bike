@@ -1,11 +1,12 @@
 from tests import test_connection
+import pytest
 import json
 
 
 client = test_connection.client
 
 
-
+@pytesty.mark.run('first')
 def test_db_with_stations():
     
 
