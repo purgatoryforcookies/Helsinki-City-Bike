@@ -10,6 +10,15 @@ client = test_connection.client
 
 
 def test_addJourney():
+    
+    for i in range(10):
+
+        
+        response = client.post("/api/station/", 
+                               content=test_connection.create_fake_station(), 
+                               headers=test_connection.HEADERS)
+        assert response.status_code == 200
+        assert response.json()["name"]
 
     for i in range(30):
         newJourney = json.dumps({
