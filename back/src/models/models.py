@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Identity, DateTime, ForeignKey, Boolean, Float, dialects
+from sqlalchemy import Column, Integer, Sequence, String, Identity, DateTime, ForeignKey, Boolean, Float, dialects
 from internal import connection
 from pydantic import BaseModel, validator
 from sqlalchemy.orm import relationship, validates
@@ -63,8 +63,8 @@ class Log(connection.Base):
 
 
 # if os.environ['ENV'] == "test":
-    # print("Dropping tables for test env")
-    # connection.Base.metadata.drop_all(connection.soldev_engine, [Log.__table__, Station.__table__])
+#     print("Dropping tables for test env")
+#     connection.Base.metadata.drop_all(connection.soldev_engine, [Log.__table__, Station.__table__])
 
 connection.Base.metadata.create_all(connection.soldev_engine)
 

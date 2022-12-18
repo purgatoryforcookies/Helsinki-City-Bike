@@ -33,11 +33,21 @@ def search_stations(db, search):
     return result
 
 
-def insert_station(db, station_name):
+def insert_station(db, station):
     
-    try:
+    # try:
     
-        record = Station(name=station_name)
+        record = Station(name=station.name,
+                         name_swe=station.name_swe,
+                         name_eng=station.name_eng,
+                         address = station.address,
+                         address_swe = station.address_swe,
+                         city=station.city,
+                         city_swe=station.city_swe,
+                         operator=station.operator,
+                         capacity=station.capacity,
+                         x=station.x,
+                         y=station.y)
         
         db.add(record)
         db.flush()
@@ -46,8 +56,8 @@ def insert_station(db, station_name):
         
         return record
 
-    except Exception as e:
-       raise HTTPException(status_code=400, detail=str(e))
+    # except Exception as e:
+    #    raise HTTPException(status_code=400, detail=str(e))
    
    
    

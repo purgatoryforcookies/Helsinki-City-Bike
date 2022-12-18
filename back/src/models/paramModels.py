@@ -25,7 +25,40 @@ class NewJourney(BaseModel):
         return duration
         
 
-
+class NewStation(BaseModel):
+    name: str
+    name_swe: str | None = None
+    name_eng: str | None = None
+    address: str
+    address_swe: str | None=None
+    city: str | None=None
+    city_swe: str | None=None
+    operator: str | None=None
+    capacity: int
+    x: float
+    y: float
+    
+    
+    @validator('name_swe','name_eng')
+    def default_name(cls, v, values):
+        if v == "":
+            v = values['name']
+        return v
+    
+    @validator('address_swe')
+    def default_address(cls, v, values):
+        if v == "":
+            v = values['address']
+        return v
+    
+    @validator('city_swe')
+    def default_city(cls, v, values):
+        if v == "":
+            if 'city' in values and values['city'] !='':
+                v = values['city']
+        return v
+    
+    
 
 class JourneyParams(BaseModel):
     sortkey: dict[str,str] = None

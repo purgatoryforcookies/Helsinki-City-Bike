@@ -16,7 +16,7 @@ function DynamicIsland({ selected }) {
 
   const { isError, data, isLoading, error } = useFetchMetrics({ station_id: selected, days: days })
     
-  // console.log(data);
+  console.log(data);
   
   if (isError){
     return <ErrorComp serverError={error}/>
@@ -29,7 +29,9 @@ function DynamicIsland({ selected }) {
         <TimelineSelector onselection={setDays} />
       </div>
 
-      {isLoading && !isError ? <Loading /> :
+      {(isLoading) ? <Loading /> :
+      
+      data.station ?
         <>
           <div className="islandMetrics" >
             <StatsRow data={data.metrics} />
@@ -49,7 +51,7 @@ function DynamicIsland({ selected }) {
             <LeaderBoard title='Top 5' subtitle='Incoming' leaderboardData={data.metrics.leaderboard.incoming} />
             <LeaderBoard title='Top 5' subtitle='Outgoing' leaderboardData={data.metrics.leaderboard.outgoing} />
           </div>
-        </>
+        </>:<div>Empty</div>
 
       }
 

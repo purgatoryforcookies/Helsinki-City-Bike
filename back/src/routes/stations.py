@@ -29,19 +29,14 @@ async def search_stations(search: str, db: Session = Depends(connection.get_db))
     return crud_station.search_stations(db, search)
 
 
-
-
 @station_router.post("/")
-async def add_new_station(db: Session = Depends(connection.get_db), name: str = None):
-    
-    
+async def add_new_station(params: paramModels.NewStation, db: Session = Depends(connection.get_db)):
+    return crud_station.insert_station(db, params)
 
-    return crud_station.insert_station(db, name)
+
 
 @station_router.get("/dynamic/")
-async def add_new_station(station_id: int, days: int = None, db: Session = Depends(connection.get_db)):
-    
-    # crud_journey.get_log_byId(connection.soldev_engine, station_id, days)
+async def metrics_by_station(station_id: int, days: int = None, db: Session = Depends(connection.get_db)):
     
     respond = {}
     respond['station'] = crud_station.get_station_byId(db, station_id)
