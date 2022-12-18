@@ -6,7 +6,7 @@ import json
 client = test_connection.client
 
 
-@pytesty.mark.run('first')
+@pytest.mark.run('first')
 def test_db_with_stations():
     
 
