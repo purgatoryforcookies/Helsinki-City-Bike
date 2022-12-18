@@ -13,10 +13,9 @@ function ModalBody({ modalState, handleState }) {
             bottom: 'auto',
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
-            // backgroundColor: 'rgba(69, 69, 70, 1)',
+            backgroundImage: 'linear-gradient(to right top, #191919, #1d1c1d, #212020, #252324, #292727)',
             maxHeight: '80vh',
-            
-
+            border: '1px solid #353434'
         },
         overlay: { zIndex: 1000,
       backgroundColor: 'rgba(69, 69, 70, 0.75)' }
@@ -26,7 +25,6 @@ function ModalBody({ modalState, handleState }) {
         <div>
             <Modal
                 isOpen={modalState}
-                // onAfterOpen={afterOpenModal}
                 onRequestClose={()=> handleState(false)}
                 style={modalstyle}
                 ariaHideApp={false}

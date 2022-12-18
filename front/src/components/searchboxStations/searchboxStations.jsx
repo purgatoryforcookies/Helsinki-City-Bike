@@ -57,7 +57,7 @@ function SearchboxStations({ name, value, onchange, success }) {
                 onClick={() => setClose(false)}
                 autoComplete='off' />
             {!close && <div className="results_list" >
-                <Scrollbars style={{ width: '100%', height: 300 }}>
+                <Scrollbars autoHeight>
                     {dataToShow && dataToShow.map(item =>
                         <div key={item.station_id} onClick={() => handleClick(item)} className="result_card">
                             <ResultCard data={item} />

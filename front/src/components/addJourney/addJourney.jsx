@@ -4,8 +4,9 @@ import SearchboxStations from '../searchboxStations/searchboxStations'
 import NumberBox from '../numberBox/numberBox';
 import ErrorComp from '../error/error';
 import { timeToSecMin } from '../../services/utils/dates';
-import LoadingButton from '@mui/lab/LoadingButton';
-import CircularProgress from '@mui/material/CircularProgress';
+// import LoadingButton from '@mui/lab/LoadingButton';
+// import CircularProgress from '@mui/material/CircularProgress';
+import CustomButton from '../button/button';
 import "./addJourney.scss"
 
 import useForm from '../../services/hooks/useForm';
@@ -82,12 +83,7 @@ function AddJourney() {
                 </div>
 
                 <div className="footer">
-                    <LoadingButton
-                        loading={isLoading}
-                        variant="outlined"
-                        loadingIndicator={<CircularProgress size={22} />}
-                        type='Submit'
-                    >Submit</LoadingButton>
+                    <CustomButton title='Submit' loading={isLoading} theme='light'/>
                     
                     {(isError && freshError) && <ErrorComp serverError={error} />}
                 </div>
