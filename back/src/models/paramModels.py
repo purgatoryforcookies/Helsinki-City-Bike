@@ -1,8 +1,12 @@
-from pydantic import BaseModel, validator, ValidationError
+from pydantic import BaseModel, validator, ValidationError, Field
 from datetime import datetime
 from dateutil import parser
+
 SORTKEYS = ('ride_id','departure', 'arrival', 
             'departure_station','return_station','distance','duration', 'NONE')
+
+
+
 
 
 
@@ -26,29 +30,49 @@ class NewJourney(BaseModel):
         
 
 class NewStation(BaseModel):
-    name: str
+    name: str = Field(...,min_length=3)
     name_swe: str | None = None
     name_eng: str | None = None
-    address: str
+    address: str = Field(...,min_length=3)
     address_swe: str | None=None
     city: str | None=None
     city_swe: str | None=None
     operator: str | None=None
-    capacity: int
+    capacity: int 
     x: float
     y: float
     
     
+      
+    
+    @validator('capacity')
+    def capacity_(cls, v):
+       if (v<=0):
+           raise ValueError('Capacity has to be more than 0')
+       return v
+   
+    @validator('x','y')
+    def coordinates(cls, v):
+       if (v==0):
+           raise ValueError('Coordinates should not be zero')
+       return v
+    
     @validator('name_swe','name_eng')
     def default_name(cls, v, values):
         if v == "":
-            v = values['name']
+            if 'name' in values:
+                v = values['name']
+            else:
+                raise ValueError('Atleast name needs to be provided!')
         return v
     
     @validator('address_swe')
     def default_address(cls, v, values):
         if v == "":
-            v = values['address']
+            if 'address' in values:
+                v = values['address']
+            else:
+                raise ValueError('Atleast address needs to be provided')
         return v
     
     @validator('city_swe')

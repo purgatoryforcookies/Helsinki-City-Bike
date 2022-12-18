@@ -4,21 +4,10 @@ import time
 from tests import test_connection
 import json
 from random import randrange
-import datetime
 from dateutil import parser
 client = test_connection.client
 
 def test_addJourney():
-
-    test_names = ['ATestiasema88', "BTestiasema28", 'CVuosaari77',
-                  'DPisulahti451', 'ETommi kähönen23', 'FTommi 23kähönen55',
-                  'Gtestiasema 33', 'Helppo','Xoksss','Ynapapiiri',
-                  'Zkissanmaa']
-
-    for name in test_names:
-        response = client.post("/api/station/?name={}".format(name))
-        assert response.status_code == 200
-        assert response.json()["name"] == name
 
     for i in range(30):
         newJourney = json.dumps({
