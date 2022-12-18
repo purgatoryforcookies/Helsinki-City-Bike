@@ -72,18 +72,18 @@ describe("StationsTable", ()=>{
 
     })
 
-    it("Renders error", async ()=>{
+    // it("Renders error", async ()=>{
 
-		useFetchStation.mockImplementation(() => ({ isLoading: false, isError:true }));
+	// 	useFetchStation.mockImplementation(() => ({ isLoading: false, isError:true }));
 
-        render(<StationsTable/>)
+    //     render(<StationsTable/>)
 
-        await waitFor(()=>{
-            // screen.debug(undefined, 100000)
-            screen.getByText('Error!')
-          })
+    //     await waitFor(()=>{
+    //         // screen.debug(undefined, 100000)
+    //         screen.getByText('Error!')
+    //       })
 
-    })
+    // })
 
 })
 

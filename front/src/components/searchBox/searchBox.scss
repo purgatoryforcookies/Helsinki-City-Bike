@@ -1,10 +1,13 @@
 
 .searchBoxBody{
+ 
+      height: 22px;
+      border-radius: 5px;
+      border: 1px solid rgb(71, 71, 66);
+      padding: 2px 2px 2px 8px;
+}
 
+.searchBoxBody:focus{
 
-        padding: 10px;
-        
-    
-
-
+      border: none;
 }

@@ -3,8 +3,8 @@ name: validation_back
 on:
   push:
     branches: [master]
-    # paths:
-    #   - back/**
+    paths:
+      - back/**
   pull_request:
     branches: [master]
 
@@ -13,7 +13,7 @@ on:
 jobs:
   test:
     # if: github.ref == 'refs/heads/master'
-    name: backend api unit/integ test
+    name: Server test
     runs-on: ubuntu-20.04
     defaults:
       run:
@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Build containers
-        run: docker-compose build
+        run: docker-compose -f docker-compose_test.yml build
 
       - name: Run tests
-        run: docker-compose up --exit-code-from app
+        run: docker-compose -f docker-compose_test.yml up --exit-code-from app

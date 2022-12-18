@@ -1,11 +1,20 @@
 
 const journeyTableTheme = {
 
-    Table: `
-    --data-table-library_grid-template-columns: 90px minmax(80px, 150px) minmax(80px, 150px) minmax(80px, 250px) minmax(80px, 250px) 130px 130px ;
-    align-content: start;
-    padding-right: 3px
-  `,
+  Table: `
+  --data-table-library_grid-template-columns: 90px repeat(2, minmax(80px, 300px))  repeat(2, minmax(80px, 100%)) 130px 150px ;
+  align-content: start;
+  color:white;
+
+    `,
+
+     
+    Body: `
+    &.journey_custom_body>* {
+    background-color: #191919;
+    }
+    `,
+
     Row: `
       cursor: pointer;
       font-size: 14px;
@@ -23,6 +32,7 @@ const journeyTableTheme = {
       }
     `,
     HeaderCell: `
+
       div > *{
         justify-content: center;
         padding-left: 2px;
@@ -30,13 +40,22 @@ const journeyTableTheme = {
      `,
 
     HeaderRow: `
-          .th {
-            border-bottom: 1px solid #a0a8ae;
-            text-align: center;
-            padding-bottom: 5px;
-            padding-top: 3px;
-            font-size: 15px;
-          }
+    background-color: #191919;
+
+    button>span>svg{
+      fill:white;
+    }
+   
+    .th {
+      position: sticky;
+      top:0;
+
+      border-bottom: 1px solid #a0a8ae;
+      text-align: center;
+      padding-bottom: 5px;
+      padding-top: 3px;
+      font-size: 15px;
+    }
         `,
 }
 

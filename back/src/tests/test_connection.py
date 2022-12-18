@@ -3,8 +3,11 @@ from sqlalchemy import create_engine, engine
 from sqlalchemy.orm import sessionmaker
 import os
 from src import main
+from faker import Factory
+import json
+import random
 
-
+fake = Factory.create('fi_FI')
 
 
 client = TestClient(main.app)
@@ -41,4 +44,43 @@ from src.internal.connection import get_db, Base
 main.app.dependency_overrides[get_db] = override_get_db
 
 Base.metadata.create_all(soldev_test_engine)
+
+
+
+
+HEADERS = {
+            'Content-Type': 'application/json'
+        }
+
+def create_fake_station():
+    
+    baseAddress = fake.address()
+    street = baseAddress.split('\n')[0]
+
+    x,y,city,j,h = fake.local_latlng(country_code='FI')
+
+    name = fake.company()
+
+    capacity = random.randint(1, 40)
+    
+    
+    
+    return json.dumps({        "name": name,
+                    "name_swe": "",
+                    "name_eng": "",
+                    "address": street,
+                    "address_swe": '',
+                    "city": city,
+                    "city_swe": "",
+                    "operator": "test",
+                    "capacity": capacity,
+                    "x": x,
+                    "y": y
+                    })
+
+
+
+
+
+
 

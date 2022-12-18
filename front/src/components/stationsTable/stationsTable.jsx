@@ -19,13 +19,14 @@ import SearchBox from '../searchBox/searchBox'
 import { useState } from 'react'
 
 
-function StationsTable() {
+function StationsTable({handleSelection}) {
 
     const theme = useTheme(stationTableTheme);
     const [search, setSearch] = useState("")
 
 
     const { isError, data, isLoading } = useFetchStation()
+    
 
     if (isLoading) {
         return <div className='stationTable_comp'>
@@ -33,13 +34,14 @@ function StationsTable() {
         </div>
     }
     if (isError) {
-        return <p>Error!</p>
+        return 
     }
 
     function set_filter(value) {
-        
-        setSearch(value)
+
+        setSearch(value.target.value)
     }
+
 
     const stationsToShow = !search
         ? data
@@ -50,24 +52,23 @@ function StationsTable() {
 
     return (
         <div className='stationTable_comp'>
-            <SearchBox handleSearch={set_filter} />
+            <SearchBox onchange={set_filter} style={{ height: 25 }} />
+        <div className="stationsTable">
 
             <Table data={{ nodes: stationsToShow }} theme={theme} layout={{ custom: true, isDiv: true, fixedHeader: true }}>
                 {(tableList) => (
                     <>
-
-
                         <Virtualized
                             tableList={tableList}
                             rowHeight={28}
                             header={() => (
-                                <HeaderRow>
+                                <HeaderRow >
                                     <HeaderCell>Id</HeaderCell>
                                     <HeaderCell>Name</HeaderCell>
                                 </HeaderRow>
                             )}
                             body={(item) => (
-                                <Row key={item.id} item={item}>
+                                <Row key={item.station_id} item={item} onClick={(item)=>handleSelection(item.station_id)}>
 
                                     <Cell>{item.station_id}</Cell>
                                     <Cell>{item.name}</Cell>
@@ -80,6 +81,7 @@ function StationsTable() {
                 )}
             </Table>
 
+                </div>
         </div>
 
     )

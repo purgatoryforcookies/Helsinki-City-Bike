@@ -1,0 +1,68 @@
+.islandLeaderboard{
+
+
+    width: 40%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+    text-align: center;
+    color: rgb(199, 198, 198);
+
+    background: rgba(165, 165, 165, 0.021);
+    border-radius: 16px;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(11px);
+    border: 1px solid rgba(133, 132, 132, 0.233);
+    padding: 15px;
+
+
+
+    .leaderboardHeader{
+        
+        font-size: 24px;
+        padding-top: 8px;
+        font-weight: 300;
+        height: 20px;
+    }
+    .leaderboardContent{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        
+
+        .leaderboardResult{
+            display: flex;
+            justify-content: space-between;
+            
+           
+  
+            .leaderboardResultName{
+                max-width: 70%;
+                // line-height:1em;
+            
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+
+        }
+
+    }
+
+    .leaderboardFooter{
+
+        font-size: 22px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 300;
+        height: 30px;
+
+
+    }
+
+}

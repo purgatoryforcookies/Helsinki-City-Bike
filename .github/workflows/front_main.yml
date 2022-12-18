@@ -3,25 +3,82 @@ name: validation_front
 on:
   push:
     branches: [master]
-    # paths:
-    #   - front/**
+
   pull_request:
     branches: [master]
-
 
 
 jobs:
   test:
     # if: github.ref == 'refs/heads/master'
-    name: front unit testing
+    name: Front unit test
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: ./front
+
+    
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+      
+      - name: Intall dependecies
+        run: npm install
+
+      - name: Test
+        run: npm test
+
+      
+  
+  build:
+    needs: test
+    name: Build app
     runs-on: ubuntu-20.04
     defaults:
       run:
         working-directory: ./front
     
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - run: npm install
-      - run: npm test
+
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+      
+      - name: Intall dependecies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Save build
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: front/build
+          if-no-files-found: error
+  
+  deploy:
+    needs: [test, build]
+    name: Deploy to AWS
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+
+      - name: Set up AWS
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+
+      - name: Deploy to AWS
+        run: aws s3 sync . s3://helsinkibike --delete
+
+      
       

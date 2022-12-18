@@ -4,28 +4,28 @@ import time
 from tests import test_connection
 import json
 from random import randrange
-import datetime
 from dateutil import parser
 client = test_connection.client
 
+
+
 def test_addJourney():
+    
+    for i in range(20):
 
-    test_names = ['ATestiasema88', "BTestiasema28", 'CVuosaari77',
-                  'DPisulahti451', 'ETommi kähönen23', 'FTommi 23kähönen55',
-                  'Gtestiasema 33', 'Helppo','Xoksss','Ynapapiiri',
-                  'Zkissanmaa']
-
-    for name in test_names:
-        response = client.post("/api/station/?name={}".format(name))
+        
+        response = client.post("/api/station/", 
+                               content=test_connection.create_fake_station(), 
+                               headers=test_connection.HEADERS)
         assert response.status_code == 200
-        assert response.json()["name"] == name
+        assert response.json()["name"]
 
     for i in range(30):
         newJourney = json.dumps({
             "departure": calendar.timegm(time.gmtime())-(i*1000),
             "arrival": calendar.timegm(time.gmtime())-(i*1000),
-            "departure_station_id": randrange(1, 10),
-            "return_station_id": randrange(1, 10),
+            "departure_station_id": randrange(1, 20),
+            "return_station_id": randrange(1, 20),
             "distance": i*10+10,
             "duration": i*10+10
         })
@@ -43,7 +43,7 @@ def test_addJourney():
         assert response.json()['distance'] >= 10
 
 
-def test_journey_get():
+def test_journey_get_dbjoins():
 
     response = client.post("/api/journey/fetch", content=json.dumps({}))
 
@@ -57,12 +57,10 @@ def test_journey_sorting():
     
 
     for key in SORTKEYS:
-        print(key)
         if key == "NONE":
             continue
 
         for condition in ['True', "False"]:
-            print("sorkey is: ", key, "Condition is: ", condition)
 
             params = {
                 "limit": 10,
@@ -87,7 +85,7 @@ def test_journey_sorting():
                     )[0][key]) > parser.parse(response.json()[-1][key])
                     
                 else:
-                    assert response.json()[0][key] > response.json()[-1][key]
+                    assert response.json()[0][key] >= response.json()[-1][key]
 
             else:
                 if key in ("departure_station", "return_station"):
@@ -99,12 +97,12 @@ def test_journey_sorting():
                     )[0][key]) < parser.parse(response.json()[-1][key])
                     
                 else:
-                    assert response.json()[0][key] < response.json()[-1][key]
+                    assert response.json()[0][key] <= response.json()[-1][key]
 
 
 def test_search():
 
-    abc = ['A', 'B', 'C','X']    
+    abc = ['A', 'B', 'C']    
     
     for letter in abc:
 
@@ -117,22 +115,16 @@ def test_search():
                                 content=json.dumps(params))
 
         assert response.status_code == 200
-        assert "departure_station" in response.json()[0]
-        assert "return_station" in response.json()[0]
+        print(response.json())
+        if (len(response.json()) > 0):
+            assert "departure_station" in response.json()[0]
+            assert "return_station" in response.json()[0]
         
         for i in range(len(response.json())):
         
             word = response.json()[i]['departure_station']['name']+response.json()[i]['return_station']['name']
             assert letter.casefold() in word.casefold()
     
-    
-    
-    
-    
-
-
-
-
 
 
 def test_addFalsyJourney():
@@ -152,7 +144,7 @@ def test_addFalsyJourney():
 
     response = client.post("/api/journey", content=newJourney, headers=headers)
     assert response.status_code == 400
-    assert response.json() == {"detail": "Station id does not exist"}
+    assert 'detail' in response.json() 
 
     newJourney = json.dumps({
         "departure": "sjnjsnjgjdgsdsv",
@@ -165,7 +157,7 @@ def test_addFalsyJourney():
 
     response = client.post(
         "/api/journey/", content=newJourney, headers=headers)
-    assert response.status_code == 422
+    assert response.status_code == 400
 
     newJourney = json.dumps({
         "departure": "sjnjsnjgjdgsdsv",
@@ -178,4 +170,4 @@ def test_addFalsyJourney():
 
     response = client.post(
         "/api/journey/", content=newJourney, headers=headers)
-    assert response.status_code == 422
+    assert response.status_code == 400

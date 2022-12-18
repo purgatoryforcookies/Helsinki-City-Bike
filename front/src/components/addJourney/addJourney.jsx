@@ -4,6 +4,9 @@ import SearchboxStations from '../searchboxStations/searchboxStations'
 import NumberBox from '../numberBox/numberBox';
 import ErrorComp from '../error/error';
 import { timeToSecMin } from '../../services/utils/dates';
+// import LoadingButton from '@mui/lab/LoadingButton';
+// import CircularProgress from '@mui/material/CircularProgress';
+import CustomButton from '../button/button';
 import "./addJourney.scss"
 
 import useForm from '../../services/hooks/useForm';
@@ -11,15 +14,15 @@ import useForm from '../../services/hooks/useForm';
 
 function AddJourney() {
 
-    const { formdata, onChangeInput, onSubmitForm, isSuccess, isError, error, freshError } = useForm({
+    const { formdata, onChangeInput, onSubmitForm, isSuccess, isError, error, freshError, isLoading } = useForm({
         departure: "",
         arrival: "",
         departure_station_id: "",
         return_station_id: "",
-        distance: "",
-        duration: ""
+        distance: 0,
+        duration: 0
     })
-    const {min, sec } = timeToSecMin(formdata.departure, formdata.arrival)
+    const { min, sec } = timeToSecMin(formdata.departure, formdata.arrival)
 
     return (
         <div className='addJourney_comp'>
@@ -73,14 +76,15 @@ function AddJourney() {
                     <div className="div5">
                         <div className="option_header">Duration</div>
                         <div className="option_function">
-                               {(formdata.departure && formdata.arrival) ? `${min}min ${sec}sec` : ""}
+                            {(formdata.departure && formdata.arrival) ? `${min}min ${sec}sec` : ""}
                         </div>
                     </div>
 
                 </div>
 
                 <div className="footer">
-                    <button className='submitNewJourney' type='submit' title='Submit'>Submit</button>
+                    <CustomButton title='Submit' loading={isLoading} theme='light'/>
+                    
                     {(isError && freshError) && <ErrorComp serverError={error} />}
                 </div>
             </form>

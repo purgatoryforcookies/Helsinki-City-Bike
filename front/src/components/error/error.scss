@@ -2,13 +2,16 @@
 
     position:fixed;
     bottom: 20px;
-    right: 0;
-
+    left: 50px;
+    z-index: 99;
     border: 3px solid red;
     border-radius: 5px;
-    width: 350px;
+    width: 320px;
+    background-color: rgb(44, 45, 46);
+    color: rgb(203, 205, 207);
 
-    max-height: 200px;
+
+    max-height: 130px;
     overflow-y: auto;
     overflow-x: hidden;
     display: flex;
@@ -17,13 +20,13 @@
     justify-content: flex-start;
     align-items: center;
 
-        gap: 10px;
+    gap: 10px;
 
     .formErrorChild{
         width: 100%;
         height: fit-content;
         // background-color: aqua;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid rgb(78, 76, 76);
         padding: 5px;
         display: flex;
         flex-direction: column;
