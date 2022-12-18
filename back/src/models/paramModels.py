@@ -17,9 +17,11 @@ class NewJourney(BaseModel):
     
     @validator('duration', always=True)
     def compute_duration(cls, v, values):
+        if not 'arrival' in values or not 'departure' in values:
+            return
         duration = (values['arrival'] - values['departure']).total_seconds()   
         if duration < 0:
-            raise ValueError('Duration cannot be negative based on dates!')
+            raise ValueError('Duration cannot be negative!')
         return duration
         
 

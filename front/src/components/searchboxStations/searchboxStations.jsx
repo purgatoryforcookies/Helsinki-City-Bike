@@ -63,6 +63,7 @@ function SearchboxStations({ name, value, onchange, success }) {
                             <ResultCard data={item} />
                         </div>
                     )}
+                    {isLoading ? <div>Loading</div>:null}
                 </Scrollbars>
                 {isError && <div>Error!</div>}
 

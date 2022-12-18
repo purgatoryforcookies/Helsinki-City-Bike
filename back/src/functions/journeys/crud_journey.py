@@ -64,7 +64,7 @@ def get_log(db, params):
 
 def add_journey(db, journey):
     
-    # try:
+    try:
         record = Log(departure=journey.departure,
                      arrival=journey.arrival,
                      departure_station_id=journey.departure_station_id,
@@ -79,15 +79,13 @@ def add_journey(db, journey):
 
         return record
 
-    # except IntegrityError as e:
+    except IntegrityError as e:
+        raise HTTPException(
+            status_code=400, detail={"errors":"Station id does not exist"})
 
-    #     raise HTTPException(
-    #         status_code=400, detail={"errors":"Station id does not exist"})
-
-    # except Exception as e:
-    #     # print(e)
-    #     raise HTTPException(
-    #         status_code=500, detail="This is an internal error")
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail="This is an internal error")
 
 
 def sort_records(q, dStation, rStation, params):

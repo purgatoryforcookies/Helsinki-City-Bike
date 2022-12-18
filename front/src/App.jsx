@@ -49,9 +49,6 @@ function App() {
 
         <ModalBody modalState={modalState} handleState={setModalState}/>
 
-        {/* <AddJourney /> */}
-
-
       </QueryClientProvider>
 
     </div>
