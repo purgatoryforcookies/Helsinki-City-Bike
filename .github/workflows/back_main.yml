@@ -49,13 +49,18 @@ jobs:
               TARGET: "/home/ubuntu/soldev"
 
         - name: Run container in EC2 with SSH
-          script: |
-            export POSTGRE_HOST=${{ secrets.POSTGRE_HOST }}
-            export POSTGRE_USER=${{ secrets.POSTGRE_USER }}
-            export POSTRGE_PASS=${{ secrets.POSTRGE_PASS }}
-            cd /home/ubuntu/soldev
-            docker-compose -f docker-compose.prod.yml build
-            docker-compose -f docker-compose.prod.yml up
+          uses: appleboy/ssh-action@master
+          with:
+            key: ${{ secrets.EC2_SSH }}
+            host: ${{ secrets.EC2_DOMAIN }}
+            username: ${{ secrets.EC2_USERNAME }}
+            script: |
+              export POSTGRE_HOST=${{ secrets.POSTGRE_HOST }}
+              export POSTGRE_USER=${{ secrets.POSTGRE_USER }}
+              export POSTRGE_PASS=${{ secrets.POSTRGE_PASS }}
+              cd /home/ubuntu/soldev
+              docker-compose -f docker-compose.prod.yml build
+              docker-compose -f docker-compose.prod.yml up
 
 
 
