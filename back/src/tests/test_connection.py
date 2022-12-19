@@ -15,7 +15,7 @@ client = TestClient(main.app)
 SOLDEV_DB_TEST = engine.URL.create(
         "postgresql",
         username = os.environ['POSTGRE_USER'],
-        password = os.environ['POSTRGE_PASS'],
+        password = os.environ['POSTGRE_PASS'],
         host = os.environ['POSTGRE_HOST'],
         database = "test_db"
             
