@@ -7,6 +7,9 @@ services:
     build: ./src
     environment:
     - ENV=prod
+    - POSTGRE_PASS=lrBWMc3j0886J2W6QPUbBC94Gur8FIL3
+    - POSTGRE_USER=soldev2023
+    - POSTGRE_HOST=soldeveu1.chlw8bcphzrb.eu-north-1.rds.amazonaws.com
 
     command: bash -c "sleep 2 && uvicorn main:app --host 0.0.0.0 --port 8000 --reload --no-server-header"
     ports:
@@ -22,7 +25,3 @@ services:
     ports:
       - 80:80
       - 443:443
-    # command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
-
-    # volumes:
-    #   - ./data/nginx_data/log/nginx:/var/log/nginx

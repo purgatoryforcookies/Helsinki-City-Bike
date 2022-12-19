@@ -29,3 +29,35 @@ jobs:
 
       - name: Run tests
         run: docker-compose -f docker-compose.test.yml up --exit-code-from app
+
+
+  deploy:
+    needs: test
+      # if: github.ref == 'refs/heads/master'
+      name: Deploy to AWS EC2
+      runs-on: ubuntu-20.04
+      steps:
+        - uses: actions/checkout@v2
+        
+        - name: Deploy SolDevServerEU
+          uses: easingthemes/ssh-deploy@main
+          env:
+              SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH }}
+              REMOTE_HOST: ${{ secrets.EC2_DOMAIN }}
+              REMOTE_USER: ${{ secrets.EC2_USERNAME }}
+              SOURCE: "back/"
+              TARGET: "/home/ubuntu/soldev"
+
+        - name: Run container in EC2 with SSH
+          script: |
+          export POSTGRE_HOST=${{ secrets.POSTGRE_HOST }}
+          export POSTGRE_USER=${{ secrets.POSTGRE_USER }}
+          export POSTRGE_PASS=${{ secrets.POSTRGE_PASS }}
+          cd /home/ubuntu/soldev
+          docker-compose -f docker-compose.prod.yml build
+          docker-compose -f docker-compose.prod.yml up
+
+
+
+
+        
