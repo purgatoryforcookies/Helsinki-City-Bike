@@ -50,12 +50,12 @@ jobs:
 
         - name: Run container in EC2 with SSH
           script: |
-          export POSTGRE_HOST=${{ secrets.POSTGRE_HOST }}
-          export POSTGRE_USER=${{ secrets.POSTGRE_USER }}
-          export POSTRGE_PASS=${{ secrets.POSTRGE_PASS }}
-          cd /home/ubuntu/soldev
-          docker-compose -f docker-compose.prod.yml build
-          docker-compose -f docker-compose.prod.yml up
+            export POSTGRE_HOST=${{ secrets.POSTGRE_HOST }}
+            export POSTGRE_USER=${{ secrets.POSTGRE_USER }}
+            export POSTRGE_PASS=${{ secrets.POSTRGE_PASS }}
+            cd /home/ubuntu/soldev
+            docker-compose -f docker-compose.prod.yml build
+            docker-compose -f docker-compose.prod.yml up
 
 
 
