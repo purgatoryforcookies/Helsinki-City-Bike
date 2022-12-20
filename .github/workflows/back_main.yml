@@ -70,9 +70,9 @@ jobs:
               sudo -E docker-compose -f docker-compose.prod.yml up
               exit
         
-        - name: Exit
-          if: always()
-          run: exit
+        # - name: Exit
+        #   if: always()
+        #   run: exit
 
 
 

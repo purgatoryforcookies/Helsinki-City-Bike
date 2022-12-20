@@ -5,6 +5,8 @@ services:
   app:
 
     container_name: server_prod
+    stdin_open: false 
+    tty: false
     build: ./src
     environment:
       POSTGRE_PASS: ${POSTGRE_PASS}
@@ -19,6 +21,8 @@ services:
 
   nginx:
     container_name: nginx_server
+    stdin_open: false 
+    tty: false
     build: ./nginx
     ports:
       - 80:80
