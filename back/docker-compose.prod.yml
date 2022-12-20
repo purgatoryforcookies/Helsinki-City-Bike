@@ -3,21 +3,19 @@ version: "3.8"
 services:
 
   app:
+
     container_name: server_prod
     build: ./src
     environment:
-    - ENV=prod
-    - POSTGRE_PASS=lrBWMc3j0886J2W6QPUbBC94Gur8FIL3
-    - POSTGRE_USER=soldev2023
-    - POSTGRE_HOST=soldeveu1.chlw8bcphzrb.eu-north-1.rds.amazonaws.com
+      POSTGRE_PASS: ${POSTGRE_PASS}
+      POSTGRE_USER: ${POSTGRE_USER}
+      POSTGRE_HOST: ${POSTGRE_HOST}
+      ENV: prod
 
     command: bash -c "sleep 2 && uvicorn main:app --host 0.0.0.0 --port 8000 --reload --no-server-header"
     ports:
     - 8000:8000
     restart: always
-    depends_on:
-      - nginx
-  
 
   nginx:
     container_name: nginx_server

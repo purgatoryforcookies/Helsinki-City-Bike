@@ -3,13 +3,15 @@ name: validation_front
 on:
   push:
     branches: [master]
-    paths:
-      - front/**
+    # paths:
+    #   - front/**
   pull_request:
     branches: [master]
-    paths:
-      - front/**
+    # paths:
+    #   - front/**
 
+env:
+  FLY_API_TOKEN: ${{ secrets.FLY_TOKEN }}
 
 jobs:
   test:
@@ -35,7 +37,7 @@ jobs:
 
       
   
-  build:
+  deploy:
     needs: test
     name: Build app
     runs-on: ubuntu-20.04
@@ -56,32 +58,30 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Save build
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: front/build
-          if-no-files-found: error
-  
-  deploy:
-    needs: [test, build]
-    name: Deploy to AWS
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: build
+      - name: Deploy to SolDevServerEU
+        uses: easingthemes/ssh-deploy@main
+        env:
+            SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH }}
+            REMOTE_HOST: ${{ secrets.EC2_DOMAIN }}
+            REMOTE_USER: ${{ secrets.EC2_USERNAME }}
+            SOURCE: "front/build"
+            TARGET: "/home/ubuntu/soldev/nginx/"
 
-      - name: Set up AWS
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Restart container in EC2 with SSH
+        uses: appleboy/ssh-action@master
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-central-1
+          key: ${{ secrets.EC2_SSH }}
+          host: ${{ secrets.EC2_DOMAIN }}
+          username: ${{ secrets.EC2_USERNAME }}
+          envs: POSTGRE_HOST, POSTGRE_PASS, POSTRGE_PASS
+          script: |
+            set -e
+            export POSTGRE_HOST=${{ secrets.POSTGRE_HOST }}
+            export POSTGRE_USER=soldev2023
+            export POSTGRE_PASS=${{ secrets.POSTGRE_PASS }}
+            cd /home/ubuntu/soldev
+            sudo -E docker-compose -f docker-compose.prod.yml down
+            sudo -E docker-compose -f docker-compose.prod.yml build
+            sudo -E docker-compose -f docker-compose.prod.yml up
+            exit 0
 
-      - name: Deploy to AWS
-        run: aws s3 sync . s3://helsinkibike --delete
-
-      
-      

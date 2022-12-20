@@ -1,14 +1,12 @@
 from sqlalchemy import create_engine, engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
-# from models import models
-
 import os
-
 import dotenv
+
+
 dotenv.load_dotenv(".env")
 dotenv.load_dotenv("../.env")
-
 
 print("\n")
 print("Connection is being made")
@@ -17,6 +15,10 @@ db_to_connect_to = "test_db"
 
 if os.environ['ENV'] == "prod":
     db_to_connect_to = "postgres"
+
+print("testting envs --------------------------------->", os.environ['POSTGRE_USER'], "<---------------------------")
+print("testting envs --------------------------------->", os.environ['ENV'], "<---------------------------")
+
 
 try:
 

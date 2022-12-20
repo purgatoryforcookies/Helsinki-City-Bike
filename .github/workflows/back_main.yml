@@ -3,13 +3,12 @@ name: validation_back
 on:
   push:
     branches: [master]
-    # paths:
-    #   - back/**
+    paths:
+      - back/**
   pull_request:
     branches: [master]
     paths:
       - back/**
-
 
 
 jobs:
@@ -34,6 +33,10 @@ jobs:
   deploy:
       # if: github.ref == 'refs/heads/master'
       name: Deploy to AWS EC2
+      env:
+          POSTGRE_HOST: ${{ secrets.POSTGRE_HOST }}
+          POSTGRE_USER: ${{ secrets.POSTGRE_USER }}
+          POSTGRE_PASS: ${{ secrets.POSTGRE_PASS }}
       needs: test
       runs-on: ubuntu-20.04
       steps:
@@ -54,14 +57,20 @@ jobs:
             key: ${{ secrets.EC2_SSH }}
             host: ${{ secrets.EC2_DOMAIN }}
             username: ${{ secrets.EC2_USERNAME }}
+            envs: POSTGRE_HOST, POSTGRE_PASS, POSTRGE_PASS
             script: |
               export POSTGRE_HOST=${{ secrets.POSTGRE_HOST }}
-              export POSTGRE_USER=${{ secrets.POSTGRE_USER }}
-              export POSTRGE_PASS=${{ secrets.POSTRGE_PASS }}
+              export POSTGRE_USER=soldev2023
+              export POSTGRE_PASS=${{ secrets.POSTGRE_PASS }}
+              printenv
               cd /home/ubuntu/soldev
-              docker-compose -f docker-compose.prod.yml build
-              docker-compose -f docker-compose.prod.yml up
-
+              sudo -E docker-compose -f docker-compose.prod.yml down
+              sudo -E docker-compose -f docker-compose.prod.yml build
+              sudo -E docker-compose -f docker-compose.prod.yml up
+              exit
+        
+        - name: Exit
+          run: exit 0
 
 
 
