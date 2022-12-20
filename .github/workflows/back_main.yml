@@ -59,6 +59,7 @@ jobs:
             username: ${{ secrets.EC2_USERNAME }}
             envs: POSTGRE_HOST, POSTGRE_PASS, POSTRGE_PASS
             script: |
+              set -e
               export POSTGRE_HOST=${{ secrets.POSTGRE_HOST }}
               export POSTGRE_USER=soldev2023
               export POSTGRE_PASS=${{ secrets.POSTGRE_PASS }}
@@ -70,7 +71,8 @@ jobs:
               exit
         
         - name: Exit
-          run: exit 0
+          if: always()
+          run: exit
 
 
 
