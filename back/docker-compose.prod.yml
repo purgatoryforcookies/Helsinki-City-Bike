@@ -5,8 +5,6 @@ services:
   app:
 
     container_name: server_prod
-    stdin_open: false 
-    tty: false
     build: ./src
     environment:
       POSTGRE_PASS: ${POSTGRE_PASS}
@@ -14,15 +12,13 @@ services:
       POSTGRE_HOST: ${POSTGRE_HOST}
       ENV: prod
 
-    command: bash -c "sleep 2 && uvicorn main:app --host 0.0.0.0 --port 8000 --reload --no-server-header"
+    command: bash -c "uvicorn main:app --host 0.0.0.0 --port 8000 --reload --no-server-header"
     ports:
     - 8000:8000
     restart: always
 
   nginx:
     container_name: nginx_server
-    stdin_open: false 
-    tty: false
     build: ./nginx
     ports:
       - 80:80
