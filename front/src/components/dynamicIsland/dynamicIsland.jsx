@@ -52,7 +52,6 @@ function DynamicIsland({ selected }) {
           </div>
         </>:<div>Empty</div>
 
-
       }
 
     </div>
