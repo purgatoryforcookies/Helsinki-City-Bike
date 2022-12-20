@@ -10,8 +10,6 @@ on:
     paths:
       - front/**
 
-env:
-  FLY_API_TOKEN: ${{ secrets.FLY_TOKEN }}
 
 jobs:
   test:
@@ -82,9 +80,9 @@ jobs:
             cd /home/ubuntu/soldev
             sudo -E docker-compose -f docker-compose.prod.yml down
             sudo -E docker-compose -f docker-compose.prod.yml build
-            sudo -E docker-compose -f docker-compose.prod.yml up
+            sudo -E docker-compose -f docker-compose.prod.yml up -d
             exit
 
-      # - name: Exit
-      #   if: always()
-      #   run: exit
+      - name: Exit
+        if: always()
+        run: exit
