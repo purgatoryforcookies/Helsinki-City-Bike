@@ -11,7 +11,7 @@ on:
 
 jobs:
   testBack:
-    # if: github.ref == 'refs/heads/master'
+    if: github.ref != 'refs/heads/master'
     name: Server test
     runs-on: ubuntu-20.04
     defaults:
@@ -29,7 +29,7 @@ jobs:
 
 
   testFront:
-    # if: github.ref == 'refs/heads/master'
+    if: github.ref != 'refs/heads/master'
     needs: testBack
     name: Front test
     runs-on: ubuntu-20.04
@@ -53,7 +53,7 @@ jobs:
 
 
   deploy:
-      # if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/master'
       name: Deploy to AWS EC2
       needs: [testBack,testFront]
       env:
