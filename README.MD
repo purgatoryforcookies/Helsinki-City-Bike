@@ -25,6 +25,20 @@ Once again, many lessons were learned. Notable ones being not to host small proj
 
 http://ec2-13-51-161-123.eu-north-1.compute.amazonaws.com/
 
+## Features `v1.0.0`
+
+### Journeys
+- List, search, filter and sort journeys
+- Add a new journey (adding new stations not supported through ui yet)
+
+### stations
+- List and search stations
+- Stations metrics such as inbound, outbound and balance count
+- See station on the map
+- See basic details of a station (location, id, active or not)
+- Filter metrics by time. Available: last 1 week, 1 month and 3 month timeframes
+
+
 
 ## Environment Variables
 
