@@ -83,7 +83,7 @@ jobs:
             sudo -E docker-compose -f docker-compose.prod.yml up -d
             sleep 14
             if sudo docker inspect --format "{{json .State.Running }}" server_prod | jq; then
-              if sudo docker inspect --format "{{json .State.Running }}" nginx_server | jq ); then
+              if sudo docker inspect --format "{{json .State.Running }}" nginx_server | jq; then
                 exit 0
             else
               exit 1
