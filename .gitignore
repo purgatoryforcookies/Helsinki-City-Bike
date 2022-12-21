@@ -20,3 +20,5 @@ local_pytest.ini
 
 data
 
+coverage
+
