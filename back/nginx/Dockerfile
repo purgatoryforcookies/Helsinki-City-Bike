@@ -1,12 +1,12 @@
 FROM nginx:1.23.1
 
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY ./build /usr/share/nginx/html/build
 
 ##linux nneeds these
 WORKDIR /nginx
-COPY ./build build
 ## add permissions for nginx user
-RUN chown -R nginx:nginx /nginx && chmod -R 755 /nginx && chmod -R 755 /nginx/build && \
+RUN chown -R nginx:nginx /nginx && chmod -R 755 /nginx && \
         chown -R nginx:nginx /var/cache/nginx && \
         chown -R nginx:nginx /var/log/nginx && \
         chown -R nginx:nginx /etc/nginx/conf.d

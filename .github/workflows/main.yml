@@ -1,18 +1,16 @@
-name: validation_back
+name: Test/Build/Deploy
 
 on:
   push:
     branches: [master]
-    paths:
-      - back/**
+
   pull_request:
     branches: [master]
-    paths:
-      - back/**
+
 
 
 jobs:
-  test:
+  testBack:
     # if: github.ref == 'refs/heads/master'
     name: Server test
     runs-on: ubuntu-20.04
@@ -30,19 +28,57 @@ jobs:
         run: docker-compose -f docker-compose.test.yml up --exit-code-from app
 
 
+  testFront:
+    # if: github.ref == 'refs/heads/master'
+    needs: testBack
+    name: Front test
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: ./front
+
+    
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+      
+      - name: Intall dependecies
+        run: npm install
+
+      - name: Test
+        run: npm test
+
+
+
   deploy:
       # if: github.ref == 'refs/heads/master'
       name: Deploy to AWS EC2
+      needs: [testBack,testFront]
       env:
           POSTGRE_HOST: ${{ secrets.POSTGRE_HOST }}
           POSTGRE_USER: ${{ secrets.POSTGRE_USER }}
           POSTGRE_PASS: ${{ secrets.POSTGRE_PASS }}
-      needs: test
       runs-on: ubuntu-20.04
       steps:
-        - uses: actions/checkout@v2
+
+
+        - name: Checkout repo
+          uses: actions/checkout@v2
+        - name: Setup node
+          uses: actions/setup-node@v2
         
-        - name: Deploy SolDevServerEU
+        - name: Intall dependecies
+          working-directory: ./front
+          run: npm install
+
+        - name: Build
+          working-directory: ./front
+          run: npm run build
+
+        
+        - name: Copy backend files to EC2
           uses: easingthemes/ssh-deploy@main
           env:
               SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH }}
@@ -50,6 +86,18 @@ jobs:
               REMOTE_USER: ${{ secrets.EC2_USERNAME }}
               SOURCE: "back/"
               TARGET: "/home/ubuntu/soldev"
+
+
+        - name: Copy front build files to EC2
+          uses: easingthemes/ssh-deploy@main
+          env:
+              SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH }}
+              REMOTE_HOST: ${{ secrets.EC2_DOMAIN }}
+              REMOTE_USER: ${{ secrets.EC2_USERNAME }}
+              SOURCE: "front/build"
+              TARGET: "/home/ubuntu/soldev/nginx/"
+
+
 
         - name: Run container in EC2 with SSH
           uses: appleboy/ssh-action@master
@@ -59,20 +107,15 @@ jobs:
             username: ${{ secrets.EC2_USERNAME }}
             envs: POSTGRE_HOST, POSTGRE_PASS, POSTRGE_PASS
             script: |
-              set -e
               export POSTGRE_HOST=${{ secrets.POSTGRE_HOST }}
               export POSTGRE_USER=soldev2023
               export POSTGRE_PASS=${{ secrets.POSTGRE_PASS }}
-              printenv
               cd /home/ubuntu/soldev
               sudo -E docker-compose -f docker-compose.prod.yml down
               sudo -E docker-compose -f docker-compose.prod.yml build
-              sudo -E docker-compose -f docker-compose.prod.yml up
+              sudo -E docker-compose -f docker-compose.prod.yml up -d
               exit
-        
-        # - name: Exit
-        #   if: always()
-        #   run: exit
+
 
 
 
