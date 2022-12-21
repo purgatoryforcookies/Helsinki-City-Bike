@@ -1,61 +1,16 @@
-name: Test/Build/Deploy
+name: Build/Deploy
 
 on:
   push:
     branches: [master]
 
-  pull_request:
-    branches: [master]
-
 
 
 jobs:
-  testBack:
-    if: github.ref != 'refs/heads/master'
-    name: Server test
-    runs-on: ubuntu-20.04
-    defaults:
-      run:
-        working-directory: ./back
-    
-    steps:
-      - uses: actions/checkout@v2
-      
-      - name: Build containers
-        run: docker-compose -f docker-compose.test.yml build
-
-      - name: Run tests
-        run: docker-compose -f docker-compose.test.yml up --exit-code-from app
-
-
-  testFront:
-    if: github.ref != 'refs/heads/master'
-    needs: testBack
-    name: Front test
-    runs-on: ubuntu-20.04
-    defaults:
-      run:
-        working-directory: ./front
-
-    
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@v2
-      
-      - name: Intall dependecies
-        run: npm install
-
-      - name: Test
-        run: npm test
-
-
-
   deploy:
-      if: github.ref == 'refs/heads/master'
+      # if: github.ref == 'refs/heads/master'
       name: Deploy to AWS EC2
-      needs: [testBack,testFront]
+
       env:
           POSTGRE_HOST: ${{ secrets.POSTGRE_HOST }}
           POSTGRE_USER: ${{ secrets.POSTGRE_USER }}
