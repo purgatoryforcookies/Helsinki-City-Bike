@@ -21,7 +21,6 @@ function DynamicIsland({ selected }) {
     return <ErrorComp serverError={error}/>
   }
 
-
   return (
     <div className='dynamicIslandBody'>
       <div className="islandHeader">
@@ -53,7 +52,7 @@ function DynamicIsland({ selected }) {
         </>:<div>Empty</div>
 
       }
-      
+
 
     </div>
   )
