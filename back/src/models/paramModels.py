@@ -23,6 +23,7 @@ class NewJourney(BaseModel):
     def compute_duration(cls, v, values):
         if not 'arrival' in values or not 'departure' in values:
             return
+        if v: return v
         duration = (values['arrival'] - values['departure']).total_seconds()   
         if duration < 0:
             raise ValueError('Duration cannot be negative!')
