@@ -26,6 +26,7 @@ function JourneyTable({ data, onchange, isloading, iserror, name }) {
   if (iserror) {
     return
   }
+  
 
   const dataToShow = !data ? [] : data
 
@@ -63,8 +64,8 @@ function JourneyTable({ data, onchange, isloading, iserror, name }) {
                   : tableList.map((item) => (
                     <Row key={item.ride_id} item={item}>
                       <Cell>{item.ride_id}</Cell>
-                      <Cell>{new Date(item.departure).toLocaleString('Fi')}</Cell>
-                      <Cell>{new Date(item.arrival).toLocaleString('Fi')}</Cell>
+                      <Cell>{new Date(item.departure+'Z').toLocaleString('Fi')}</Cell>
+                      <Cell>{new Date(item.arrival+'Z').toLocaleString('Fi')}</Cell>
                       <Cell>{item.departure_station.name}</Cell>
                       <Cell>{item.return_station.name}</Cell>
                       <Cell>{(item.distance / 1000).toString()}</Cell>
