@@ -8,10 +8,11 @@ function DPicker({name, value, onchange, placeholder}) {
 
 
   function handleChange(date){
+    
 
       onchange({
         target:{
-          name:name, value: date ? moment(date).local().format():""
+          name:name, value: date ? moment(date):""
         }
       })
     }
