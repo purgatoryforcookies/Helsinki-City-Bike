@@ -1,6 +1,17 @@
-import React from 'react'
-import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+import React, { useEffect } from 'react'
+import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet'
 import "./mapComponent.scss"
+
+
+const ReCenter = ({latlong}) =>{
+  const map = useMap()
+  useEffect(()=>{
+    map.setView(latlong)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[latlong])
+  return null
+}
+
 
 function MapComponent({data}) {
 
@@ -17,6 +28,7 @@ function MapComponent({data}) {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
          <Marker position={[lat, lon]}></Marker>
+         <ReCenter latlong={[lat,lon]}/>
       </MapContainer>
 
 
