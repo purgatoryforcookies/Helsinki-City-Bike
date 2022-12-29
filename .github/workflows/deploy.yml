@@ -15,7 +15,6 @@ jobs:
           POSTGRE_HOST: ${{ secrets.POSTGRE_HOST }}
           POSTGRE_USER: ${{ secrets.POSTGRE_USER }}
           POSTGRE_PASS: ${{ secrets.POSTGRE_PASS }}
-          ENV: prod
       runs-on: ubuntu-20.04
       steps:
 
@@ -61,10 +60,10 @@ jobs:
             key: ${{ secrets.EC2_SSH }}
             host: ${{ secrets.EC2_DOMAIN }}
             username: ${{ secrets.EC2_USERNAME }}
-            envs: POSTGRE_HOST, POSTGRE_PASS, POSTRGE_PASS, ENV
+            envs: POSTGRE_HOST, POSTGRE_USER, POSTRGE_PASS
             script: |
               export POSTGRE_HOST=${{ secrets.POSTGRE_HOST }}
-              export POSTGRE_USER=${{ secrets.EC2_USERNAME }}
+              export POSTGRE_USER=${{ secrets.POSTGRE_USER }}
               export POSTGRE_PASS=${{ secrets.POSTGRE_PASS }}
               export ENV=prod
               cd /home/ubuntu/soldev
