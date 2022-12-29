@@ -79,7 +79,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd Helsinki-City-Bike
+  cd Helsinki-City-Bike/front
 ```
 
 Install dependencies
