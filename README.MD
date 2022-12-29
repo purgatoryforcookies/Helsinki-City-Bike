@@ -43,7 +43,8 @@ http://ec2-13-51-161-123.eu-north-1.compute.amazonaws.com/
 ## Environment Variables
 
 To run this project , you will need to add the following
-credentials to your environment.
+credentials to your environment. If you choose to use .env -file, 
+place it in /back directory together with docker-compose .yml files.
 
 `POSTGRE_PASS`
 `POSTGRE_USER`
@@ -72,13 +73,19 @@ source:https://github.com/solita/dev-academy-2023-exercise
 Clone the project
 
 ```bash
-  git clone https://https://github.com/purgatoryforcookies/Helsinki-City-Bike
+  git clone https://github.com/purgatoryforcookies/Helsinki-City-Bike
 ```
 
 Go to the project directory
 
 ```bash
   cd Helsinki-City-Bike
+```
+
+Install dependencies
+
+```bash
+  npm install
 ```
 
 Deploy

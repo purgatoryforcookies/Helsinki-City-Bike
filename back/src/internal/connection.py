@@ -16,10 +16,6 @@ db_to_connect_to = "test_db"
 if os.environ['ENV'] == "prod":
     db_to_connect_to = "postgres"
 
-print("testting envs --------------------------------->", os.environ['POSTGRE_USER'], "<---------------------------")
-print("testting envs --------------------------------->", os.environ['ENV'], "<---------------------------")
-
-
 try:
 
     SOLDEV_DB = engine.URL.create(
